@@ -1,0 +1,82 @@
+<!--
+  Service Details Page Component
+
+  Description:
+  This template renders the details of a specific service including:
+  - Main and optional secondary/tertiary sections with headlines, images, and descriptions.
+  - A "Request Appointment" button if available.
+  - A list of related videos using the <app-video-player> component.
+  - Related services badges for easy navigation.
+  - Common layout elements: Navbar, Blog section, Footer, and Back-to-Top button.
+
+  Dynamic Content Bindings:
+  - serviceDetails: Contains all data for displaying the service, including headline(s),
+    image(s), HTML descriptions, a flag for showing the appointment button, and videos.
+  - relatedServices: List of related service items (title and slug).
+  - category: Used to build routerLink URLs for related services.
+
+  Notes:
+  - The top header and banner components are commented out for now.
+  - Safe HTML binding is used for `description`, `description2`, and `description3`.
+-->
+
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<!-- <app-inner-page-banner [pageTitle]="'Service Details'" [backgroundImage]="'img/page-title.jpg'" /> -->
+<!-- Service Details -->
+<div class="service-details-area ptb-100">
+    <div class="container">
+        <div>
+            <div class="services-details-img">
+                <h2 class="text-center ">{{ serviceDetails.headline }}</h2>
+                <img [src]="serviceDetails.imageUrl" alt="Service Details">
+                <div [innerHTML]="serviceDetails.description"></div>
+                <a *ngIf="serviceDetails.RequestButton" class="appointment-btn" routerLink="/request-appointment">
+                    Request Appointment</a>
+            </div>
+        </div>
+        <div *ngIf="serviceDetails.headline2 && serviceDetails.imageUrl2">
+            <div class="services-details-img">
+                <h2 class="text-center ">{{ serviceDetails.headline2 }}</h2>
+                <img [src]="serviceDetails.imageUrl2" alt="Service Details">
+                <div [innerHTML]="serviceDetails.description2"></div>
+                <a *ngIf="serviceDetails.RequestButton" class="appointment-btn" routerLink="/request-appointment">
+                    Request Appointment</a>
+            </div>
+        </div>
+        <div *ngIf="serviceDetails.headline3 && serviceDetails.imageUrl3">
+            <div class="services-details-img">
+                <h2 class="text-center ">{{ serviceDetails.headline3 }}</h2>
+                <img [src]="serviceDetails.imageUrl3" alt="Service Details">
+                <div [innerHTML]="serviceDetails.description3"></div>
+                <a *ngIf="serviceDetails.RequestButton" class="appointment-btn" routerLink="/request-appointment">
+                    Request Appointment</a>
+            </div>
+        </div>
+        <div class="text-center mb-4" *ngIf="serviceDetails.videos.length > 0">
+            <h3> Understand {{ serviceDetails.title }} library </h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-3" *ngFor="let video of serviceDetails.videos , let i = index">
+                <app-video-player [video]="video" *ngIf="video"></app-video-player>
+            </div>
+        </div>
+        <div class="relarted__services mt-5">
+            <span class="related__badge" *ngFor="let item of relatedServices">
+                <a [routerLink]="'/service-details/' + category + '/' + item.slug" class="text-white">
+                    {{ item.title }}
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- End Service Details -->
+<app-blog />
+
+<app-footer />
+
+<app-back-to-top />

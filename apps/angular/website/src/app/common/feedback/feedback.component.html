@@ -1,0 +1,89 @@
+<!--
+|--------------------------------------------------------------------------
+| Patient Feedback Carousel Component
+|--------------------------------------------------------------------------
+|
+| Displays patient testimonials in a responsive carousel with:
+| - Star rating visualization
+| - Alternate styling for specific routes
+| - Dynamic content binding
+|
+| STRUCTURE:
+| • Background image container with conditional styling
+| • Owl Carousel implementation
+| • Per-slide template with:
+|   - 5-star rating display
+|   - Patient name/title
+|   - Testimonial text
+|
+| FEATURES:
+| • Route-sensitive styling ('style-two' on /index-3)
+| • Responsive carousel (Owl Carousel)
+| • Consistent star rating visualization
+| • Dynamic data binding
+|
+| DATA BINDINGS:
+| • feedbackSlides: Owl Carousel configuration
+| • feedbacks: Array<{
+|     name: string;
+|     doctor: string;
+|     title: string;
+|     testimonial: string;
+|   }>
+|
+| DEPENDENCIES:
+| • ngx-owl-carousel-o: Carousel functionality
+| • Angular Router: Route detection
+|
+| ACCESSIBILITY:
+| • Alt text for star images
+| • Semantic heading structure
+| • Requires ARIA labels for carousel controls
+|
+| STYLING NOTES:
+| • Background image: img/about-us/background-image.jpg
+| • ptb-100: Padding top/bottom 100px
+| • 'style-two': Alternate visual treatment
+|
+| MAINTENANCE:
+| • Star images should be replaced with SVG for scalability
+| • Consider adding pagination/navigation controls
+| • Ensure carousel options are properly configured
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<div class="review-area ptb-100" style="background-image: url(img/about-us/background-image.jpg);"
+    [ngClass]="{'style-two': router.url === '/index-3'}">
+    <div class="container">
+        <div class="main">
+            <h2 class="text-center">
+                What our patient say
+            </h2>
+            <owl-carousel-o [options]="feedbackSlides">
+                <ng-template carouselSlide *ngFor="let feedback of feedbacks">
+                    <div class="review-item">
+                        <div class="review-img">
+                            <div class="review-star d-flex justify-content-center">
+                                <img src="img/about-us/star.png" alt="Feedback">
+                                <img src="img/about-us/star.png" alt="Feedback">
+                                <img src="img/about-us/star.png" alt="Feedback">
+                                <img src="img/about-us/star.png" alt="Feedback">
+                                <img src="img/about-us/star.png" alt="Feedback">
+
+                            </div>
+                            <h3>{{ feedback.name }}</h3>
+                            <span>{{ feedback.doctor }} | {{ feedback.title }}</span>
+                        </div>
+                        <p>
+                            {{ feedback.testimonial }}
+                        </p>
+                    </div>
+                </ng-template>
+
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>

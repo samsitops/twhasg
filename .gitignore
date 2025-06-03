@@ -1,0 +1,84 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dist
+tmp
+out-tsc
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+.nx/cache
+.nx/workspace-data
+.cache
+/.cache
+
+.angular
+
+/apps/dreamCare/python/agents-orch/.venv
+/apps/dreamCare/python/agents-orch/.langgraph_api
+/apps/dreamCare/python/agents-orch/.langgraph_api/*
+/apps/dreamCare/python/agents-orch/.langgraph_api/**/*
+/apps/dreamCare/python/agents-orch/.langgraph_api/**/**/*
+/apps/dreamCare/python/agents-orch/.langgraph_api/**/**/**/*
+/apps/dreamCare/python/agents-orch/src/llm_repos
+/apps/dreamCare/python/agents-orch/vectorstore
+/apps/dreamCare/python/agents-orch/**/__pycache__/
+/apps/dreamCare/python/agents-orch/src/**/__pycache__/
+/apps/dreamCare/python/agents-orch/vstore_storage/
+
+/apps/teamWorkHealth/python/agents-orch/.venv
+/apps/teamWorkHealth/python/agents-orch/.langgraph_api
+/apps/teamWorkHealth/python/agents-orch/.langgraph_api/*
+/apps/teamWorkHealth/python/agents-orch/.langgraph_api/**/*
+/apps/teamWorkHealth/python/agents-orch/.langgraph_api/**/**/*
+/apps/teamWorkHealth/python/agents-orch/.langgraph_api/**/**/**/*
+/apps/teamWorkHealth/python/agents-orch/src/llm_repos
+/apps/teamWorkHealth/python/agents-orch/vectorstore
+/apps/teamWorkHealth/python/agents-orch/**/__pycache__/
+/apps/teamWorkHealth/python/agents-orch/src/**/__pycache__/
+/apps/teamWorkHealth/python/agents-orch/vstore_storage/
+
+/apps/dreamCare/python/agents-orch/**/__pycache__/*
+/apps/dreamCare/python/agents-orch/src/**/__pycache__/*
+
+/apps/teamWorkHealth/python/agents-orch/**/__pycache__/*
+/apps/teamWorkHealth/python/agents-orch/src/**/__pycache__/*
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Next.js
+.next
+out

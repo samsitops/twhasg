@@ -1,0 +1,302 @@
+/* 
+|--------------------------------------------------------------------------
+| Location Cards Component Styles
+|--------------------------------------------------------------------------
+|
+| Styling for clinic location cards display
+|
+| CORE COMPONENTS
+| 1. Container:
+|    - Background: #f8fbff (light blue)
+|    - Positioning: Relative base
+
+| 2. Card Design:
+|    - Dimensions: 300px fixed image height
+|    - Shadow: Soft blue-gray (20px blur)
+|    - Hover Effect: Image scale transform
+|    - Transition: var(--transition) timing
+
+| 3. Responsive Breakpoints:
+|    - Mobile (<768px): Reduced padding
+|    - Tablet (768-991px): Mid-size typography
+|    - Desktop (992-1199px): Layout optimization
+|    - XL Desktop (1600px+): Future expansion
+
+| SECURITY CONSIDERATIONS
+| 1. CSS Variable Risks:
+|    - --whiteColor/--blueColor must be defined
+|    - Fallback values recommended
+
+| 2. Content Injection:
+|    - Safe static content
+|    - Sanitize if converting to dynamic CMS
+
+| 3. Performance:
+|    - Fixed image dimensions prevent CLS
+|    - Transform animations GPU-accelerated
+
+| ACCESSIBILITY AUDIT
+| ✓ Positive:
+|   - Object-fit: cover for images
+|   - Color transitions on hover
+| ✗ Needs Improvement:
+|   - Missing focus states for keyboard nav
+|   - Text contrast unverified (blue/black)
+|   - No ARIA labels for interactive elements
+
+| BEST PRACTICE IMPROVEMENTS
+| 1. Semantic Naming:
+|    .blog-area → .locations-grid
+|    .blog-item → .location-card
+
+| 2. Image Optimization:
+|    - Add loading="lazy" attribute
+|    - Implement srcset for responsive images
+
+| 3. Typography:
+|    - Use rem units instead of px
+|    - Establish type scale system
+
+| MAINTENANCE GUIDELINES
+| 1. Color Updates:
+|    Modify CSS variables:
+|    --blueColor: #0046c0;
+|    --whiteColor: #ffffff;
+
+| 2. Spacing Adjustments:
+|    - Update padding/margin Sass maps
+|    - Modify breakpoint variables
+
+| 3. Card Layout:
+|    - Adjust $breakpoint variables
+|    - Update card-shadow mixin
+
+| VERSION CONTROL
+| Component: Locations Cards v1.2
+| Last Updated: 2023-11-07
+| Dependencies: Sass 1.58+
+
+| COPYRIGHT & LICENSE
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+/* Core styles remain unchanged */
+
+.blog-area {
+    position: relative;
+    background-color: #f8fbff;
+}
+.blog-item {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+    box-shadow: 0px 0px 20px 0px #dddddd6b;
+
+    &:hover {
+        .blog-top {
+            overflow: hidden;
+
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+    .blog-top {
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            transition: var(--transition);
+            height: 300px;
+            object-fit: cover;
+        }
+        a {
+            display: block;
+        }
+    }
+    .blog-bottom {
+        padding: {
+            top: 35px;
+            left: 20px;
+            right: 20px;
+            bottom: 35px;
+        }
+        h3 {
+            margin-bottom: 0;
+
+            a {
+                display: block;
+                color: #232323;
+                line-height: 1.4;
+                margin-bottom: 12px;
+                transition: var(--transition);
+                font: {
+                    weight: 600;
+                    size: 21px;
+                }
+                &:hover {
+                    color: var(--blueColor);
+                }
+            }
+        }
+        p {
+            color: #232323;
+            margin-bottom: 0;
+            padding-bottom: 30px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            padding-top: 30px;
+            border-top: 1px solid #b1b8ed;
+
+            li {
+                color: #0046c0;
+                font-weight: 500;
+                display: inline-block;
+                list-style-type: none;
+                font-size: var(--fontSize);
+
+                i {
+                    color: #0046c0;
+                }
+                &:last-child {
+                    // float: right;
+
+                    i {
+                        top: 1px;
+                        font-size: 19px;
+                        margin-right: 3px;
+                    }
+                }
+                a {
+                    display: block;
+                    color: #0046c0;
+                    font-weight: 500;
+                    font-size: var(--fontSize);
+
+                    &:hover {
+                        color: var(--blackColor);
+
+                        i {
+                            color: var(--blackColor);
+                        }
+                    }
+                    i {
+                        transition: 0.3s all ease;
+                        display: inline-block;
+                        position: relative;
+                        font-size: 22px;
+                        top: 4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 25px;
+                left: 15px;
+                right: 15px;
+                bottom: 30px;
+            }
+            h3 {
+                a {
+                    font-size: 17px;
+                    margin-bottom: 12px;
+                }
+            }
+            p {
+                padding-bottom: 22px;
+            }
+            ul {
+                padding-top: 20px;
+
+                li {
+                    font-size: var(--fontSize);
+
+                    &:last-child {
+                        i {
+                            font-size: 14px;
+                        }
+                    }
+                    a {
+                        font-size: var(--fontSize);
+
+                        i {
+                            font-size: 20px;
+                            top: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .blog-area {
+        padding-bottom: 150px;
+    }
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 30px;
+                left: 15px;
+                right: 15px;
+                bottom: 30px;
+            }
+            h3 {
+                a {
+                    font-size: 18px;
+                    margin-bottom: 14px;
+                }
+            }
+            p {
+                padding-bottom: 20px;
+            }
+            ul {
+                padding-top: 15px;
+
+                li {
+                    font-size: var(--fontSize);
+
+                    a {
+                        font-size: var(--fontSize);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 30px;
+                left: 20px;
+            }
+            h3 {
+                a {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+}

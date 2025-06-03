@@ -1,0 +1,141 @@
+/* 
+|--------------------------------------------------------------------------
+| progress Bar Stylesheet
+|--------------------------------------------------------------------------
+| File: our-locations.component.scss
+| Description: Defines the visual structure for a progress bar UI 
+|              with a dynamic user/avatar image and step indicators.
+|
+| COMPONENT STRUCTURE
+| 1. .progress-container
+|    • Root container for progress elements
+|    • Applies width, background, and border-radius
+|
+| 2. .progress-bar
+|    • Visual indicator of completion based on dynamic progress
+|    • Uses transition for smooth growth
+|
+| 3. .img-container
+|    • Circular container for profile/avatar image
+|    • Moves horizontally based on progress percentage
+|
+| 4. .steps
+|    • Optional step tracker under the progress bar
+|    • Flexible step count and layout
+|
+| 5. .step
+|    • Individual step wrapper with number and label
+|    • State-based styles: `.active`, `.current`
+|
+| RESPONSIVE DESIGN
+| • Media query for widths below 992px
+| • Scales avatar width for smaller screens
+|
+| VISUAL NOTES
+| • Transition animations for width and position
+| • BEM-style modifiers for active/current steps
+|
+| ACCESSIBILITY & UX
+| ✅ High contrast on active steps
+| ⚠️ Lacks `prefers-reduced-motion` handling
+| ⚠️ Consider improving keyboard focus indicators
+|
+| BEST PRACTICES & IMPROVEMENTS
+| 1. Add focus-visible outlines for .step-number
+| 2. Support `prefers-reduced-motion` media query
+| 3. Use CSS variables for theming (e.g., colors, spacing)
+| 4. Add hover/focus styles for interactivity
+| 5. Add semantic labels (tooltip, aria-describedby)
+|
+| PERFORMANCE & MAINTAINABILITY
+| ✅ Scoped styles (component level)
+| ✅ Efficient transitions (GPU-accelerated properties)
+| ❌ Hardcoded colors (recommend using variables)
+|
+| MAINTENANCE NOTES
+| - Owned by: Frontend UI Team
+| - Last Updated: 2025-Q2
+| - Affects: our-locations.component.html
+| - Location: /src/app/components/our-locations/
+|
+| LICENSE
+| - © 2025 Dream Care UI
+| - MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+.progress-container {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background: #e0e0e0;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+
+    .progress-bar {
+        border-radius: 15px;
+        position: absolute;
+        height: 100%;
+        background: #00ace4;
+        transition: width 0.3s ease-in-out;
+    }
+    .img-container {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        overflow: hidden;
+        background-color: #fff;
+        transform: translateY(-50%);
+        transition: left 0.3s ease-in-out;
+    }
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        // top: -16px;
+
+        .step {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+
+            .step-number {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                border-radius: 50%;
+                background: #e0e0e0;
+                color: #5b479c;
+                font-weight: bold;
+                margin: 0 auto;
+                transition:
+                    background 0.3s,
+                    color 0.3s;
+            }
+
+            .step-label {
+                margin-top: 8px;
+                font-size: 0.9rem;
+                color: #5b479c;
+            }
+
+            &.active .step-number {
+                background: #00ace4;
+                color: #fff;
+            }
+
+            &.current .step-number {
+                border: 2px solid #5b479c;
+            }
+        }
+    }
+}
+@media (max-width: 992px) {
+    .progress-container {
+        .img-container {
+            width: 50px;
+        }
+    }
+}

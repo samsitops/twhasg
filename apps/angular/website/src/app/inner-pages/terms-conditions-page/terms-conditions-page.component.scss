@@ -1,0 +1,100 @@
+/*
+  Styles for the Terms & Conditions content sections (.privacy-item)
+
+  General Styles:
+  - Each .privacy-item has a bottom margin for spacing between sections.
+  - Headings (h2) inside .privacy-item have specific margin and font styling.
+  - Paragraphs (p) inside .privacy-item have no bottom margin.
+  - Lists (ul) inside .privacy-item have no default margin or padding.
+  - List items (li) are styled to remove default bullets and add spacing.
+  - Icons (<i>) inside list items are sized and positioned for alignment.
+  - Last list item and last .privacy-item have no bottom margin to avoid extra space.
+
+  Responsive Breakpoints:
+  - Up to 767px width: smaller margins and font sizes for mobile devices.
+  - Between 768px and 991px width: medium font sizes and margins for tablets.
+  - Between 992px and 1199px width: currently no overrides, inherits general styles.
+  - Above 1600px width: currently no overrides, inherits general styles.
+*/
+
+.privacy-item {
+    margin-bottom: 50px;
+
+    h2 {
+        margin-bottom: 15px;
+        font: {
+            weight: 600;
+            size: 26px;
+        };
+    }
+    p {
+        margin-bottom: 0;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            margin-bottom: 18px;
+            display: block;
+
+            i {
+                display: inline-block;
+                position: relative;
+                font-size: 20px;
+                bottom: -2px;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .privacy-item {
+        margin-bottom: 40px;
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;        
+        }
+        ul {
+            li {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .privacy-item {
+        margin-bottom: 40px;
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        ul {
+            li {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

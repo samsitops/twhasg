@@ -1,0 +1,219 @@
+/* 
+|--------------------------------------------------------------------------
+| funfacts.component.scss
+|--------------------------------------------------------------------------
+|
+| Styles for animated statistics counter with multiple layout variants
+|
+| CORE STYLES
+| • counter-bg: White card with shadow and background image
+|   - Positioned 140px above content (default)
+|   - 8px border radius
+|   - Top/bottom padding
+|
+| COUNTER ITEMS
+| • Image/icons: 60px width with 20px bottom margin
+| • Numbers: 48px blue text (desktop)
+| • Labels: 18px semi-bold text
+|
+| LAYOUT VARIANTS
+| 1. counter-area-two:
+|   - Removes top margin
+|   - Positions 100px from bottom
+|   - Activated on /index-2 route
+|
+| 2. counter-area-three:
+|   - Same as variant two
+|   - Activated on /index-3 route
+|
+| 3. counter-area-four:
+|   - No top/bottom margins
+|   - 100px bottom spacing
+|
+| RESPONSIVE BREAKPOINTS
+| 1. Mobile (<768px):
+|   - Reduced margins (50px top)
+|   - Smaller typography (30px numbers)
+|   - Compact spacing
+|
+| 2. Tablet (768-991px):
+|   - Intermediate sizing
+|   - 38px numbers
+|   - Adjusted positioning
+|
+| 3. Desktop (≥992px):
+|   - Full design implementation
+|
+| TECHNICAL NOTES
+| • Background Properties:
+|   - img/home-one/home-bg3.png
+|   - Cover positioning
+|   - White fallback color
+| • Variables Used:
+|   --whiteColor: #ffffff
+|   --blueColor: Primary brand color
+| • Transitions:
+|   - Counter animations handled by JS
+|
+| ACCESSIBILITY
+| • Sufficient color contrast
+| • Responsive text sizing
+| • Images have descriptive alt text
+|
+| MAINTENANCE
+| © 2025 Dream Care
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+
+.counter-bg {
+    box-shadow: 0px 0px 30px 0px #dddddda6;
+    margin-top: -140px;
+    position: relative;
+    border-radius: 8px;
+    z-index: 2;
+    padding: {
+        top: 45px;
+        bottom: 15px;
+    }
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        position: center center;
+        color: var(--whiteColor);
+    }
+}
+.counter-item {
+    margin-bottom: 30px;
+    text-align: center;
+
+    i {
+        display: block;
+        font-size: 45px;
+        margin-bottom: 20px;
+        color: var(--blueColor);
+    }
+    img {
+        width: 60px;
+        margin-bottom: 20px;
+    }
+    h3 {
+        color: var(--blueColor);
+        margin-bottom: 8px;
+        font: {
+            weight: 700;
+            size: 48px;
+        }
+    }
+    p {
+        margin-bottom: 0;
+        font: {
+            weight: 600;
+            size: 18px;
+        }
+    }
+}
+.counter-area-two {
+    .counter-bg {
+        margin-top: 0;
+        bottom: -100px;
+    }
+}
+.counter-area-three {
+    .counter-bg {
+        margin-top: 0;
+        bottom: -100px;
+    }
+}
+.counter-area-four {
+    margin: {
+        top: 0;
+        bottom: 100px;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .counter-bg {
+        margin-top: 50px;
+        padding: {
+            top: 50px;
+            bottom: 20px;
+        }
+    }
+    .counter-item {
+        i {
+            font-size: 30px;
+            margin-bottom: 14px;
+        }
+        h3 {
+            font-size: 30px;
+            margin-bottom: 4px;
+        }
+        p {
+            font-size: 13px;
+        }
+    }
+    .counter-area-two {
+        .counter-bg {
+            margin-top: 0;
+            bottom: -55px;
+        }
+    }
+    .counter-area-three {
+        .counter-bg {
+            bottom: -50px;
+        }
+    }
+    .counter-area-four {
+        margin: {
+            top: 0;
+            bottom: 50px;
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .counter-bg {
+        margin-top: 70px;
+    }
+    .counter-item {
+        i {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        h3 {
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 15px;
+        }
+    }
+    .counter-area-two {
+        .counter-bg {
+            bottom: -70px;
+        }
+    }
+    .counter-area-three {
+        .counter-bg {
+            bottom: -70px;
+        }
+    }
+    .counter-area-four {
+        margin: {
+            top: 0;
+            bottom: 70px;
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+}

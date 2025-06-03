@@ -1,0 +1,43 @@
+name: dream-care-agents
+
+networks:
+  dmz-net:
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    ports:
+      - 5544:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - dmz-net
+  redis:
+    image: redis
+    networks:
+      - dmz-net
+
+  agents:
+    image: dopavecompany/dreamcare:agents-orch
+    ports:
+      - 8000:8000
+    environment:
+      OPENAI_MODEL_NAME: 'gpt-4o'
+      OPENAI_API_KEY: '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'
+      TAVILY_API_KEY: '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'
+      ANTHROPIC_API_KEY: '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'
+      DEEPGRAM_API_KEY: '5369a0b3e61b5778ac61f0828171ba2ed0f636b1'
+      AZURE_SPEECH_REGION: 'eastuGs2'
+      AZURE_SPEECH_KEY: '6jm41DbAikixNPoCnBHOyvM9NBs9tJhnwaZkU4YHXKUAqRDCAgWJQQJ99AKACHYHv6XJ3w3AAAYACOG09p7'
+      DOCKER_ENV: 'all-in-one'
+      LANGSMITH_TRACING: 'true'
+      LANGCHAIN_PROJECT: 'DreamCare-Dev'
+      SYSTEM_PROMPT: ''
+      INITIAL_MESSAGE: ''
+      REDIS_URI: 'redis://redis:6379'
+      LANGSMITH_API_KEY: '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'
+      POSTGRES_URI: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+    command: ['langgraph', 'up', '--port', '8000']
+    networks:
+      - dmz-net

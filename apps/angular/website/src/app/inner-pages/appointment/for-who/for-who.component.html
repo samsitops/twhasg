@@ -1,0 +1,82 @@
+<!--
+  Form section for selecting whether the appointment is for the user themselves or a family member.
+
+  Features:
+  - Two radio buttons to choose "Myself" or "Family Member".
+  - When "Family Member" is selected, additional fields appear:
+    - Text input for the family member's name (required).
+    - Dropdown select for the relationship type (required).
+  - Shows validation messages if the fields are touched and invalid.
+  - "Go Back" button navigates to the previous step with current service parameter.
+  - "Next" button triggers form submission.
+-->
+
+
+<div>
+    <h2 class="mb-4">
+        Is this appointment for you or a family member?
+    </h2>
+
+    <form [formGroup]="form" class="mb-3">
+        <div class="my-5 d-flex">
+            <div class="me-3">
+                <input type="radio" formControlName="forWho" name="forWho" (ngModelChange)="checkForWho()"
+                    class="me-img-container d-inline-block me-3" id="Myself" value="Myself">
+                <label for="Myself" tooltip="Myself">
+                    <div class="me-img-container d-inline-block">
+                        <img src="/img/man.png" alt="">
+                    </div>
+                </label>
+            </div>
+            <div>
+                <input type="radio" formControlName="forWho" name="forWho" (ngModelChange)="checkForWho()"
+                    value="Family Member" class="me-img-container d-inline-block" id="familyMember">
+                <label for="familyMember" tooltip="Family Member">
+                    <div class="me-img-container d-inline-block">
+                        <img src="/img/someone-else.svg" alt="">
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="row" *ngIf="form.get('forWho')?.value == 'Family Member'">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="memberName">Name</label>
+                    <input type="text" class="form-control" id="memberName" name="memberName"
+                        formControlName="memberName">
+                    <div class="form-control-feedback"
+                        *ngIf="((form.get('memberName')?.touched) && (form.get('memberName')?.invalid))">
+                        <small *ngIf="form.get('memberName')?.errors?.['required']" class="text-danger">
+                            This field is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="relationship">Relationship</label>
+                    <select class="form-control" formControlName="selectedRelation" id="relationship"
+                        name="selectedRelation">
+                        <option value="">Select Relationship</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Child">Child</option>
+                        <option value="Spouse">Spouse</option>
+                        <option value="Sibling">Sibling</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="form-control-feedback"
+                        *ngIf="((form.get('selectedRelation')?.touched) && (form.get('selectedRelation')?.invalid))">
+                        <small *ngIf="form.get('selectedRelation')?.errors?.['required']" class="text-danger">
+                            This field is required
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <a class="btn btn-outline-primary text-primary me-3" [routerLink]="'/request-appointment/select-options'"
+        [queryParams]="{service: service}">
+        Go Back
+    </a>
+    <button type="button" (click)="submitForm()" class="btn btn-primary w-auto">Next</button>
+</div>

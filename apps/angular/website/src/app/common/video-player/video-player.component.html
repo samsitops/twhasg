@@ -1,0 +1,43 @@
+<!--
+  |--------------------------------------------------------------------------
+  | Service Details Inner Left - Video Player Section
+  |--------------------------------------------------------------------------
+  Container for video playback with controls for mute, play/pause, and fullscreen.
+
+  Structure:
+  - <video> element with dynamic source and poster image.
+  - Control buttons:
+    - Mute toggle with icon switching between muted/unmuted states.
+    - Play/pause toggle with icon switching accordingly.
+    - Fullscreen toggle button.
+  - Overlay div for visual effect over video.
+
+  Accessibility:
+  - Buttons have role="button" for screen reader clarity.
+  - Icons update dynamically to indicate current state.
+
+  Usage:
+  Use in a component with corresponding logic for muteVideo(), toggleVideo(), toggleFullScreen() methods
+  and video object with 'url', 'muted', and 'playing' properties.
+
+  © 2025 Dream Care <DreamCare@gmail.com>
+  GitHub: @DreamCare ▸ MIT Licensed
+  |--------------------------------------------------------------------------
+-->
+
+
+<div class="service-details-inner-left">
+    <video #videoPlayer [src]="video.url" poster="./img/video_bg.png"></video>
+    <div class="video-actions">
+        <a role="button" (click)="muteVideo()">
+            <i [class]="video.muted ? 'icofont-ui-mute' :'icofont-ui-volume'"></i>
+        </a>
+        <a class="ms-2 me-2" role="button" (click)="toggleVideo()">
+            <i [class]="video.playing ? 'icofont-pause' :'icofont-play'"></i>
+        </a>
+        <a role="button" (click)="toggleFullScreen()">
+            <i class="icofont-duotone icofont-expand"></i>
+        </a>
+    </div>
+    <div class="overlay"></div>
+</div>

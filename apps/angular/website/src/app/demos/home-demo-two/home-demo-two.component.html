@@ -1,0 +1,56 @@
+<!-- 
+  MAIN PAGE TEMPLATE - HEALTHCARE PORTAL
+  ======================================
+
+  Structure:
+  1. Header/Navigation
+  2. Key Information Sections
+  3. Service Offerings
+  4. Interactive Elements
+  5. Footer & Utilities
+
+  Component Flow:
+  1. Navigation: navbar
+  2. Hero Section: banner
+  3. Critical Info: emergency-information
+  4. Core Content: about-us, services, departments, expertise
+  5. Patient Tools: book-an-appointment
+  6. Team & Locations: doctors, our-locations
+  7. Updates: blog
+  8. Footer: footer, back-to-top
+
+  Features:
+  - Modular component architecture
+  - Dynamic content binding (aboutUs input)
+  - Responsive design
+  - Interactive elements
+  - Location integration
+-->
+
+<app-navbar />
+
+<app-banner />
+
+<app-emergency-information />
+
+<app-about-us [sectionData]="aboutUs" />
+
+<app-services />
+
+<app-departments />
+
+<app-expertise />
+
+<app-book-an-appointment />
+
+<app-doctors />
+
+<!-- <app-funfacts /> -->
+
+<app-our-locations />
+
+<app-blog />
+
+<app-footer />
+
+<app-back-to-top />

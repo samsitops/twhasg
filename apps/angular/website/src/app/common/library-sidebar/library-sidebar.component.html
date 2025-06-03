@@ -1,0 +1,70 @@
+<!--
+|--------------------------------------------------------------------------
+| Video Library Sidebar Component
+|--------------------------------------------------------------------------
+|
+| Displays a navigable list of videos with active state tracking
+|
+| STRUCTURE:
+| • Unordered list container
+| • List items generated from videos array
+| • Commented-out search functionality (available for future use)
+|
+| DATA BINDINGS:
+| • videos: Array<{
+|     title: string;
+|     slug: string;
+|     [other video properties...]
+|   }>
+| • activeLink: string - Currently active video slug
+|
+| FEATURES:
+| • Dynamic routing to video detail pages
+| • Active link highlighting
+| • Clean, minimal design
+| • Ready-to-implement search functionality
+|
+| INTERACTIVE ELEMENTS:
+| • Video links:
+|   - RouterLink navigation
+|   - Active state styling
+| • Search input (commented):
+|   - Bootstrap input group
+|   - Form control styling
+|
+| ACCESSIBILITY:
+| • Semantic list structure
+| • Focus states needed for links
+| • Search would need ARIA labels when implemented
+|
+| STYLING NOTES:
+| • Uses Bootstrap form-control class
+| • Active state controlled via ngClass
+| • Responsive by default
+|
+| MAINTENANCE:
+| • To implement search:
+|   1. Uncomment search container
+|   2. Add search handler in component
+| • To add videos:
+|   - Extend videos array in parent component
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<section class="sidebar">
+
+    <!-- <div class="search-container input-group mb-3">
+        <input type="text" placeholder="Search..." class="search-input form-control">
+    </div> -->
+
+    <ul>
+        <li *ngFor="let video of videos">
+            <a [routerLink]="'/library/'+ video.slug"
+                [ngClass]="{'active': video.slug == activeLink}">{{video.title}}</a>
+        </li>
+    </ul>
+</section>

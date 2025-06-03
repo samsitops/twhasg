@@ -1,0 +1,105 @@
+<!-- 
+|--------------------------------------------------------------------------
+| Pulmonary Services Component
+|--------------------------------------------------------------------------
+|
+| Interactive grid of pulmonary medical services with flip animation
+|
+| CORE STRUCTURE
+| 1. Container:
+|    - Bottom padding: 70px
+|    - Bootstrap container
+|
+| 2. Grid System:
+|    - Responsive 4-column (xl) → 2-column (sm)
+|    - Breakpoints: sm (≥576px), lg (≥992px), xl (≥1200px)
+|    - Flexbox alignment (d-flex)
+|
+| 3. Service Cards:
+|    - Flip animation on click
+|    - Front/End content states
+|    - Dynamic image/text binding
+|    - Router link integration
+|
+| ACCESSIBILITY
+| ✓ Implemented:
+|   - Alt text for images
+|   - Semantic heading hierarchy
+| ✗ Needs Improvement:
+|   - Missing ARIA roles for interactive cards
+|   - No keyboard navigation support
+|   - Screen reader labels for flip action
+|
+| SECURITY
+| 1. Dynamic Content:
+|   - Sanitize service.imageUrl inputs
+|   - Validate service.link routes
+| 2. Interaction:
+|   - Prevent XSS in service.description
+|   - Escape HTML in text bindings
+|
+| BEST PRACTICE IMPROVEMENTS
+| 1. Semantic HTML:
+|    - Use <button> instead of clickable div
+|    - Add role="listitem" to grid items
+|
+| 2. Performance:
+|    - Implement trackBy in *ngFor
+|    - Lazy-load offscreen images
+|    - Add loading="lazy" attribute
+|
+| 3. Animation:
+|    - Prefer CSS transforms over JS
+|    - Add prefers-reduced-motion query
+|
+| MAINTENANCE
+| 1. Add Services:
+|    - Update services array in component
+|    - Maintain 16:9 image aspect ratio
+|    - Verify routerLink paths
+|
+| 2. Modify Grid:
+|    - Adjust column classes
+|    - Update pb-70 padding value
+|
+| 3. Style Changes:
+|    - Modify .service-item transitions
+|    - Update hover-active state styles
+|
+| CONTENT RULES
+| - Images: 400x300px WebP format
+| - Titles: ≤25 characters
+| - Descriptions: ≤120 characters
+| - Links: Relative internal paths
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<div class="services-area pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>Pulmonary Medicine</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 col-xl-3 d-flex" *ngFor="let service of services; let i = index">
+                <div class="service-item" (click)="handleClick(i, $event)"
+                    [ngClass]="{'hover-active': activeIndex === i}">
+                    <div class="service-front">
+                        <img [src]="service.imageUrl" [alt]="service.title">
+                        <h3>{{ service.title }}</h3>
+                        <p>{{ service.description }}</p>
+                    </div>
+                    <div class="service-end">
+                        <img [src]="service.imageUrl" [alt]="service.title">
+                        <h3>{{ service.title }}</h3>
+                        <p>{{ service.description }}</p>
+                        <a [routerLink]="service.link">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

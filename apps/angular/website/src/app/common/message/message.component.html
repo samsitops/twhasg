@@ -1,0 +1,101 @@
+<!--
+|--------------------------------------------------------------------------
+| Founder Message Section
+|--------------------------------------------------------------------------
+|
+| Video message section featuring the CEO with overlay text content
+|
+| STRUCTURE:
+| 1. Video Container
+|   - MP4 video source with controls
+|   - Overlay for text readability
+| 2. Content Container
+|   - Bootstrap-responsive layout (col-md-6)
+|   - White text on semi-transparent background
+|   - Call-to-action button
+|
+| KEY FEATURES:
+| • Video Integration:
+|   - CEO message video with native controls
+|   - MP4 format for browser compatibility
+| • Text Overlay:
+|   - Dark overlay for contrast optimization
+|   - Responsive positioning
+| • Content:
+|   - Heading and descriptive paragraph
+|   - Contact CTA linking to contact page
+|
+| ACCESSIBILITY:
+| • Video:
+|   - Should add <track> for captions
+|   - Consider ARIA labels
+| • Text:
+|   - WCAG AA contrast verified
+|   - Semantic heading structure
+|
+| TECHNICAL NOTES:
+| • Video Source:
+|   - Path: video/ceo_message.mp4
+|   - Type: video/mp4
+| • Dependencies:
+|   - Bootstrap grid system
+|   - Angular router for CTA link
+|
+| MAINTENANCE:
+| • To update video:
+|   1. Replace ceo_message.mp4
+|   2. Maintain same aspect ratio (16:9 recommended)
+| • To modify text:
+|   - Edit heading and paragraph content
+| • To adjust overlay:
+|   - Modify .overlay opacity in CSS
+|
+| OPTIMIZATION TIPS:
+| • Compress video using H.265 codec
+| • Add poster frame for loading state
+| • Implement lazy loading
+|
+| © 2025 TeamWork Health
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<!-- Founder Message Section -->
+<section class="founder-message">
+    <!-- Overlay for the video to enhance text visibility -->
+    <div class="overlay"></div>
+
+    <!-- Background Video -->
+    <div class="founder-content">
+        <video controls>
+            <!-- Video source file -->
+            <source src="video/ceo_message.mp4" type="video/mp4">
+        </video>
+
+        <!-- Message Container -->
+        <div class="founder-message-container">
+            <!-- Bootstrap Container for content alignment -->
+            <div class="container">
+                <div class="row">
+                    <!-- Content Column -->
+                    <div class="col-md-6">
+                        <!-- Founder Message Content -->
+                        <div class="founder-message-content">
+                            <!-- Heading -->
+                            <h5 class="text-white">Message from Our Founder & CEO</h5>
+                            <!-- Message Text -->
+                            <p class="text-white">
+                                Our CEO shares his passion and vision for redesigning healthcare to serve patients
+                                better.
+                                Watch the video below to learn how TeamWork Health is shaping the future of care.
+                            </p>
+                        </div>
+                        <a routerLink="/contact">Contact us</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

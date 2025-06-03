@@ -1,0 +1,83 @@
+<!--
+  This section asks the user (or the family member) whether they have received care
+  at TeamWork Health before.
+
+  The heading text changes dynamically based on the value of 'forWho' variable:
+  - If 'forWho' equals 'other', it asks "Have They received care...?"
+  - Otherwise, it asks "Have You received care...?"
+
+  The form contains a radio button group bound to the reactive form control 'receivedCare':
+  - "Yes" option (value true)
+  - "No" option (value false)
+
+  When "Yes" is selected (receivedCare === true), an additional input field appears
+  prompting the user to specify their previous provider at TeamWork Health.
+
+  Validation:
+  - The previousProvider input field is required if visible.
+  - Validation errors display when the input is touched and invalid.
+
+  Navigation:
+  - A "Go Back" button navigates back to the 'forWho' step with query parameters preserved.
+  - A "Next" button triggers the submit() method to process the form.
+-->
+
+
+<div>
+    <h2 class="mb-4">
+        Have {{forWho =='other' ? 'They':'You'}} received care at TeamWork Health before?
+    </h2>
+    <div>
+        <form [formGroup]="form" class="mb-3">
+            <div class="d-flex mb-4">
+                <div class="text-center me-3">
+                    <input type="radio" class="text-center" id="yes" [value]="true" (ngModelChange)="checkValidity()"
+                        formControlName="receivedCare" name="receivedCare">
+                    <label for="yes">
+                        <div class="choices">
+                            <img src="img/check-mark.png" alt="">
+                        </div>
+                    </label>
+                    <p class="choice-description">
+                        Yes
+                    </p>
+                </div>
+                <div class="text-center">
+                    <input type="radio" class="text-center" id="no" formControlName="receivedCare"
+                        (ngModelChange)="checkValidity()" name="receivedCare" [value]="false">
+                    <label for="no" tooltip="No">
+                        <div class="choices">
+                            <img src="img/close.png" alt="">
+                        </div>
+                    </label>
+                    <p class="choice-description">
+                        No
+                    </p>
+                </div>
+            </div>
+            <div *ngIf="form.value.receivedCare == true">
+                <h4>
+                    Who was your previous provider at TeamWork Health?
+                </h4>
+                <div class="d-flex align-items-end">
+                    <div class="form-group flex-fill me-3">
+                        <label for="previousProvider">Previous Provider</label>
+                        <input type="text" class="form-control" id="previousProvider" name="previousProvider"
+                            formControlName="previousProvider">
+                        <div class="form-control-feedback"
+                            *ngIf="((form.get('previousProvider')?.touched) && (form.get('previousProvider')?.invalid))">
+                            <small *ngIf="form.get('previousProvider')?.errors?.['required']" class="text-danger">
+                                This field is required
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <a class="btn btn-outline-primary text-primary me-3" routerLink="/request-appointment/forWho"
+        [queryParams]="params">
+        Go Back
+    </a>
+    <button type="button" (click)="submit()" class="btn btn-primary">Next </button>
+</div>

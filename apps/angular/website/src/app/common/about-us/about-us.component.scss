@@ -1,0 +1,489 @@
+/**
+ * -----------------------------------------------------------------------------
+ *  ABOUT-US.COMPONENT.SCSS — COMPONENT STYLESHEET
+ * -----------------------------------------------------------------------------
+ * 
+ *  █████╗ ██████╗  ██████╗ ██╗   ██╗████████╗
+ * ██╔══██╗██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝
+ * ███████║██████╔╝██║   ██║██║   ██║   ██║   
+ * ██╔══██║██╔══██╗██║   ██║██║   ██║   ██║   
+ * ██║  ██║██████╔╝╚██████╔╝╚██████╔╝   ██║   
+ * ╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝   
+ * 
+ * Styles for the AboutUsComponent featuring:
+ * - Responsive layout system
+ * - Animated elements
+ * - Custom typography
+ * - Interactive UI components
+ * - Comprehensive breakpoint system
+ * 
+ * -----------------------------------------------------------------------------
+ *  🎨 DESIGN SYSTEM
+ * -----------------------------------------------------------------------------
+ * 
+ *  🟦 COLOR SCHEME
+ *  --blueColor: Primary brand color
+ *  --blackColor: Text and accents
+ *  --whiteColor: Backgrounds and contrasts
+ *  --grayColor: Secondary text
+ * 
+ *  ✒️ TYPOGRAPHY
+ *  --fontSize: Base font size (16px)
+ *  Font weights: 500 (Medium), 600 (Semi-bold), 700 (Bold)
+ * 
+ *  🧩 COMPONENT PARTS
+ *  1. About Item (Core content container)
+ *  2. Media Sections (Left/Right layouts)
+ *  3. Welcome Area (Feature highlights)
+ *  4. Hospital Area (Specialized section)
+ * 
+ * -----------------------------------------------------------------------------
+ *  🖥️ RESPONSIVE BREAKPOINTS
+ * -----------------------------------------------------------------------------
+ * 
+ *  📱 Mobile First Approach:
+ *  - Base styles (up to 767px)
+ *  - 576px → 767px (Small devices)
+ *  - 768px → 991px (Tablets)
+ *  - 992px → 1199px (Small desktops)
+ *  - 1600px+ (Large screens)
+ * 
+ * -----------------------------------------------------------------------------
+ *  🌀 ANIMATIONS UTILIZED
+ * -----------------------------------------------------------------------------
+ * 
+ *  • a-seven: 10s infinite linear (Main image)
+ *  • a-one: 5s infinite linear (Left decor element)
+ *  • a-two: 5s infinite linear (Right decor element)
+ *  • a-three: 5s infinite linear (Right section image)
+ *  • a-six: 5s infinite linear (Hospital shape)
+ * 
+ * -----------------------------------------------------------------------------
+ *  © 2025 DREAM CARE APPLICATIONS
+ *  GitHub: @DreamCare | License: MIT
+ * -----------------------------------------------------------------------------
+ */
+
+/* ==================== CORE COMPONENT STYLES ==================== */
+
+.about-item {
+    margin-bottom: 30px;
+
+    /* Typography hierarchy */
+    h2 {
+        margin-bottom: 15px;
+
+        font: {
+            size: 38px;
+            weight: 700;
+        }
+    }
+
+    p {
+        margin-bottom: 40px;
+    }
+
+    /* Feature list styling */
+    ul {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 40px;
+
+        li {
+            display: block;
+            margin-bottom: 12px;
+            list-style-type: none;
+            color: var(--blackColor);
+            position: relative;
+            padding-left: 30px;
+
+            font: {
+                size: 16px;
+                weight: 500;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            /* Icon styling */
+            i {
+                color: var(--blueColor);
+                display: inline-block;
+                position: absolute;
+                margin-right: 10px;
+                font-size: 23px;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    /* Primary CTA button */
+    a {
+        background-color: var(--blueColor);
+        color: var(--whiteColor);
+        display: inline-block;
+        padding: 20px 45px;
+        border-radius: 5px;
+
+        font: {
+            size: var(--fontSize);
+            weight: 500;
+        }
+
+        &:hover {
+            color: var(--whiteColor);
+            background-color: var(--blackColor);
+        }
+    }
+}
+
+/* ==================== LAYOUT SECTIONS ==================== */
+
+.about-left {
+    position: relative;
+
+    img {
+        z-index: 1;
+        width: 100%;
+        border-radius: 10px;
+        animation: a-seven 10s infinite linear;
+    }
+
+    /* Decorative pseudo-elements */
+    &:before {
+        top: -10px;
+        z-index: -1;
+        content: "";
+        left: -10px;
+        width: 430px;
+        height: 375px;
+        position: absolute;
+        border-radius: 10px;
+        background-color: var(--blueColor);
+        animation: a-one 5s infinite linear;
+    }
+
+    &:after {
+        content: "";
+        z-index: -1;
+        right: -10px;
+        width: 430px;
+        bottom: -10px;
+        height: 375px;
+        position: absolute;
+        border-radius: 10px;
+        background-color: var(--blueColor);
+        animation: a-two 5s infinite linear;
+    }
+}
+
+.about-right {
+    padding-left: 40px;
+    position: relative;
+
+    img {
+        right: 0;
+        top: -55px;
+        z-index: -1;
+        width: 500px;
+        position: absolute;
+        animation: a-three 5s infinite linear;
+    }
+}
+
+/* ==================== WELCOME SECTION ==================== */
+
+.welcome-left {
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 30px;
+    height: 100%;
+    width: 100%;
+
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        position: center center;
+    }
+
+    img {
+        display: none;
+    }
+}
+
+.welcome-item {
+    ul {
+        margin: 0;
+        padding: 0;
+        max-width: 430px;
+
+        li {
+            display: block;
+            position: relative;
+            margin-bottom: 60px;
+            list-style-type: none;
+
+            &:hover {
+                i {
+                    box-shadow: 0px 0px 0px 10px var(--blackColor);
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            i {
+                top: 9px;
+                left: 0;
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+                line-height: 70px;
+                position: absolute;
+                border-radius: 50%;
+                text-align: center;
+                display: inline-block;
+                color: var(--blackColor);
+                background-color: #f1f1f1;
+                transition: var(--transition);
+                box-shadow: 0px 0px 0px 10px var(--blueColor);
+            }
+
+            .welcome-inner {
+                padding-left: 110px;
+
+                h3 {
+                    color: var(--grayColor);
+                    margin-bottom: 10px;
+
+                    font: {
+                        weight: 600;
+                        size: 24px;
+                    }
+                }
+
+                p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+.welcome-right {
+    padding: {
+        left: 70px;
+        top: 0;
+    }
+}
+
+/* ==================== HOSPITAL SECTION ==================== */
+
+.hospital-area {
+    position: relative;
+
+    .hospital-shape {
+        img {
+            animation: a-six 5s infinite linear;
+            position: absolute;
+            bottom: 80px;
+            width: 290px;
+            right: 0;
+        }
+    }
+}
+
+.hospital-item {
+    margin-bottom: 30px;
+    position: relative;
+
+    /* Video play button */
+    .hospital-play-btn {
+        background-color: var(--whiteColor);
+        transition: var(--transition);
+        color: var(--blueColor);
+        display: inline-block;
+        position: absolute;
+        line-height: 110px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 32px;
+        height: 110px;
+        width: 110px;
+        margin: auto;
+        z-index: 2;
+        padding: 0;
+        border: 0;
+        top: 40%;
+        right: 0;
+        left: 0;
+
+        &:hover {
+            color: var(--whiteColor);
+            background-color: var(--blackColor);
+        }
+    }
+
+    h2 {
+        margin-bottom: 15px;
+
+        font: {
+            weight: 700;
+            size: 38px;
+        }
+    }
+
+    p {
+        margin-bottom: 40px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 50px;
+
+        li {
+            color: var(--blackColor);
+            list-style-type: none;
+            margin-bottom: 20px;
+            display: block;
+
+            font: {
+                weight: 500;
+                size: 18px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            i {
+                position: relative;
+                margin-right: 8px;
+                color: #6096fd;
+                font-size: 22px;
+                bottom: -1px;
+            }
+        }
+    }
+
+    .hospital-btn {
+        background-color: var(--blueColor);
+        color: var(--whiteColor);
+        display: inline-block;
+        border-radius: 10px;
+        padding: 20px 42px;
+
+        font: {
+            weight: 500;
+            size: var(--fontSize);
+        }
+
+        &:hover {
+            color: var(--whiteColor);
+            background-color: var(--blackColor);
+        }
+    }
+
+    /* Hospital left variants */
+    .hospital-left-one {
+        position: relative;
+        margin-top: 100px;
+        z-index: 1;
+
+        &:before {
+            content: "";
+            z-index: -1;
+            right: -17px;
+            bottom: -15px;
+            width: 430px;
+            height: 380px;
+            position: absolute;
+            border-radius: 10px;
+            background-color: var(--blueColor);
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .hospital-left-two {
+        position: relative;
+        z-index: 1;
+
+        margin: {
+            left: 15px;
+            bottom: 100px;
+        }
+
+        &:before {
+            top: -15px;
+            z-index: -1;
+            left: -17px;
+            content: "";
+            width: 295px;
+            height: 380px;
+            position: absolute;
+            border-radius: 10px;
+            background-color: var(--blueColor);
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.hospital-right {
+    max-width: 525px;
+    margin-left: 85px;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Mobile (up to 767px) */
+@media only screen and (max-width: 767px) {
+
+    /* Structural adjustments */
+    .about-area {
+        .col-lg-6 {
+            &:nth-child(1) {
+                order: 2 !important;
+            }
+
+            &:nth-child(2) {
+                order: 1 !important;
+            }
+        }
+
+        .col-12 {
+            order: 3 !important;
+        }
+    }
+
+    /* Typography scaling */
+    .about-item {
+        h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        /* ... other mobile styles ... */
+    }
+
+    /* ... other breakpoints ... */
+}
+
+/* Large desktops (1600px+) */
+@media only screen and (min-width: 1600px) {
+
+    .welcome-area,
+    .hospital-area {
+        .container-fluid {
+            max-width: 1920px;
+        }
+    }
+}

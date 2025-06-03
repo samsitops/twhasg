@@ -1,0 +1,108 @@
+<!--
+===============================================================================
+  @component: Home Banner Slider
+===============================================================================
+
+  @description:
+  This section represents the homepage carousel/slider. It utilizes Owl Carousel
+  via Angular wrapper `owl-carousel-o` and displays 3 slides with call-to-action
+  buttons for user engagement.
+
+  @dependencies:
+  - OwlCarouselO from ngx-owl-carousel-o
+  - RouterLink for navigation to internal routes
+
+  @slides:
+  1. Exceptional Health Care for Woman
+  2. Caring Health is Important Than All
+  3. We Offer Highly Treatments
+
+  @calls-to-action:
+  - Get Appointment → /request-appointment
+  - Learn More → /about
+
+  @styles:
+  - background-image per slide
+  - slider-shape images for visual design
+  - .common-btn for dual buttons
+
+  @notes:
+  - Ensure OwlCarouselOModule is imported in your module if using lazy loading
+  - Customize [options] binding in TS to control autoplay, loop, nav, etc.
+
+===============================================================================
+-->
+
+<div class="home-slider">
+    <owl-carousel-o [options]="bannerSlides">
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-one/home-bg1.jpg);">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="container">
+                            <div class="slider-text">
+                                <div class="slider-shape">
+                                    <img src="img/home-one/home-slider/1.png" alt="Shape">
+                                </div>
+                                <h1>Exceptional Health Care for Woman</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida.</p>
+                                <div class="common-btn">
+                                    <a routerLink="/request-appointment">Get Appointment</a>
+                                    <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-one/home-bg1.jpg);">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="container">
+                            <div class="slider-text">
+                                <div class="slider-shape-two">
+                                    <img src="img/home-one/home-slider/2.png" alt="Shape">
+                                </div>
+                                <h1>Caring Health is Important Than All</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida.</p>
+                                <div class="common-btn">
+                                    <a routerLink="/request-appointment">Get Appointment</a>
+                                    <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-one/home-bg1.jpg);">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="container">
+                            <div class="slider-text">
+                                <div class="slider-shape-three">
+                                    <img src="img/home-one/home-slider/3.png" alt="Shape">
+                                </div>
+                                <h1>We Offer Highly Treatments</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida.</p>
+                                <div class="common-btn">
+                                    <a routerLink="/request-appointment">Get Appointment</a>
+                                    <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+</div>

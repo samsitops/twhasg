@@ -1,0 +1,287 @@
+<!--
+|--------------------------------------------------------------------------
+| expertise.component.html
+|--------------------------------------------------------------------------
+|
+| Dual-layout behavioral health services display with responsive design
+|
+| LAYOUT VERSIONS:
+| 1. DEFAULT LAYOUT (3x2 grid)
+| • Activated on: All routes except /index-2, /index-3, /about
+| • Features:
+|   - Icon-based service cards (icofont)
+|   - Right-aligned decorative image
+|   - Uniform /blog-details routing
+|
+| 2. SPECIALITY LAYOUT (2x2 grid + emergency)
+| • Activated on: /index-2, /index-3, /about
+| • Features:
+|   - Image-based service cards
+|   - Persistent emergency contact section
+|   - Service-specific routing
+|   - Tooltips on service titles
+|
+| INTERACTIVE ELEMENTS:
+| • Hover States:
+|   - Default: Icon cards with shadow effects
+|   - Speciality: Image containers with color shift
+| • Click Targets:
+|   - Entire service card is clickable
+|   - Emergency call number (visual only)
+|
+| RESPONSIVE DESIGN:
+| • Breakpoints:
+|   - Mobile (<768px): Single column stack
+|   - Tablet (768-991px): 2-column grid
+|   - Desktop (≥992px): 3-column (default) / 2-column (speciality)
+| • Special Behaviors:
+|   - Emergency section repositions on mobile
+|   - Right column becomes 5-col on desktop
+|
+| ACCESSIBILITY:
+| • Implemented:
+|   - Semantic HTML5
+|   - Descriptive alt text
+|   - Sufficient color contrast
+| • Recommended:
+|   - ARIA labels for interactive elements
+|   - Focus styles for keyboard nav
+|
+| MAINTENANCE:
+| • Image Paths:
+|   - /img/behavior-health/ prefix
+|   - Consistent naming (service-name.png)
+| • Commented Sections:
+|   - Anger Issues service
+|   - Women's Health service
+|   - Speciality label span
+|
+| TECHNICAL NOTES:
+| • Conditional Display:
+|   - [ngClass] binds to router.url
+| • Styling Hooks:
+|   - .ptb-100 (padding top/bottom 100px)
+|   - .text-dark (ensures readability)
+|   - .img__container (standardized image wrapper)
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<!-- Default -->
+<!-- <div class="expertise-area ptb-100"
+    [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3' || router.url === '/about'}">
+    <div class="container">
+        <div class="section-title">
+            <h2>Behavioral Health</h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="expertise-item">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-doctor-alt"></i>
+                                    <h3>Medication Management</h3>
+                                    <p>Our experts ensure you’re on the right medication and dosage for your mental
+                                        health needs, monitoring your progress and making adjustments to achieve the
+                                        best outcomes.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-stretcher"></i>
+                                    <h3>Depression Care</h3>
+                                    <p>We provide evidence-based treatments for depression, including therapy,
+                                        medication, and lifestyle guidance, to help you regain joy and balance.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-network"></i>
+                                    <h3>Anxiety Treatment</h3>
+                                    <p>Our team helps you manage anxiety through proven techniques like Cognitive
+                                        Behavioral Therapy (CBT), relaxation strategies, and medication support.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-ambulance-cross"></i>
+                                    <h3>Bipolar Disorder Management</h3>
+                                    <p>Comprehensive care plans to stabilize mood swings and improve quality of life,
+                                        including therapy, medication, and ongoing monitoring.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-ambulance-cross"></i>
+                                    <h3>Support for Anger Issues</h3>
+                                    <p>Specialized programs to help you understand and manage anger through therapy,
+                                        mindfulness techniques, and emotional regulation strategies. </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <a routerLink="/blog-details">
+                                <div class="expertise-inner">
+                                    <i class="icofont-ambulance-cross"></i>
+                                    <h3>Women’s Behavioral Health</h3>
+                                    <p>Tailored care for women facing challenges like postpartum depression,
+                                        menopause-related mood changes, or life stressors. </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="expertise-item">
+                    <div class="expertise-right">
+                        <img src="img/behavior-health/bg.jpg" alt="Expertise">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Only for Home Demo - 2 & Home Demo - 3 & About Us Page -->
+<div class="speciality-area pb-100 pt-100">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-lg-7">
+                <div class="speciality-left">
+                    <div class="section-title-two">
+                        <!-- <span>Speciality</span> -->
+                        <h2>Psychiatry</h2>
+                    </div>
+                    <div class="speciality-item">
+                        <div class="row m-0">
+                            <div class="col-sm-6 col-lg-6">
+                                <a class="text-dark"
+                                    routerLink="service-details/behavioralHealth/medication-management">
+                                    <div class="speciality-inner">
+                                        <!-- <i class="icofont-check-circled"></i> -->
+                                        <div class="img__container">
+                                            <img src="img/behavior-health/medication.png" alt="Medication Management">
+                                        </div>
+                                        <h3 tooltip="Medication Management">
+                                            Medication Management
+                                        </h3>
+                                        <p>Our experts ensure you’re on the right medication and dosage for
+                                            your mental
+                                            health needs, monitoring your progress and making adjustments to achieve the
+                                            best outcomes.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <a class="text-dark" routerLink="service-details/behavioralHealth/depression-care">
+                                    <div class="speciality-inner">
+                                        <!-- <i class="icofont-check-circled"></i> -->
+                                        <div class="img__container">
+                                            <img src="img/behavior-health/depression.png" alt="Depression Care">
+                                        </div>
+                                        <h3 tooltip="Depression Care">
+                                            Depression Care
+                                        </h3>
+                                        <p>
+                                            We provide evidence-based treatments for depression, including therapy,
+                                            medication, and lifestyle guidance, to help you regain joy and balance.
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <a class="text-dark" routerLink="service-details/behavioralHealth/anxiety-treatment">
+                                    <div class="speciality-inner">
+                                        <!-- <i class="icofont-check-circled"></i> -->
+                                        <div class="img__container">
+                                            <img src="img/behavior-health/anxiety.png" alt="Anxiety Treatment">
+                                        </div>
+                                        <h3 tooltip="Anxiety Treatment">
+                                            Anxiety Treatment
+                                        </h3>
+                                        <p>
+                                            Our team helps you manage anxiety through proven techniques like Cognitive
+                                            Behavioral Therapy (CBT), relaxation strategies, and medication support.
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <a class="text-dark"
+                                    routerLink="service-details/behavioralHealth/bipolar-disorder-management">
+                                    <div class="speciality-inner">
+                                        <!-- <i class="icofont-check-circled"></i> -->
+                                        <div class="img__container">
+                                            <img src="img/behavior-health/bipolar.png"
+                                                alt="Bipolar Disorder Management">
+                                        </div>
+                                        <h3 tooltip="Bipolar Disorder Management">
+                                            Bipolar Disorder Management
+                                        </h3>
+                                        <p>
+                                            Comprehensive care plans to stabilize mood swings and improve quality of
+                                            life,
+                                            including therapy, medication, and ongoing monitoring.
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- <div class="col-sm-6 col-lg-6">
+                                <div class="speciality-inner">
+                                    <i class="icofont-check-circled"></i>
+                                    <h3>
+                                        Support for Anger Issues
+                                    </h3>
+                                    <p>
+                                        Specialized programs to help you understand and manage anger through therapy,
+                                        mindfulness techniques, and emotional regulation strategies.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="speciality-inner">
+                                    <i class="icofont-check-circled"></i>
+                                    <h3>
+                                        Women’s Behavioral Health
+                                    </h3>
+                                    <p>
+                                        Tailored care for women facing challenges like postpartum depression,
+                                        menopause-related mood changes, or life stressors.
+                                    </p>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 pr-0">
+                <div class="speciality-item speciality-right"
+                    style="background-image: url(img/behavior-health/bg.jpg);">
+                    <img src="img/behavior-health/bg.jpg" alt="Speciality">
+                    <div class="speciality-emergency">
+                        <div class="speciality-icon">
+                            <i class="icofont-ui-call"></i>
+                        </div>
+                        <div class="support__line">
+                            <h3>Support line</h3>
+                            <p>(919) 238-1110</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

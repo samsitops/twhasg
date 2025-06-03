@@ -1,0 +1,239 @@
+/* 
+|--------------------------------------------------------------------------
+| Patient Feedback Component Styles
+|--------------------------------------------------------------------------
+|
+| Styles for testimonial carousel with dual layout variations
+|
+| CORE STYLES
+| • Fixed background with overlay (.review-area)
+| • Centered white content block (.main)
+| • Owl Carousel customization
+|
+| LAYOUT VARIATIONS
+| • Default: Standard padding
+| • .style-two: Extra top padding (200px)
+|   - Activated on /index-3 route
+|
+| TYPOGRAPHY
+| • Heading: 38px/700 (desktop), scales down to 22px on mobile
+| • Testimonial text: Uses --fontSize variable
+| • Doctor title: Blue color for emphasis
+|
+| CAROUSEL ELEMENTS
+| • Star ratings: 30px circular images
+| • Dot navigation:
+|   - Default: 20x5px gray bars
+|   - Active: 30x5px blue bars
+|   - Hover: Blue color
+|
+| RESPONSIVE BREAKPOINTS
+| 1. Mobile (<768px):
+|   - Padding reduction
+|   - Font size adjustments
+|   - Full-width content block
+|
+| 2. Tablet (768-991px):
+|   - Intermediate sizing
+|   - Maintains carousel layout
+|
+| 3. Desktop (≥992px):
+|   - Max-width containers
+|   - Larger typography
+|
+| ACCESSIBILITY
+| • Sufficient color contrast
+| • Responsive text sizing
+| • Needs focus states for interactive elements
+|
+| TECHNICAL NOTES
+| • Background properties:
+|   - Fixed attachment for parallax effect
+|   - 80% opacity overlay
+| • Variables used:
+|   --blueColor: Primary brand color
+|   --whiteColor: Content background
+|   --blackColor: Text color
+|   --fontSize: Base text size
+| • ::ng-deep for Owl Carousel customization
+|
+| MAINTENANCE
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+
+.review-area {
+    z-index: 1;
+    position: relative;
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        attachment: fixed;
+        position: center center;
+    }
+    &::before {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        content: "";
+        opacity: 0.8;
+        position: absolute;
+        background: var(--blueColor);
+    }
+    &.style-two {
+        padding-top: 200px;
+    }
+}
+.main {
+    padding: 80px;
+    display: block;
+    max-width: 770px;
+    position: relative;
+    background-color: var(--whiteColor);
+    margin: {
+        left: auto;
+        right: auto;
+    }
+    h2 {
+        margin-bottom: 50px;
+        font: {
+            weight: 700;
+            size: 38px;
+        }
+    }
+    .review-item {
+        text-align: center;
+
+        .review-img {
+            margin-bottom: 25px;
+
+            img {
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                display: inline-block;
+                transition: var(--transition);
+            }
+            h3 {
+                margin-bottom: 11px;
+                font: {
+                    size: 24px;
+                    weight: 600;
+                }
+            }
+            span {
+                display: block;
+                color: var(--blueColor);
+            }
+        }
+        p {
+            margin-bottom: 0;
+            max-width: 580px;
+            color: var(--blackColor);
+            font-size: var(--fontSize);
+            margin: {
+                left: auto;
+                right: auto;
+            }
+        }
+    }
+}
+::ng-deep {
+    .review-area {
+        .main {
+            .owl-theme {
+                .owl-dots {
+                    .owl-dot {
+                        margin-top: 20px;
+
+                        span {
+                            width: 20px;
+                            height: 5px;
+                            margin: 0 4px;
+                            transition: var(--transition);
+                            background-color: rgba(0, 0, 0, 0.12);
+                        }
+                        &.active {
+                            span {
+                                background: var(--blueColor);
+                                width: 30px;
+                            }
+                        }
+                        &:hover {
+                            span {
+                                background: var(--blueColor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .review-area {
+        &.style-two {
+            padding-top: 100px;
+        }
+    }
+    .main {
+        max-width: 100%;
+        padding: 60px 15px;
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+        .review-item {
+            .review-img {
+                margin-bottom: 20px;
+
+                img {
+                    // width: 30px;
+                    // height: 30px;
+                    margin-bottom: 20px;
+                }
+                h3 {
+                    font-size: 20px;
+                }
+            }
+            p {
+                max-width: 100%;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .review-area {
+        &.style-two {
+            padding-top: 100px;
+        }
+    }
+    .main {
+        max-width: 100%;
+
+        h2 {
+            margin-bottom: 40px;
+            font-size: 26px;
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+}

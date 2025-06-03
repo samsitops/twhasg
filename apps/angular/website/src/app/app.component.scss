@@ -1,0 +1,92 @@
+/* 
+|--------------------------------------------------------------------------
+| Responsive Breakpoint System
+|--------------------------------------------------------------------------
+|
+| Device-specific media queries for responsive design
+|
+| CORE BREAKPOINTS
+| 1. Mobile First (≤767px):
+|    - Portrait phones
+|    - Small viewports
+|    - Low-density displays
+|
+| 2. Tablet Range (768-991px):
+|    - Landscape phones
+|    - Small tablets
+|    - Foldable devices
+|
+| 3. Desktop Range (992-1199px):
+|    - Standard laptops
+|    - Small desktop monitors
+|    - Tablet landscape
+|
+| 4. XL Screens (≥1600px):
+|    - 4K/UHD displays
+|    - Large desktop monitors
+|    - High-DPI devices
+|
+| ACCESSIBILITY
+| - Ensure touch targets adapt per breakpoint
+| - Maintain 16px base font size on mobile
+| - Verify contrast ratios across viewports
+|
+| PERFORMANCE
+| 1. Image Strategy:
+|    - Serve mobile-optimized assets first
+|    - Use srcset for responsive images
+|
+| 2. Render Optimization:
+|    - Avoid layout thrashing
+|    - Use CSS containment
+|
+| BEST PRACTICE IMPROVEMENTS
+| 1. Modern Techniques:
+|    - Add orientation media queries
+|    - Implement container queries
+|    - Use clamp() for fluid typography
+|
+| 2. Breakpoint Extensions:
+|    - Add 1200-1599px range
+|    - Include print media types
+|    - Add hover capability checks
+|
+| MAINTENANCE
+| 1. Update Workflow:
+|    - Use CSS variables for breakpoints
+|    - Maintain breakpoint map in root
+|    - Document z-index strategy
+|
+| 2. Testing Protocol:
+|    - Verify on foldable devices
+|    - Test Safari/iOS specific behavior
+|    - Check Firefox mobile rendering
+|
+| CONTENT GUIDELINES
+| - Mobile: Prioritize core content
+| - Tablet: Two-column max layouts
+| - Desktop: Multi-column grids
+| - XL: Constrain max content width
+|
+| VERSION SUPPORT
+| CSS3 Media Queries: Full support
+| Legacy Browser Fallback: None
+| Last Updated: 2023-11-07
+|
+| COPYRIGHT & LICENSE
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

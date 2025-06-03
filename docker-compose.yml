@@ -1,0 +1,433 @@
+name: dream-care
+
+networks:
+  dmz-net:
+
+services:
+  ###########################################################################
+  # ** mongo databases start ** #
+  ###########################################################################
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-password}
+    ports:
+      - '0.0.0.0:${MONGODB_PORT:-27017}:27017'
+    networks:
+      - dmz-net
+    volumes:
+      - type: volume
+        source: MONGO_DATA
+        target: /data/db
+      - type: volume
+        source: MONGO_CONFIG
+        target: /data/configdb
+      - ./.docker/data/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+  ###########################################################################
+  # ** mongo databases end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** mongo-expres start ** #
+  ###########################################################################
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USERNAME:-root}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD:-password}
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: ${MONGODB_PORT:-27017}
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_USERNAME:-root}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_PASSWORD:-password}
+    ports:
+      - '0.0.0.0:8081:8081'
+    networks:
+      - dmz-net
+    depends_on:
+      - mongo
+  ###########################################################################
+  # ** mongo-express end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** zookeeper start ** #
+  ###########################################################################
+  zookeeper:
+    image: 'docker.io/bitnami/zookeeper:latest'
+    ports:
+      - 22181:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** zookeeper end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** kafka1 start ** #
+  ###########################################################################
+  kafka1:
+    image: 'docker.io/bitnami/kafka:latest'
+    ports:
+      - 9092:9092
+      - 29092:29092
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=no
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:SASL_PLAINTEXT,EXTERNAL:SASL_PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka1:9092,EXTERNAL://${IP_ADDRESS}:29092
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_CFG_SASL_ENABLED_MECHANISMS=PLAIN
+      - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
+      - KAFKA_INTER_BROKER_USER=${KAFKA_INTER_BROKER_USER:-admin}
+      - KAFKA_INTER_BROKER_PASSWORD=${KAFKA_INTER_BROKER_PASSWORD:-admin}
+      - KAFKA_CLIENT_USERS=${KAFKA_CLIENT_USERS:-admin}
+      - KAFKA_CLIENT_PASSWORDS=${KAFKA_CLIENT_PASSWORDS:-admin}
+      - KAFKA_CFG_AUTHORIZER_CLASS_NAME=kafka.security.authorizer.AclAuthorizer
+      - KAFKA_CFG_ALLOW_EVERYONE_IF_NO_ACL_FOUND=false
+      - KAFKA_CFG_SUPER_USERS=User:admin
+      - KAFKA_CREATE_TOPICS= "Topic1:1:2,Topic2:1:1:compact"
+      - KAFKA_CFG_NUM_RETRIES=30
+      - KAFKA_CFG_RETRY_BACKOFF_MS=60000
+      - KAFKA_CFG_RETRIES=30
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=2
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=2
+    depends_on:
+      - zookeeper
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** kafka1 end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** kafka3 start ** #
+  ###########################################################################
+  kafka3:
+    image: 'docker.io/bitnami/kafka:latest'
+    ports:
+      - 9094:9094
+      - 29094:29094
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=no
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:SASL_PLAINTEXT,EXTERNAL:SASL_PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9094,EXTERNAL://:29094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka3:9094,EXTERNAL://${IP_ADDRESS}:29094
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_CFG_SASL_ENABLED_MECHANISMS=PLAIN
+      - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
+      - KAFKA_INTER_BROKER_USER=${KAFKA_INTER_BROKER_USER:-admin}
+      - KAFKA_INTER_BROKER_PASSWORD=${KAFKA_INTER_BROKER_PASSWORD:-admin}
+      - KAFKA_CLIENT_USERS=${KAFKA_CLIENT_USERS:-admin}
+      - KAFKA_CLIENT_PASSWORDS=${KAFKA_CLIENT_PASSWORDS:-admin}
+      - KAFKA_CFG_AUTHORIZER_CLASS_NAME=kafka.security.authorizer.AclAuthorizer
+      - KAFKA_CFG_ALLOW_EVERYONE_IF_NO_ACL_FOUND=false
+      - KAFKA_CFG_SUPER_USERS=User:admin
+      - KAFKA_CREATE_TOPICS= "Topic1:1:2,Topic2:1:1:compact"
+      - KAFKA_CFG_NUM_RETRIES=30
+      - KAFKA_CFG_RETRY_BACKOFF_MS=60000
+      - KAFKA_CFG_RETRIES=30
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=2
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=2
+    depends_on:
+      - zookeeper
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** kafka3 end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** kafka-ui start ** #
+  ###########################################################################
+  kafka_ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      - kafka1
+      - kafka3
+    ports:
+      - 8080:8080
+    environment:
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+      KAFKA_CLUSTERS_0_NAME: cluster1
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092,kafka3:9094
+      KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM: PLAIN
+      KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin";'
+      DYNAMIC_CONFIG_ENABLED: true
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** kafka-ui end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** keycloak postgres start ** #
+  ###########################################################################
+  keycloak_db:
+    image: postgres:16.2
+    ports:
+      - 35432:5432
+    volumes:
+      - kc_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${KC_POSTGRES_DB}
+      POSTGRES_USER: ${KC_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${KC_POSTGRES_PASSWORD}
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** keycloak postgres end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** keycloak start ** #
+  ###########################################################################
+  keycloak:
+    image: khardahapp/keycloak:latest
+    container_name: keycloak
+    restart: always
+    ports:
+      - '0.0.0.0:28080:8080'
+    environment:
+      environment:
+      KC_HOSTNAME: ${IP_ADDRESS}
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db/${KC_POSTGRES_DB}
+      KC_DB_USERNAME: ${KC_POSTGRES_USER}
+      KC_DB_PASSWORD: ${KC_POSTGRES_PASSWORD}
+      KAFKA_SASL_JAAS_CONFIG: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin";'
+      KAFKA_SASL_MECHANISM: PLAIN
+      KAFKA_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_SESSION_TIMEOUT_MS: 30000
+      KAFKA_TOPIC: keycloak
+      KAFKA_CLIENT_ID: keycloak
+      KAFKA_GROUP_ID: keycloak
+      KAFKA_BOOTSTRAP_SERVERS: kafka1:9092,kafka3:9094
+      KAFKA_ADMIN_TOPIC: keycloak-admin
+    depends_on:
+      - keycloak_db
+    networks:
+      - dmz-net
+    command:
+      - start-dev
+      - --spi-events-listener-kafka-sasl.jaas.config='org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret"';
+  ###########################################################################
+  # ** keycloak end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** Adminer start ** #
+  ###########################################################################
+  adminer:
+    image: adminer
+    ports:
+      - 9090:8080
+    depends_on:
+      - keycloak_db
+    networks:
+      - dmz-net
+  ###########################################################################
+
+  ###########################################################################
+  # ** PgAdmin start ** #
+  ###########################################################################
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - keycloak_db
+    networks:
+      - dmz-net
+  ###########################################################################
+
+  ###########################################################################
+  # ** mailhog start ** #
+  ###########################################################################
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'
+    ports:
+      - 1025:1025
+      - 8025:8025
+  ###########################################################################
+
+  ###########################################################################
+  # ** tracing jaeger start ** #
+  ###########################################################################
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 4318:4318
+      - 14250:14250
+      - 14268:14268
+      - 14269:14269
+      - 9411:9411
+    environment:
+      - LOG_LEVEL=debug
+      - COLLECTOR_OTLP_ENABLED=true
+  ###########################################################################
+  # ** tracing jaeger end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** Databunker database start ** #
+  ###########################################################################
+  bunker_db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PGSQL_DATABASE=${PGSQL_DATABASE}
+      - PGSQL_USER=${PGSQL_USER}
+      - PGSQL_PASSWORD=${PGSQL_PASSWORD}
+      - PGSQL_PORT=${PGSQL_PORT}
+    volumes:
+      - bunker_data:/var/lib/postgresql/data
+      - ./setup-postgresql.sh:/docker-entrypoint-initdb.d/setup-postgresql.sh
+      - ./.docker/databunker/databunker_db/pg-server.crt:/var/lib/postgresql/server.crt
+      - ./.docker/databunker/databunker_db/pg-server.key:/var/lib/postgresql/server.key
+    command: -c ssl=on -c ssl_cert_file=/var/lib/postgresql/server.crt -c ssl_key_file=/var/lib/postgresql/server.key
+    ports:
+      - 25432:5432
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** Databunker database end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** Databunker start ** #
+  ###########################################################################
+  databunker:
+    image: securitybunker/databunker:latest
+    restart: unless-stopped
+    environment:
+      - DATABUNKER_MASTERKEY=${DATABUNKER_MASTERKEY}
+      - PGSQL_USER_NAME=${PGSQL_USER}
+      - PGSQL_USER_PASS=${PGSQL_PASSWORD}
+      - PGSQL_HOST=bunker_db
+      - PGSQL_PORT=5432
+    entrypoint: /bin/sh
+    command: -c "/databunker/bin/databunker -db databunkerdb -conf /databunker/conf/databunker.yaml -start"
+    depends_on:
+      - bunker_db
+    volumes:
+      - ./.docker/databunker/databunker.yaml:/databunker/conf/databunker.yaml
+    ports:
+      - 3030:3030
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** Databunker end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** Databunker database Initiation start ** #
+  ###########################################################################
+  databunker-init:
+    image: securitybunker/databunker:latest
+    environment:
+      - DATABUNKER_MASTERKEY=${DATABUNKER_MASTERKEY}
+      - PGSQL_USER_NAME=${PGSQL_USER}
+      - PGSQL_USER_PASS=${PGSQL_PASSWORD}
+      - PGSQL_HOST=bunker_db
+      - PGSQL_PORT=5432
+      - DATABUNKER_ROOTTOKEN=DEMO
+    depends_on:
+      - bunker_db
+    entrypoint: /bin/sh
+    command: -c "/bin/busybox sleep 3; /databunker/bin/databunker -init -db databunkerdb -start"
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** Databunker database Initiation end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** spree database start ** #
+  ###########################################################################
+  spree-db:
+    image: postgres:15
+    container_name: spree_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: spree
+      POSTGRES_PASSWORD: spree_password
+      POSTGRES_DB: spree_development
+    ports:
+      - '45432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** spree database end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** spree start ** #
+  ###########################################################################
+  spree:
+    image: dopavecompany/dreamcare:spree-dev
+    container_name: spree_app
+    restart: always
+    depends_on:
+      - spree-db
+      - redis
+    environment:
+      DATABASE_URL: postgres://spree:spree_password@spree-db:5432/spree_development
+      RAILS_ENV: development
+    ports:
+      - '3000:3000'
+    networks:
+      - dmz-net
+  ###########################################################################
+  # ** spree end ** #
+  ###########################################################################
+
+  ###########################################################################
+  # ** redis start ** #
+  ###########################################################################
+  redis:
+    image: redis:7.2
+  ###########################################################################
+  # ** redis end ** #
+  ###########################################################################
+
+volumes:
+  mono-node-modules: null
+  kc_data:
+  bunker_data:
+  postgres_data:
+  MONGO_DATA:
+    name: MONGO_DATA
+  MONGO_CONFIG:
+    name: MONGO_CONFIG
+  KC_POSTGRES_DATA:
+    name: KC_POSTGRES_DATA

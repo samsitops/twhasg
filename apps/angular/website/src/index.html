@@ -1,0 +1,171 @@
+<!-- 
+|--------------------------------------------------------------------------
+| Root HTML Document
+|--------------------------------------------------------------------------
+|
+| Base template for Angular application with critical assets
+|
+| CORE STRUCTURE
+| 1. Head Section:
+|    - SEO Meta Tags
+|    - Favicon Ecosystem
+|    - Font Preloading
+|    - Critical CSS/JS
+
+| 2. Body Section:
+|    - Angular Root Component
+|    - Loading Screen Animation
+|    - Window Load Handler
+
+| 3. Key Features:
+|    - Multi-format Favicon Support
+|    - Google Fonts Optimization
+|    - EmailJS Integration
+|    - Smooth Load Transition
+
+| SECURITY CONSIDERATIONS
+| 1. Exposed Credentials:
+|    - EmailJS publicKey visible
+|    - CDN script integrity missing
+
+| 2. Risk Mitigation:
+|    - Subresource Integrity (SRI) needed
+|    - CSP header requirements
+|    - XSS prevention for inline scripts
+
+| BEST PRACTICE IMPROVEMENTS
+| 1. Performance:
+|    - Add preload for critical assets
+|    - Implement font-display swap
+|    - Use async/defer for scripts
+
+| 2. Accessibility:
+|    - Add lang attribute to HTML
+|    - Implement loader ARIA roles
+|    - Verify color contrast ratios
+
+| 3. Maintenance:
+|    - Version control favicons
+|    - Monitor CDN dependencies
+|    - Audit inline styles
+
+| MAINTENANCE GUIDELINES
+| 1. Favicon Updates:
+|    - Maintain 96x96 PNG
+|    - Update SVG/ICO versions
+|    - Refresh webmanifest
+
+| 2. Font Management:
+|    - Limit font weights loaded
+|    - Monitor Google Fonts URL
+|    - Implement font subsetting
+
+| 3. Loader Adjustments:
+|    - Modify animation timing
+|    - Update color scheme
+|    - Adjust display timeout
+
+| ACCESSIBILITY CHECKS
+| - Missing: ARIA roles for loader
+| - Missing: Skip navigation link
+| - Missing: Reduced motion query
+
+| PERFORMANCE NOTES
+| - Render-Blocking: Inline CSS
+| - FCP Impact: 200ms loader timeout
+| - Font Load: 57KB (Poppins)
+
+| VERSION DEPENDENCIES
+| EmailJS: browser@4
+| Angular: Requires zone.js
+| Browsers: ES6 compatible
+
+| COPYRIGHT & LICENSE
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Teamwork Health: Together Towards Better Health</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="img/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="TeamWork Health" />
+  <link rel="manifest" href="img/favicon/site.webmanifest" />
+  <!-- Font Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "0_4mN3Gyr41_yiTIN",
+      });
+    })();
+  </script>
+  <style>
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <app-root></app-root>
+  <div id="loader" class="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+      }, 200);
+    };
+  </script>
+</body>
+
+</html>

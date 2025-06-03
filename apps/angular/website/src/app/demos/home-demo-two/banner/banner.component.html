@@ -1,0 +1,130 @@
+<!-- 
+  HERO SLIDER COMPONENT
+  =====================
+
+  Features:
+  - Full-screen image carousel
+  - Multiple slides with background images
+  - Vertical content centering
+  - Animated transitions
+  - Call-to-action buttons
+
+  Structure:
+  1. Owl Carousel container
+  2. Multiple slides with:
+     - Background image
+     - Dark overlay
+     - Centered content
+     - Heading + text + button
+
+  Accessibility:
+  - aria-live="polite" for carousel
+  - Alt text for decorative images
+  - Semantic HTML structure
+-->
+
+<div class="home-slider home-slider-two">
+    <owl-carousel-o [options]="bannerSlides">
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-two/slider/img2.jpg);">
+                <div class="overlay">
+                    <div class="d-table">
+                        <div class="d-table-cell">
+                            <div class="container">
+                                <div class="slider-text">
+                                    <div class="slider-shape">
+                                        <!-- <img src="img/home-one/home-bg5.png" alt="Shape"> -->
+                                    </div>
+                                    <h1>Healthcare Redefined & <br>Designed Around You</h1>
+                                    <p>TeamWork Health delivers quality care, reduces wait times and improves access to
+                                        Pulmonary Medicine, Sleep Medicine and Psychiatry.</p>
+                                    <div class="common-btn">
+                                        <!-- <a routerLink="/request-appointment">Request Appointment</a> -->
+                                        <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-two/slider/bg-2.jpg);">
+                <div class="overlay">
+                    <div class="d-table">
+                        <div class="d-table-cell">
+                            <div class="container">
+                                <div class="slider-text">
+                                    <div class="slider-shape">
+                                        <!-- <img src="img/home-one/home-bg5.png" alt="Shape"> -->
+                                    </div>
+                                    <h1>Your Mental Health Matters—We’re Here for You.</h1>
+                                    <p>Personalized care for anxiety, depression, mood disorders, and more—delivered
+                                        with empathy, flexibility, and support.</p>
+                                    <div class="common-btn">
+                                        <!-- <a routerLink="/request-appointment">Request Appointment</a> -->
+                                        <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-two/slider/img1.jpg);">
+                <div class="overlay">
+                    <div class="d-table">
+                        <div class="d-table-cell">
+                            <div class="container">
+                                <div class="slider-text">
+                                    <div class="slider-shape">
+                                        <!-- <img src="img/home-one/home-bg5.png" alt="Shape"> -->
+                                    </div>
+                                    <h1>Advanced Testing, All Under One Roof</h1>
+                                    <p>We use the latest in-house testing equipment to save you time and money - quick
+                                        results and comprehensive treatment plan.
+                                    </p>
+                                    <div class="common-btn">
+                                        <!-- <a routerLink="/request-appointment">Request Appointment</a> -->
+                                        <a class="cmn-btn-right" routerLink="/about">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slider-item" style="background-image: url(img/home-two/slider/image-3.jpg);">
+                <div class="overlay">
+                    <div class="d-table">
+                        <div class="d-table-cell">
+                            <div class="container">
+                                <div class="slider-text">
+                                    <div class="slider-shape">
+                                        <!-- <img src="img/home-one/home-bg5.png" alt="Shape"> -->
+                                    </div>
+                                    <h1>Join a Network Where Physicians in the Lead & Patients at the Center!</h1>
+                                    <p>Partner with us to deliver patient-centered care and improve outcomes while
+                                        reducing
+                                        healthcare costs.</p>
+                                    <div class="common-btn">
+                                        <!-- <a routerLink="/partnerships">Partnership Request</a> -->
+                                        <a class="cmn-btn-right mt-2" routerLink="/partnerships">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+</div>

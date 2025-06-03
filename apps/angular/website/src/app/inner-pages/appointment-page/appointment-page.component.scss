@@ -1,0 +1,11 @@
+/*
+ * Import styles from the Book An Appointment component SCSS file.
+ * 
+ * Note:
+ * - This imports only the SCSS/CSS styles, not the Angular component TypeScript or HTML files.
+ * - Make sure the path and file extension are correct (should point to a .scss file).
+ * - Angular components should be imported and used via TypeScript and templates, not via SCSS imports.
+ */
+
+
+@import "../../common/book-an-appointment/book-an-appointment.component";

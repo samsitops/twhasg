@@ -1,0 +1,74 @@
+<!--
+  |--------------------------------------------------------------------------
+  | Welcome  Section
+  |--------------------------------------------------------------------------
+  A split layout section with an image on the left and content on the right.
+  Designed to introduce the hospital with key features and a welcoming message.
+
+  Structure:
+  1. Container-fluid for full width layout without padding.
+  2. Two columns (col-lg-6 each) for image and content.
+  3. Left column:
+     - Div with background image and an <img> element (for fallback or SEO).
+  4. Right column:
+     - Section title with subtitle and heading.
+     - List of key hospital features with icons and descriptions.
+
+  Usage:
+  Place inside a page layout to showcase "About Us" or introductory content.
+
+  Accessibility:
+  - Images include alt text.
+  - Semantic headings for SEO and screen readers.
+
+  © 2025 Dream Care <DreamCare@gmail.com>
+  GitHub: @DreamCare ▸ MIT Licensed
+  |--------------------------------------------------------------------------
+-->
+
+
+<div class="welcome-area pb-100">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-lg-6 p-0">
+                <div class="welcome-item welcome-left" style="background-image: url(img/home-two/bg3.jpg);">
+                    <img src="img/home-two/bg3.jpg" alt="image">
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="welcome-item welcome-right">
+                    <div class="section-title-two">
+                        <span>About Us</span>
+                        <h2>Welcome to teamwork-health Hospital. We have...</h2>
+                    </div>
+                    <ul>
+                        <li>
+                            <i class="icofont-doctor-alt"></i>
+                            <div class="welcome-inner">
+                                <h3>Certified Doctors</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.consectetur adipiscing elit.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="icofont-stretcher"></i>
+                            <div class="welcome-inner">
+                                <h3>Emergency 24 hours</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.consectetur adipiscing elit.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="icofont-network"></i>
+                            <div class="welcome-inner">
+                                <h3>Modern Technologey</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.consectetur adipiscing elit.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

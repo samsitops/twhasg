@@ -1,0 +1,2 @@
+export const OIDC_AUTHORITY = 'OIDC_AUTHORITY';
+export const OIDC_REALMS = 'OIDC_REALMS';

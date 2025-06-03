@@ -1,0 +1,53 @@
+<!-- * @component AboutUsPageComponent
+* @description
+* This component represents the "About Us" page layout.
+* It showcases information about the organization, achievements, values,
+* and includes supporting sections like blog posts, fun facts, and feedback.
+*
+* @structure
+* - Navbar and page banner with custom title, subtitle, and background
+* - Dynamically loops through `sections` to render multiple <app-about-us> blocks
+    * - Includes:
+    * - Funfacts section
+    * - Message section
+    * - Feedback/testimonials
+    * - Blog section
+    * - Footer and Back-to-top
+    *
+    * @inputs
+    * - `sections`: An array of data passed to multiple <app-about-us> components
+        *
+        * @notes
+        * - Some components are commented out intentionally (expertise/services)
+        * - Uses Angular's structural directive `*ngFor` for flexible content -->
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'About Us'" [pageSubTitle]="'Healthcare, One Patient Journey at a Time'"
+    [backgroundImage]="'img/about-us.png'" />
+
+<app-about-us *ngFor="let section of sections" [sectionData]="section" />
+
+<app-funfacts />
+
+<div class="pt-100">
+    <app-message />
+</div>
+
+<!-- <div class="pt-100">
+    <app-expertise />
+</div> -->
+
+<!-- <div class="pt-100">
+    <app-services />
+</div> -->
+
+<app-feedback />
+
+<app-blog />
+
+<app-footer />
+
+<app-back-to-top />

@@ -1,0 +1,169 @@
+<!--
+|--------------------------------------------------------------------------
+| inner-page-banner.component.html
+|--------------------------------------------------------------------------
+|
+| Dynamic page header with multiple layout variations featuring:
+| - Route-specific designs
+| - Background images
+| - Breadcrumb navigation
+| - Responsive layouts
+|
+| LAYOUT VERSIONS:
+| 1. DEFAULT (page-title-four)
+| • Shows on most routes
+| • Hidden on: /doctors, /appointment
+| • Features:
+|   - Centered title (optional width control)
+|   - Simple subtitle display
+|
+| 2. DOCTORS PAGE (page-title-one)
+| • Exclusive to /doctors route
+| • Features:
+|   - Full breadcrumb navigation
+|   - Home link with right arrow
+|   - Current page title
+|
+| 3. APPOINTMENT PAGE (page-title-two)
+| • Exclusive to /appointment route
+| • Features:
+|   - Same as doctors layout
+|   - Different styling class
+|
+| 4. CONTACT PAGE (page-title-five) [COMMENTED]
+| • Ready for /contact route implementation
+| • Same structure as doctors/appointment
+|
+| DYNAMIC FEATURES:
+| • backgroundImage: Input for dynamic BG images
+| • pageTitle: Main heading text
+| • pageSubTitle: Secondary text (default version)
+| • titleWidth: Boolean for 50% width control
+|
+| STRUCTURE:
+| • Background container with full-width image
+| • Vertical centering via d-table/d-table-cell
+| • Content container with conditional classes
+|
+| TECHNICAL NOTES:
+| • Uses ngStyle for dynamic background images
+| • ngClass for conditional styling
+| *ngIf for route-specific versions
+| • Bootstrap utility classes for layout
+|
+| ACCESSIBILITY:
+| • Semantic heading structure
+| • Breadcrumb navigation ARIA
+| • Needs alt text for decorative images
+|
+| MAINTENANCE:
+| • To add new variants:
+|   1. Create new page-title-[X] SCSS class
+|   2. Add *ngIf block for target route
+| • Image paths should use CDN in production
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<!-- Default -->
+<div class="page-title-area page-title-four" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
+    [ngClass]="{'d-none': router.url === '/doctors' || router.url === '/appointment'}">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-item" [ngClass]="titleWidth ? 'd-flex justify-content-center' : ''">
+                <h2 [ngClass]="{'w-50': titleWidth}">
+                    {{ pageTitle }}
+                </h2>
+                <ul>
+                    <li>
+                        {{ pageSubTitle }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Only for Doctors Page -->
+<div class="page-title-area page-title-one" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
+    *ngIf="router.url === '/doctors'">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-item">
+                <h2>
+                    {{ pageTitle }}
+                </h2>
+                <ul>
+                    <li>
+                        <a routerLink="/">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        {{ pageTitle }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Only for Contact Us Page -->
+<!-- <div class="page-title-area page-title-five" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
+    *ngIf="router.url === '/contact'">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-item">
+                <h2>
+                    {{ pageTitle }}
+                </h2>
+                <ul>
+                    <li>
+                        <a routerLink="/">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        {{ pageTitle }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Only for Book An Appointment Page -->
+<div class="page-title-area page-title-two" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}"
+    *ngIf="router.url === '/appointment'">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="page-title-item">
+                <h2>
+                    {{ pageTitle }}
+                </h2>
+                <ul>
+                    <li>
+                        <a routerLink="/">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <i class="icofont-simple-right"></i>
+                    </li>
+                    <li>
+                        {{ pageTitle }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

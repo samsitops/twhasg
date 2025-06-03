@@ -1,0 +1,186 @@
+<!--
+  Doctors Page Template
+
+  This page displays a list of doctors with their names, specialties, and images.
+  It also includes a search section to filter doctors by name or category.
+
+  Components and Features:
+  - Navigation Bar (<app-navbar>)
+  - Inner Page Banner (<app-inner-page-banner>)
+    - Shows the page title ("Doctors") with a background image.
+  - Doctors Search Area
+    - Search input to filter doctors by name.
+    - Dropdown to filter doctors by category (Neurosurgeon, Cardiology, Pathology, Dental Care).
+  - Doctors Listing
+    - Grid layout of doctor items.
+    - Each doctor item shows a photo, name (linked to doctor details page), specialty, and a "Get Appointment" button.
+  - Footer (<app-footer>)
+  - Back To Top button (<app-back-to-top>)
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Doctors'" [backgroundImage]="'img/doctor/1.jpg'" />
+
+<!-- Doctors Search -->
+<div class="doctor-search-area">
+    <div class="container">
+        <form>
+            <div class="row doctor-search-wrap">
+                <div class="col-sm-6 col-lg-6">
+                    <div class="doctor-search-item">
+                        <div class="form-group">
+                            <i class="icofont-doctor-alt"></i>
+                            <label>Search</label>
+                            <input type="text" class="form-control" placeholder="Doctor Name">
+                        </div>
+                        <button type="submit" class="btn doctor-search-btn">
+                            <i class="icofont-search-1"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="doctor-search-item">
+                        <div class="form-group">
+                            <i class="icofont-hospital"></i>
+                            <label>Category</label>
+                            <select class="form-select shadow-none">
+                                <option>Neurosurgeon</option>
+                                <option>Cardiology</option>
+                                <option>Pathology</option>
+                                <option>Dental Care</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Doctors Search -->
+
+<!-- Doctors -->
+<div class="doctors-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/1.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Babatunde</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/2.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Addition Smith</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/3.jpg" alt="Doctor">
+
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Sarah Taylor</a></h3>
+                        <span>Dental Surgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/4.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Mac Smith</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/5.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Alinson Backer</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/6.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Jas Macham</a></h3>
+                        <span>Dental Surgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/7.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. John Micheal</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/8.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Shane Warne</a></h3>
+                        <span>Neurosurgeon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="doctor-item">
+                    <div class="doctor-top">
+                        <img src="img/home-one/doctor/9.jpg" alt="Doctor">
+                        <a routerLink="/request-appointment">Get Appointment</a>
+                    </div>
+                    <div class="doctor-bottom">
+                        <h3><a routerLink="/doctor-details">Dr. Luis Moris</a></h3>
+                        <span>Dental Surgeon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Doctors -->
+
+<app-footer />
+
+<app-back-to-top />

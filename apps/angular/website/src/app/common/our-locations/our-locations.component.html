@@ -1,0 +1,114 @@
+<!-- 
+|--------------------------------------------------------------------------
+| Locations Section
+|--------------------------------------------------------------------------
+|
+| Displays clinic locations with images and addresses
+|
+| CORE STRUCTURE
+| 1. Container:
+|    - Top/bottom padding (pt-100 pb-70)
+|    - Bootstrap container class
+|
+| 2. Grid System:
+|    - Responsive 2-column → 3-column layout
+|    - Breakpoints: sm (≥576px), lg (≥992px)
+|
+| 3. Location Cards:
+|    - Image container (blog-top)
+|    - Address details (blog-bottom)
+|    - Semantic h5 for city names
+|    - Unstyled list for addresses
+|
+| ACCESSIBILITY
+| ✓ Positive: 
+|   - Alt text on images
+|   - tabindex on headings
+| ✗ Needs Improvement:
+|   - Missing ARIA landmarks
+|   - No captions for images
+|   - Linkable addresses to maps
+|
+| SECURITY
+| 1. Image Handling:
+|   - Local image paths (safe)
+|   - Consider CDN with SSL for production
+|
+| 2. Content Risks:
+|   - Static content (low risk)
+|   - Sanitize if converting to dynamic content
+|
+| BEST PRACTICE IMPROVEMENTS
+| 1. Semantic HTML:
+|   - Replace generic divs with <article>/<section>
+|   - Use <address> element
+|
+| 2. Performance:
+|   - Add loading="lazy" to images
+|   - Implement responsive images with srcset
+|
+| 3. Accessibility:
+|   - Add role="list" to <ul>
+|   - Include visible focus states
+|   - Provide text alternatives for maps
+|
+| MAINTENANCE
+| 1. Add New Location:
+|   - Duplicate col-sm-6 col-lg-4 div
+|   - Update image/src
+|   - Modify address data
+|
+| 2. Style Modifications:
+|   - blog-area → locations-area
+|   - blog-item → location-card
+|
+| 3. Breakpoint Adjustments:
+|   - Modify col-lg-4 for column count
+|   - Adjust pt/pb values as needed
+|
+| CONTENT GUIDELINES
+| - Image Size: 800x600px (16:9 ratio)
+| - Address Format: Street, City, State ZIP
+| - Alt Text: "Cary Clinic Exterior"
+|
+|--------------------------------------------------------------------------
+-->
+
+<div class="blog-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title" ng-reflect-ng-class="[object Object]">
+            <h2>Our Locations</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-4">
+                <div class="blog-item">
+                    <div class="blog-top">
+                        <img alt="Blog" src="img/blog/address-1.jpg">
+                    </div>
+                    <div class="blog-bottom">
+                        <h5 class="fw-semibold" tabindex="0">
+                            Cary, North Carolina
+                        </h5>
+                        <ul>
+                            <li>
+                                115 Kildaire Park Dr #309, Cary, NC 27518
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="blog-item">
+                    <div class="blog-top"><img alt="Blog" src="img/blog/address-2.jpg"></div>
+                    <div class="blog-bottom">
+                        <h5 class="fw-semibold" tabindex="0">
+                            Fayetteville, North Carolina </h5>
+                        <ul>
+                            <li> 1991 Fordham Dr #302, Fayetteville, NC 28304 </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

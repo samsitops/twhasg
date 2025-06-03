@@ -1,0 +1,61 @@
+<!-- 
+  Blog Listing Component Template
+  --------------------------------
+  This template displays a list of blog posts in a responsive grid layout.
+  
+  Features:
+  - Uses *ngFor to loop through the 'blogs' array and render each blog item.
+  - Displays blog image with alt text for accessibility.
+  - Shows blog title as a clickable link navigating to the blog details page.
+  - Includes a "Read More" link and the blog's publication date.
+  - Responsive columns: 2 columns on small screens, 3 columns on large screens.
+  
+  Components used:
+  - <app-navbar>: Navigation bar at the top.
+  - <app-inner-page-banner>: Displays a page banner with title and background image.
+  - <app-footer>: Footer section.
+  - <app-back-to-top>: Button to scroll back to top of the page.
+  
+  Notes:
+  - The excerpt snippet is currently commented out and can be enabled/fixed as needed.
+-->
+
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Our Blog'" [backgroundImage]="'img/blog-banner.jpg'" />
+
+<!-- Blog -->
+<div class="pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4" *ngFor="let blog of blogs">
+                <div class="blog-item">
+                    <div class="blog-top">
+                        <img [src]="blog.imageUrl" alt="Blog">
+                    </div>
+                    <div class="blog-bottom">
+                        <h5 class="fw-semibold" role="button" [routerLink]="'/blog-details/' + blog.slug">
+                            {{blog.title}} </h5>
+                        <!-- <p [innerHTML]="blog. .split(' ').slice(0,10).join(' ')"></p> -->
+                        <ul>
+                            <li>
+                                <a [routerLink]="'/blog-details/' + blog.slug">Read More
+                                    <i class="icofont-long-arrow-right"></i></a>
+                            </li>
+                            <li><i class="icofont-calendar"></i> {{blog.date}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog -->
+
+<app-footer />
+
+<app-back-to-top />

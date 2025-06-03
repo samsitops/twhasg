@@ -1,0 +1,238 @@
+<!-- 
+  Blog Details Page Template
+
+  This template displays detailed information about a specific blog post,
+  including the blog image, title, and full description.
+
+  Layout Structure:
+  - Navigation bar at the top (<app-navbar />).
+  - Inner page banner showing the page title "Blog Details" with a background image.
+  - Main content area divided into two columns:
+    * Left (col-lg-8): Blog details with image, title, and description rendered with innerHTML binding.
+    * Right (col-lg-4): Sidebar containing:
+       - Search form for blogs.
+       - Categories list with router links filtering blogs by category.
+       - (Commented out) Recent blogs section and feedback form for future use.
+  - Below the main blog details is a section showcasing the latest blogs, limited to 3 items,
+    each with an image, title, "Read More" link, and date.
+  - Footer component at the bottom (<app-footer />).
+  - Back to top button (<app-back-to-top />).
+
+  Features:
+  - Uses Angular bindings such as [src], {{ }}, *ngFor, and [innerHTML].
+  - Uses Angular RouterLink for navigation within the app.
+  - Responsive grid layout with Bootstrap classes.
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Blog Details'" [backgroundImage]="'img/blog-details.jpg'" />
+
+<!-- Blog Details -->
+<div class="blog-details-area pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-details-item">
+                    <div class="blog-details-img">
+                        <img [src]="blogsDetails.imageUrl" alt="Blog">
+                        <h2>{{blogsDetails.title}}</h2>
+                    </div>
+                    <div class="blog-details-previous" [innerHTML]="blogsDetails.description">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-details-item">
+                    <div class="blog-details-search">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn blog-details-btn">
+                                <i class="icofont-search-1"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- <div class="blog-details-recent">
+                        <h3>Recent Blogs</h3>
+                        <ul>
+                            <li>
+                                <img src="img/blog/3.jpg" alt="Recent">
+                                <a routerLink="/blog-details">World AIDS Day, designated on 1 December.</a>
+                                <ul>
+                                    <li><a routerLink="/"><i class="icofont-businessman"></i> Admin</a></li>
+                                    <li><i class="icofont-calendar"></i> Jan 03, 2024</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="img/blog/4.jpg" alt="Recent">
+                                <a routerLink="/blog-details">World AIDS Day, designated on 1 December.</a>
+                                <ul>
+                                    <li><a routerLink="/"><i class="icofont-businessman"></i> Admin</a></li>
+                                    <li><i class="icofont-calendar"></i> Jan 03, 2024</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="img/blog/5.jpg" alt="Recent">
+                                <a routerLink="/blog-details">World AIDS Day, designated on 1 December.</a>
+                                <ul>
+                                    <li><a routerLink="/"><i class="icofont-businessman"></i> Admin</a></li>
+                                    <li><i class="icofont-calendar"></i> Jan 03, 2024</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <div class="blog-details-category">
+                        <h3>Category</h3>
+                        <ul>
+                            <li>
+                                <a role="button" class="nav-link" routerLinkActive="active" [routerLink]="['/blog']"
+                                    [queryParams]="{category: 'pulmonary'}">
+                                    Pulmonary Medicine
+                                </a>
+                            </li>
+                            <li>
+                                <a role="button" class="nav-link" routerLinkActive="active" [routerLink]="['/blog']"
+                                    [queryParams]="{category: 'sleep'}">
+                                    Sleep Disorder
+                                </a>
+                            </li>
+                            <li>
+                                <a role="button" class="nav-link" routerLinkActive="active" [routerLink]="['/blog']"
+                                    [queryParams]="{category: 'psychiatry'}">
+                                    Psychiatry
+                                </a>
+                            </li>
+                            <li>
+                                <a role="button" class="nav-link" routerLinkActive="active" [routerLink]="['/blog']"
+                                    [queryParams]="{category: 'pulmonary'}">
+                                    Testing
+                                </a>
+                            </li>
+                            <li>
+                                <a role="button" class="nav-link" routerLinkActive="active" [routerLink]="['/blog']"
+                                    [queryParams]="{category: 'psychiatry'}">
+                                    Technology In Healthcare
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="blog-details-form pb-100">
+    <div class="blog-details-shape">
+        <img src="img/blog/6.png" alt="Shape">
+    </div>
+    <div class="container">
+        <div class="blog-details-form-wrap">
+            <h2>Share your feedback</h2>
+            <form [formGroup]="feedbackForm">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                            <div *ngIf="feedbackForm.get('name')?.errors && feedbackForm.get('name')?.touched"
+                                class="text-danger m-0 fs-">
+                                <small *ngIf="feedbackForm.get('name')?.getError('required')" class="m-0 ">
+                                    This field is required</small>
+                                <small *ngIf="feedbackForm.get('name')?.getError('pattern')" class="m-0 ">
+                                    Enter a valid name</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                            <div *ngIf="feedbackForm.get('email')?.errors && feedbackForm.get('email')?.touched"
+                                class="text-danger m-0 fs-">
+                                <small *ngIf="feedbackForm.get('email')?.getError('email')" class="m-0 ">
+                                    Email is In Valid</small>
+                                <small *ngIf="feedbackForm.get('email')?.getError('required')" class="m-0">Email is
+                                    Required</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input formControlName="phone" type="text" class="form-control" placeholder="Phone">
+                            <div *ngIf="feedbackForm.get('phone')?.errors && feedbackForm.get('phone')?.touched"
+                                class="text-danger m-0 fs-">
+                                <small *ngIf="feedbackForm.get('phone')?.getError('required')" class="m-0 ">
+                                    This field is required
+                                </small>
+                                <small *ngIf="feedbackForm.get('phone')?.errors?.['pattern']">
+                                    Phone Number invalid .
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input formControlName="industry" type="text" class="form-control" placeholder="Industry">
+                            <div *ngIf="feedbackForm.get('industry')?.errors && feedbackForm.get('industry')?.touched"
+                                class="text-danger m-0 fs-">
+                                <small *ngIf="feedbackForm.get('industry')?.getError('required')" class="m-0 ">
+                                    This field is required</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea formControlName="feedback" class="form-control" id="your_comments" rows="8"
+                        placeholder="Your Feedback"></textarea>
+                    <div *ngIf="feedbackForm.get('feedback')?.errors && feedbackForm.get('feedback')?.touched"
+                        class="text-danger m-0 fs-">
+                        <small *ngIf="feedbackForm.get('feedback')?.getError('required')" class="m-0 ">
+                            This field is required</small>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <button (click)="sendEmail()" [disabled]="feedbackForm.invalid" type="submit"
+                        class="btn blog-details-form-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+<!-- End Blog Details -->
+
+<!-- Blog -->
+<div class="pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Latest Blogs</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-4" *ngFor="let blog of relatedBlogs.slice(0, 3)">
+                <div class="blog-item">
+                    <div class="blog-top">
+                        <img [src]="blog.imageUrl" alt="Blog">
+                    </div>
+                    <div class="blog-bottom">
+                        <h5 class="fw-semibold" role="button" [routerLink]="'/blog-details/' + blog.slug">
+                            {{blog.title}} </h5>
+                        <!-- <p [innerHTML]="blog.description.split(' ').slice(0,10).join(' ')"></p> -->
+                        <ul>
+                            <li>
+                                <a [routerLink]="'/blog-details/' + blog.slug">Read More
+                                    <i class="icofont-long-arrow-right"></i></a>
+                            </li>
+                            <li><i class="icofont-calendar"></i> {{blog.date}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog -->
+
+<app-footer />
+
+<app-back-to-top />

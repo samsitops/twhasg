@@ -1,0 +1,465 @@
+<!-- 
+|--------------------------------------------------------------------------
+| Clinical Trials Research Page Template
+|--------------------------------------------------------------------------
+|
+| Landing page for clinical trial information and enrollment
+|
+| CORE STRUCTURE
+| 1. Navigation:
+|    - App Navbar Component
+|    - Back-to-top button
+
+| 2. Main Content Sections:
+|    - Research Hero: Clinical trial overview
+|    - Participation Benefits: Bullet-point list
+|    - Partnership Details: Call to Research collaboration
+|    - Pulmonary Focus: Condition-specific trials
+|    - Contact CTA: Dual phone/image section
+|    - FAQ: Expandable accordion
+
+| 3. Dynamic Components:
+|    - Clinical Trial Interest Form (commented)
+|    - Interactive FAQ accordion
+
+| ACCESSIBILITY
+| ✓ Implemented:
+|   - Alt text on all images
+|   - Semantic heading hierarchy
+| ✗ Needs Improvement:
+|   - Missing ARIA roles for accordion
+|   - Form labels need better association
+|   - Color contrast in contact section
+
+| SECURITY
+| 1. Current Protections:
+|   - Static content (low risk)
+|   - HTTPS external link (Call to Research)
+| 2. Future Needs:
+|   - Sanitize form inputs if enabled
+|   - Implement CSRF protection
+
+| BEST PRACTICE IMPROVEMENTS
+| 1. Semantic Markup:
+|    - Use <article> for research sections
+|    - Add <time> element for trial dates
+|    - Implement schema.org medical markup
+
+| 2. Performance:
+|    - Convert images to WebP format
+|    - Lazy-load offscreen images
+|    - Implement responsive images with srcset
+
+| MAINTENANCE
+| 1. Content Updates:
+|    - Modify condition lists in pulmonary section
+|    - Update partner info in partnership-section
+|    - Add/remove FAQ items
+
+| 2. Form Management:
+|    - Uncomment/enable form section
+|    - Update formControlNames in TS
+|    - Add CAPTCHA if public-facing
+
+| 3. Style Adjustments:
+|    - Modify .research-details padding
+|    - Update color variables
+|    - Adjust grid breakpoints
+
+| CONTENT RULES
+| - Images: 1200x800px (16:9 ratio)
+| - Clinical Trial Lists: Alphabetical order
+| - Phone Numbers: E.164 format
+| - Microdata: Implement Health/LD+JSON
+
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<app-navbar />
+
+<!-- <app-inner-page-banner [pageTitle]="'Research Details'" [backgroundImage]="'img/page-title.jpg'" /> -->
+
+
+<section class="mt-5 research-details">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <h2 class="fw-bolder text-center">Advancing Care Through Clinical Trials</h2>
+                    <p class="text-center">TeamWork Health is proud to partner with Call to Research to offer
+                        cutting-edge clinical trials,
+                        which will provide our patients with access to innovative treatments and therapies that shape
+                        the future of healthcare</p>
+
+                    <img src="img/science-and-research-2021-09-24-03-40-02-utc.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works mt-5">
+    <div class="container">
+        <div class="row  justify-content-evenly">
+            <!-- <div class="col-lg-3 col-md-6">
+                <div class="contact p-5">
+                    <h4 class="text-white">Our Contact</h4>
+                    <p>Vestibulum placerat ultricies massa, volutpat cursus lacus.</p>
+                    <hr />
+                    <ul class="">
+                        <li>
+                            (205) 555-0100
+                        </li>
+                        <li>
+                            (205) 555-0925
+                        </li>
+                        <li>
+                            email example.com
+                        </li>
+                        <li>
+                            Ranchview California 62639
+                        </li>
+                    </ul>
+
+                </div>
+            </div> -->
+
+
+            <div class="col-lg-7">
+                <div class="benefits mt-3">
+                    <h2 class="fw-bold mb-3"> Why Participate in Clinical Trials?</h2>
+                    <p class="mb-3">
+                        Clinical trials are essential for discovering new treatments, improving existing therapies, and
+                        enhancing patient care. By participating, you contribute to medical advancements while gaining
+                        access to the latest research-driven therapies.
+                    </p>
+                    <h3>Benefits of Participating:</h3>
+                    <ul>
+                        <li>✔ Early access to new treatments before they’re widely available</li>
+                        <li>✔ Close monitoring by medical professionals and research teams</li>
+                        <li>✔ Contributing to advancements that may benefit others with similar health conditions</li>
+                        <li>✔ Often provided at no cost, with potential compensation for time and travel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="partnership-section">
+    <div class="container">
+        <h2>Our Partnership with Call to Research</h2>
+        <p>
+            Through our collaboration with Call to Research, we connect patients with world-class clinical trials
+            designed to address respiratory and pulmonary conditions. This partnership allows us to expand access to
+            innovative therapies, ensuring our patients receive comprehensive, research-backed care.
+        </p>
+        <div class="about-call-to-research">
+            <h3>About Call to Research</h3>
+            <p>
+                Call to Research is a leader in clinical trial management, dedicated to advancing medical science
+                through patient-centered research. Their expertise in trial coordination ensures that participants
+                receive the highest standard of care throughout the research process.
+            </p>
+            <a href="https://www.clintrialresearch.com" target="_blank" class="cta-link">Learn more about Call to
+                Research</a>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5 pt-5">
+
+    <div class="container">
+        <h2 class="fw-semibold mb-4 text-center">Focus on Pulmonary Research</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <figure>
+                    <img src="img/group.jpg" alt="">
+                </figure>
+            </div>
+            <div class="col-lg-6">
+                <figcaption>
+                    <h2>Future Pulmonary Clinical Trials</h2>
+                    <p>In partnership with Call to Research’s Respiratory & Pulmonary Division, we will focus on:</p>
+                    <ul class="conditions-list">
+                        <li>✔ Asthma</li>
+                        <li>✔ Chronic Obstructive Pulmonary Disease (COPD)</li>
+                        <li>✔ Pulmonary Fibrosis</li>
+                        <li>✔ Interstitial Lung Disease (ILD)</li>
+                        <li>✔ Pulmonary Hypertension</li>
+                        <li>✔ Other Chronic Respiratory Conditions</li>
+                    </ul>
+                    <p>
+                        These trials will explore new therapies, diagnostic tools, and treatment strategies aimed at
+                        improving lung
+                        function, reducing symptoms, and enhancing quality of life.
+                    </p>
+                </figcaption>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Contact -->
+<div class="drop-area pt-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 p-0">
+                <div class="drop-item drop-img" style="background-image: url(img/contact/2.png);">
+                    <div class="drop-left">
+                        <h2>Call us for more info</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0">
+                <div class="speciality-item speciality-right speciality-right-two speciality-right-three"
+                    style="background-image: url(img/home-two/bg4.jpg);">
+                    <img src="img/home-two/bg4.jpg" alt="Contact">
+                    <div class="speciality-emergency">
+                        <div class="speciality-icon">
+                            <i class="icofont-ui-call"></i>
+                        </div>
+                        <h3>Support line</h3>
+                        <p>(919) 238-1110</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<!-- <section class="get-involved-section">
+    <div class="container">
+        <h2>How to Get Involved</h2>
+        <p>Enrolling in a clinical trial is simple. Here’s how it works:</p>
+        <ol class="steps-list">
+            <li>✔ Fill Out the Interest Form Below</li>
+            <li>✔ Receive a Call from Our Research Team</li>
+            <li>✔ Attend an Eligibility Screening Appointment</li>
+            <li>✔ Begin Your Clinical Trial Participation with Ongoing Support</li>
+        </ol>
+
+
+        <div class="card border-0">
+            <div class="card-body">
+                <form [formGroup]="researchDetailsForm" class="clinical-trial-form">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="fullName">Full Name</label>
+                                <input formControlName="fullName" placeholder="Enter Your Full Name"
+                                    class="form-control" type="text" id="fullName" name="fullName" required>
+                                <div *ngIf="researchDetailsForm.get('fullName')?.errors && researchDetailsForm.get('fullName')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="researchDetailsForm.get('fullName')?.getError('required')"
+                                        class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="dob">Date of Birth</label>
+                                <input formControlName="dateBirth" type="text" placeholder="Datepicker"
+                                    class="form-control" bsDatepicker>
+                                <div *ngIf="researchDetailsForm.get('dateBirth')?.errors && researchDetailsForm.get('dateBirth')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="researchDetailsForm.get('dateBirth')?.getError('required')"
+                                        class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="phone">Phone Number</label>
+                                <input formControlName="phoneNumber" placeholder="Enter Your Phone Number"
+                                    class="form-control" type="tel" id="phone" name="phone" required>
+                                    <div *ngIf="researchDetailsForm.get('phoneNumber')?.errors && researchDetailsForm.get('phoneNumber')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="researchDetailsForm.get('phoneNumber')?.getError('required')"
+                                        class="m-0 ">
+                                        This field is required
+                                    </small>
+                                    <small *ngIf="researchDetailsForm.get('phoneNumber')?.errors?.['pattern']">
+                                        Phone Number invalid.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="email">Email Address</label>
+                                <input formControlName="email" placeholder="Email Address" class="form-control"
+                                    type="email" id="email" name="email" required>
+                                <div *ngIf="researchDetailsForm.get('email')?.errors && researchDetailsForm.get('email')?.touched"
+                                    class="text-danger m-0">
+                                    <small *ngIf="researchDetailsForm.get('email')?.getError('email')" class='m-0'>Email
+                                        inValid
+                                    </small>
+                                    <small *ngIf="researchDetailsForm.get('email')?.getError('required')"
+                                        class="m-0 ">Email
+                                        is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label for="healthConcern">Primary Health Concern</label>
+                                <select formControlName="primaryHealth" class="form-control" id="healthConcern"
+                                    name="healthConcern" required>
+                                    <option value="Asthma">Asthma</option>
+                                    <option value="COPD">COPD</option>
+                                    <option value="Pulmonary Fibrosis">Pulmonary Fibrosis</option>
+                                    <option value="ILD">ILD</option>
+                                    <option value="Pulmonary Hypertension">Pulmonary Hypertension</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div *ngIf="researchDetailsForm.get('primaryHealth')?.errors && researchDetailsForm.get('primaryHealth')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="researchDetailsForm.get('primaryHealth')?.getError('required')"
+                                        class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label for="symptoms">Tell Us About Your Symptoms (Optional)</label>
+                                <textarea formControlName="symptoms" rows="4" class="form-control" id="symptoms"
+                                    name="symptoms" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label>Are You Currently Receiving Treatment for This Condition?</label>
+                                <div class="radio-group">
+                                    <label><input formControlName="isReceivingTreatment"
+                                            class="form-check-input p-0 rounded-3" type="radio" value="Yes">
+                                        Yes</label>
+                                    <label><input formControlName="isReceivingTreatment"
+                                            class="form-check-input p-0 rounded-3" type="radio" value="No">
+                                        No</label>
+                                </div>
+                                <div *ngIf="researchDetailsForm.get('isReceivingTreatment')?.errors && researchDetailsForm.get('isReceivingTreatment')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="researchDetailsForm.get('isReceivingTreatment')?.getError('required')"
+                                        class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <div class="form-check">
+                                    <input formControlName="consent" class="form-check-input p-0" type="checkbox"
+                                        value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        I consent to be contacted regarding clinical trial opportunities.
+                                    </label>
+
+                                    <div *ngIf="researchDetailsForm.get('consent')?.errors && researchDetailsForm.get('consent')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="researchDetailsForm.get('consent')?.getError('required')"
+                                            class="m-0 ">
+                                            You must agree to the terms.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button (click)="sendEmail()" [disabled]="researchDetailsForm.invalid || isLoading" type="button"
+                        class="btn btn-primary me-3">
+                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                            aria-hidden="true"></span>
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section> -->
+
+<section>
+    <div class="faq-area ptb-100">
+        <div class="container">
+            <div class="faq-wrap">
+                <div class="faq-head">
+                    <h2> Frequently Asked Questions (FAQs)</h2>
+                </div>
+                <div class="faq-item">
+                    <ul class="accordion">
+                        <li>
+                            <button type="button" (click)="toggleSection(0)" [ngClass]="{ 'open': isSectionOpen(0) }">
+                                What is a clinical trial?
+                            </button>
+                            <div class="desc" [ngClass]="{ 'open': isSectionOpen(0) }">
+                                <p>
+                                    A clinical trial is a research study that explores new treatments, drugs, or medical
+                                    devices to determine their safety and effectiveness.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" (click)="toggleSection(1)" [ngClass]="{ 'open': isSectionOpen(1) }">
+                                Is it safe to participate?
+                            </button>
+                            <div class="desc" [ngClass]="{ 'open': isSectionOpen(1) }">
+                                <p>
+                                    All clinical trials are carefully regulated to ensure participant safety, with
+                                    ongoing monitoring by medical professionals.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" (click)="toggleSection(2)" [ngClass]="{ 'open': isSectionOpen(2) }">
+                                Do I have to stop my current treatment?
+                            </button>
+                            <div class="desc" [ngClass]="{ 'open': isSectionOpen(2) }">
+                                <p>
+                                    Not always. Some trials allow participants to continue their current medications
+                                    alongside the study treatment
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" (click)="toggleSection(3)" [ngClass]="{ 'open': isSectionOpen(3) }">
+                                Will I be paid for participating?
+                            </button>
+                            <div class="desc" [ngClass]="{ 'open': isSectionOpen(3) }">
+                                <p>
+                                    Many trials offer compensation for time, travel, and participation-related expenses.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" (click)="toggleSection(4)" [ngClass]="{ 'open': isSectionOpen(4) }">
+                                Can I leave a clinical trial at any time?
+                            </button>
+                            <div class="desc" [ngClass]="{ 'open': isSectionOpen(4) }">
+                                <p>
+                                    Yes, participation is completely voluntary, and you can withdraw at any point
+                                    without affecting your standard medical care.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer />
+
+<app-back-to-top />

@@ -1,0 +1,298 @@
+/* 
+  BANNER STYLES
+  =============
+
+  Structure:
+  1. Main banner container
+  2. Content styling
+  3. Button styles
+  4. Image positioning
+  5. Responsive breakpoints
+
+  Features:
+  - Full-height hero banner
+  - Animated decorative elements
+  - Responsive typography
+  - Interactive buttons
+  - Mobile-first approach
+*/
+
+/* 
+  MAIN BANNER CONTAINER
+  =====================
+*/
+
+.banner-area {
+    height: 700px;
+    position: relative;
+
+    .heart-shape {
+        img {
+            position: absolute;
+            bottom: 35px;
+            z-index: -1;
+            left: 0;
+        }
+    }
+}
+.banner-item {
+    position: relative;
+
+    h1 {
+        max-width: 575px;
+        font: {
+            weight: 700;
+            size: 48px;
+        };
+        margin: {
+            bottom: 25px;
+            left: 0;
+        };
+    }
+    p {
+        color: #616263;
+        max-width: 575px;
+        margin: {
+            bottom: 35px;
+            left: 0;
+        };
+    }
+    .common-btn-two {
+        a {
+            padding: 20px 22px;
+            border-radius: 5px;
+            margin-right: 20px;
+            display: inline-block;
+            color: var(--whiteColor);
+            border: 2px solid transparent;
+            background-color: var(--blueColor);
+            font: {
+                size: var(--fontSize);
+                weight: 500;
+            };
+            &:hover {
+                border: 2px solid var(--blueColor);
+                background-color: transparent;
+                color: var(--blueColor);
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        .cmn-btn-right-two {
+            border: 2px solid var(--blueColor);
+            background-color: transparent;
+            color: var(--blueColor);
+            padding: {
+                left: 25px;
+                right: 25px;
+            };
+            &:hover {
+                color: var(--whiteColor);
+                background-color: var(--blueColor);
+            }
+        }
+    }
+    .banner-right {
+        img {
+            position: absolute;
+
+            &:nth-child(1) {
+                z-index: 1;
+                top: -125px;
+                right: 10px;
+                max-width: 510px;
+                margin: {
+                    left: auto;
+                    right: auto;
+                };
+            }
+            &:nth-child(2) {
+                top: -125px;
+                right: 20px;
+                max-width: 510px;
+                animation: a-four 5s infinite linear;
+                margin: {
+                    left: auto;
+                    right: auto;
+                };
+            }
+            &:nth-child(3) {
+                right: 0;
+                top: -125px;
+                max-width: 510px;
+                animation: a-five 5s infinite linear;
+                margin: {
+                    left: auto;
+                    right: auto;
+                };
+            }
+            &:nth-child(4) {
+                left: 50px;
+                z-index: -1;
+                bottom: 215px;
+                max-width: 360px;
+                animation: a-eight 20s infinite linear;
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .banner-area {
+        height: auto;
+        padding: {
+            top: 150px;
+            bottom: 150px;
+        };
+    }
+    .banner-item {
+        text-align: center; 
+
+        h1 {
+            font-size: 26px;
+            padding-top: 280px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .common-btn-two {
+            a {
+                font-size: var(--fontSize);
+                padding: 14px 15px;
+                margin-right: 8px;
+            }
+            .cmn-btn-right-two {
+                padding: {
+                    left: 20px;
+                    right: 20px;
+                };
+            }
+        }
+        .banner-right {
+            img {
+                &:nth-child(1) {
+                    max-width: 285px;
+                    top: -55px;
+                    right: 0;
+                    left: 0;
+                }
+                &:nth-child(2) {
+                    max-width: 285px;
+                    top: -43px;
+                    right: 5px;
+                    left: 0;
+                }
+                &:nth-child(3) {
+                    max-width: 285px;
+                    top: -63px;
+                    right: -7px;
+                    left: 0;
+                }
+                &:nth-child(4) {
+                    max-width: 200px;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .banner-area {
+        height: auto;
+        padding: {
+            top: 150px;
+            bottom: 150px;
+        };
+    }
+    .banner-item {
+        text-align: center; 
+
+        h1 {
+            margin-bottom: 20px;
+            padding-top: 380px;
+            font-size: 26px;
+            max-width: 100%;
+        }
+        p {
+            margin-bottom: 30px;
+            max-width: 100%;
+        }
+        .common-btn-two {
+            a {
+                font-size: var(--fontSize);
+                padding: 14px 15px;
+                margin-right: 8px;
+            }
+            .cmn-btn-right-two {
+                padding: {
+                    left: 20px;
+                    right: 20px;
+                };
+            }
+        }
+        .banner-right {
+            img {
+                &:nth-child(1) {
+                    max-width: 400px;
+                    top: -55px;
+                    right: 0;
+                    left: 0;
+                }
+                &:nth-child(2) {
+                    max-width: 400px;
+                    top: -43px;
+                    right: 5px;
+                    left: 0;
+                }
+                &:nth-child(3) {
+                    max-width: 400px;
+                    right: -7px;
+                    top: -63px;
+                    left: 0;
+                }
+                &:nth-child(4) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {
+
+    .banner-item {
+        .banner-right {
+            img {
+                &:nth-child(1) {
+                    top: -70px;
+                    right: -20px;
+                    max-width: 400px;
+                }
+                &:nth-child(2) {
+                    top: -61px;
+                    right: -9px;
+                    max-width: 380px;
+                }
+                &:nth-child(3) {
+                    top: -70px;
+                    right: -19px;
+                    max-width: 380px;
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

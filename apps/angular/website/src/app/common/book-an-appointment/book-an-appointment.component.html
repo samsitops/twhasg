@@ -1,0 +1,115 @@
+<!--
+|--------------------------------------------------------------------------
+| Appointment Section
+|--------------------------------------------------------------------------
+|
+| This section provides a call-to-action for users to book an appointment.
+| It features a visually appealing background image with overlay content.
+|
+| Key Features:
+| • Prominent heading encouraging users to book their appointment.
+| • Supportive subtext reassuring users of ongoing assistance.
+| • Primary call-to-action button linking to a phone call for immediate contact.
+| • Alternative appointment request form is commented out for future use.
+|
+| Notes:
+| • Background images are applied inline for visual effect.
+| • The appointment form is currently disabled but available for enabling as needed.
+| • Responsive layout ensures content is centered and accessible.
+|
+| Accessibility:
+| • Clear text hierarchy with semantic HTML tags.
+| • Buttons and links have descriptive labels.
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ Licensed under the MIT License
+|--------------------------------------------------------------------------
+-->
+
+<div class="appointment-area position-relative overflow-hidden" style="background-image: url(img/home-two/bg6.jpg);">
+    <div class="container-fluid">
+        <div class="appointment__overlay">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="appointment-content text-center">
+                        <h2 class="text-white">Book your appointment</h2>
+                        <!-- Request appointment -->
+                        <span class="text-white">We are here for you every step of the way.</span>
+                        <!-- <a class="cmn-btn-right" [routerLink]="'request-appointment'">Request appointment</a> -->
+                        <a class="cmn-btn-right" href="tel:(919) 238-1110"> Call us </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        Uncomment below to enable appointment form:
+
+        <div class="appointment-item" style="background-image: url(img/home-two/bg5.jpg);">
+            <h2>Book your appointment</h2>
+            <span>We will confirm your appointment within 2 hours</span>
+            <div class="appointment-form">
+                <form>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-business-man-alt-1"></i>
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Your Name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-ui-message"></i>
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Enter Your Email">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-ui-call"></i>
+                                <label>Phone</label>
+                                <input type="text" class="form-control" placeholder="Enter Your Number">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-hospital"></i>
+                                <label>Services</label>
+                                <select class="form-select shadow-none">
+                                    <option>Dental Care</option>
+                                    <option>Neurology</option>
+                                    <option>Cardiology</option>
+                                    <option>Pathology</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-doctor"></i>
+                                <label>Doctor</label>
+                                <select class="form-select shadow-none">
+                                    <option>Choose Your Doctor</option>
+                                    <option>John Smith</option>
+                                    <option>Sarah Taylor</option>
+                                    <option>Stevn King</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <i class="icofont-business-man"></i>
+                                <label>Age</label>
+                                <input type="text" class="form-control" placeholder="Your Age">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn appointment-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        -->
+    </div>
+</div>

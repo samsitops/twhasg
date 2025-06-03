@@ -1,0 +1,275 @@
+<!--
+  Video Details Component Template
+
+  This template displays a video player with controls, showing a video if `videoUrl` is provided.
+  Below the video, it uses a tabset to display additional information about the video:
+  - Description tab: renders the detailed description (`video.longDec`) as HTML.
+  - (Commented out) Additional tabs such as Course Curriculum, CME Accreditation, and Instructor
+    information can be added for extended content.
+
+  Components used:
+  - <app-navbar> for the navigation bar.
+  - <app-footer> for the page footer with newsletter option disabled.
+  - <app-back-to-top> for the back-to-top button.
+
+  Notes:
+  - The video supports MP4 and OGG formats.
+  - Tabs are dynamically controlled by the `tabset` component.
+  - The additional tabs are currently commented out and can be enabled if needed.
+-->
+
+
+<app-navbar />
+
+<section class="video-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <video controls *ngIf="videoUrl">
+                        <source [src]="videoUrl" type="video/mp4" />
+                        <source [src]="videoUrl" type="video/ogg" />
+                    </video>
+
+                    <div class="video-details-tabset mt-5">
+                        <tabset>
+                            <tab heading="Description" id="tab1">
+                                <div class="mt-4" [innerHTML]="video.longDec">
+                                </div>
+                            </tab>
+                            <!-- <tab heading="Course Curriculum">
+                                <div>
+                                    <span>Section 1</span>
+                                    <p>
+                                        Intro and Understanding Sodium <br>
+                                        Basic Metabolic Panel: Introduction 1
+                                        Basic Metabolic Panel: Introduction 2 (free preview) free trial
+                                        Quiz 1
+                                        Understanding Sodium
+                                        Quiz 2
+                                    </p>
+                                    <span>Section 2</span>
+                                    <p>
+                                        Hypernatremia
+                                        Hypernatremia - Basics
+                                        Quiz 3
+                                        Hypernatremia - Hypovolemic
+                                        Quiz 4
+                                        Hypernatremia - Hypervolemic
+                                        Quiz 5
+                                        Hypernatremia - Isovolemic
+                                        Quiz 6
+                                        Hypernatremia - Treatment
+                                        Quiz 7
+                                    </p>
+                                </div>
+                            </tab>
+                            <tab heading="CME Accreditation">
+                                <div>
+                                    <p>
+                                        Course Overview
+
+                                        The basic metabolic panel (BMP), also known as "CHEM-7", is one of the most
+                                        commonly ordered lab tests by clinicians in the hospital and outpatient
+                                        settings. However, many clinicians make common interpretation mistakes - and
+                                        most have not learned to unlock the full potential of the BMP.
+
+                                        Learners will gain a clear understanding of each possible BMP result: hyper and
+                                        hyponatremia, hyper and hypokalemia, chloride and bicarbonate problems, BUN and
+                                        creatinine problems, and hyper and hypoglycemia and learn the initial management
+                                        and treatment recommendations based on the BMP result. Furthermore, clinicians
+                                        will learn the guidelines of when to order a BMP, tips for following serial
+                                        BMPs, and gain a clinical perspective of BMP nuances, pitfalls, and patterns.
+                                        This CME course will utilize a combination of videos, quizzes, and systematic
+                                        discussion of clinical scenarios and practice cases to effectively deliver the
+                                        course content.
+
+
+
+                                        Course Objectives:
+
+                                        As a result of this educational activity, participants should be better able to:
+
+                                        Describe what each value of the basic metabolic panel represents
+                                        physiologically, as well as identify when and how frequently to order a basic
+                                        metabolic panel.
+                                        Explain the significance of either an abnormally high or low result in each
+                                        category of the basic metabolic panel.
+                                        Distinguish the therapeutics involved with each abnormal value and explain what
+                                        considerations, if any, need to be addressed before correcting the results.
+
+
+                                        Post-Test and Evaluation:
+
+                                        After completing the CME activity, you must successfully complete a post-test
+                                        and fill out a program evaluation form. You will then be able to view and print
+                                        your CME certificate.
+                                        Faculty
+                                        Roger D. Seheult, MD
+                                        Pulmonary, Critical Care, and Sleep Medicine
+                                        Beaver Medical Group, Redlands, CA
+                                        Associate Clinical Professor
+                                        UC Riverside School of Medicine, Riverside, CA
+                                        Assistant Professor of Medicine
+                                        Loma Linda University School of Medicine
+                                        Loma Linda, CA
+
+
+
+
+                                        Accreditation
+                                        accreditation requirements and policies of the Accreditation Council for
+                                        Continuing Medical Education (ACCME) through the joint providership of
+                                        Continuing Education Company, Inc. and MedCram, LLC. Continuing Education
+                                        Company, Inc. (CEC) is accredited by the Accreditation Council for Continuing
+                                        Medical Education (ACCME) to provide continuing medical education for
+                                        physicians.
+
+                                        Continuing Education Company, Inc. designates this enduring material for a
+                                        maximum of 7 AMA PRA Category 1 Credits™. Physicians should claim only the
+                                        credit commensurate with the extent of their participation in the activity.
+
+                                        ABIM MOC: Successful completion of this CME activity, which includes
+                                        participation in the evaluation component, enables the participant to earn up to
+                                        7 Medical Knowledge MOC points in the American Board of Internal Medicine's
+                                        (ABIM) Maintenance of Certification (MOC) program. Participants will earn MOC
+                                        points equivalent to the amount of CME credits claimed for the activity. It is
+                                        the CME activity provider's responsibility to submit participant completion
+                                        information to ACCME for the purpose of granting ABIM MOC credit.
+
+                                        To receive CME credit and/or MOC points, you MUST complete the activity and the
+                                        evaluation form. For ABIM MOC points, your information will be shared with the
+                                        ABIM through the ACCME Program and Activity Reporting System (PARS). Please
+                                        allow 6-8 weeks for your MOC points to appear on your ABIM records.
+
+                                        AAPA: AAPA accepts certificates of participation for educational activities
+                                        certified for AMA PRA Category 1 Credit™ from organizations accredited by ACCME
+                                        or a recognized state medical society. Physician assistants may receive a
+                                        maximum of 7 hours of Category I credit for completing this activity.
+
+                                        AANPCB: The American Academy of Nurse Practitioners Certification Board (AANPCB)
+                                        accepts AMA PRA Category 1 Credit™ from organizations accredited by the ACCME.
+
+                                        Release Date: 12/1/2020
+
+                                        Reviewed & Re-released Date: 11/7/2023
+                                        Expiration Date: 11/6/2026 (Date after which this enduring material is no longer
+                                        certified for credit.)
+                                        Medium: Enduring Material, Video/Audio
+
+
+                                        Faculty/Planning Committee Disclosures
+                                        Review Committee:
+
+                                        The following individuals have indicated that he/she (nor spouse/partner) have
+                                        no relevant financial relationships with a commercial interest that may impact
+                                        upon this CME activity:
+
+                                        Beth Townsend – Reviewer (Continuing Education Company)
+                                        Roger Seheult, MD- Faculty
+                                        Kyle Allred, PA – Planner & Content Developer (MedCram)
+
+
+                                        Faculty Disclosures:
+
+                                        Roger Seheult, MD (Faculty) has no relevant financial relationships to disclose.
+
+                                        Unlabeled Use Declaration:
+
+                                        During their presentation, faculty may discuss unlabeled or investigational use
+                                        which is not approved for a commercial product. Faculty members are required to
+                                        disclose this information to the audience when referring to an unlabeled or
+                                        investigational use.
+
+                                        Statement of Disclosure and Independence:
+
+                                        It is the policy of Continuing Education Company (CEC) to ensure all of its
+                                        accredited educational activities are designed, implemented, and evaluated in
+                                        accordance with the Accreditation Council for Continuing Medical Education’s
+                                        (ACCME) Criteria and Policies. In accordance with ACCME requirements, CEC has
+                                        Conflict of Interest (COI) and Disclosure Policies that are designed to ensure
+                                        that accredited educational activities are fair, balanced, independent,
+                                        evidence-based, and based on scientific rigor.
+
+                                        All individuals who are in position to influence and/or control content of a CEC
+                                        accredited Continuing Medical Education (CME) activity must disclose any
+                                        relevant financial interest or other relationships which they or their
+                                        spouse/partner have with (a) with the manufacturer(s) of any commercial
+                                        products(s) and/or provider(s) of commercial services discussed in an
+                                        educational presentation and (b) with any commercial supporters of the activity.
+                                        (Relevant financial interest or other relationship includes such things as
+                                        grants or research support, employee, consultant, major stockholder, member of
+                                        speakers’ bureau, etc.) The intent of this disclosure is to provide activity
+                                        participants with information to determine whether the speaker’s interests or
+                                        relationships may influence the presentation with regard to exposition or
+                                        conclusions. All potential conflicts of interest have been identified and
+                                        resolved, and are listed above.
+
+                                        The opinions, ideas, recommendations, and perspectives expressed in the syllabus
+                                        and accompanying presentations at this activity are those of the program authors
+                                        and presenting faculty only and do not necessarily reflect the opinions, ideas,
+                                        recommendations or perspectives of their affiliated institutions, Continuing
+                                        Education Company, advisory boards or consultants.
+
+
+
+
+                                        Computer Requirements
+                                        Flash Player 10 or later, and one of the following browsers:
+
+                                        Windows: Internet Explorer 6 and later, Microsoft Edge (latest version), Firefox
+                                        1.x and later, Google Chrome (latest version), Opera 9.5 and later
+                                        Mac: Safari 3 and later, Firefox 1.x and later, Google Chrome (latest version)
+                                        Linux: Firefox 1.x and later
+                                        HTML5 via one of the following browsers:
+
+                                        Windows: Google Chrome (latest version)
+                                        Mac: Safari 6.0.5 or later, Google Chrome (latest version)
+                                        Mobile: Safari in Apple iOS 6 or later
+
+
+                                        Roger Seheult M.D. is approved by the California Board of Registered Nursing,
+                                        Provider # CEP16824. This course is approved for 7 CE contact hours.
+                                    </p>
+                                </div>
+                            </tab>
+                            <tab heading="Instructor">
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <figure class="col-lg-3">
+                                            <img src="img/instructor.png" alt="">
+                                        </figure>
+                                        <figcaption class="col-lg-6 ">
+                                            <ul>
+                                                <li>
+                                                    Quadruple Board Certified in Internal Medicine, Pulmonary Medicine,
+                                                    Critical
+                                                    Care, and Sleep Medicine.
+                                                </li>
+                                                <li>
+                                                    Over 20 years teaching experience as both an exam preparation
+                                                    instructor
+                                                    and an
+                                                    assistant professor of medicine.
+                                                </li>
+                                                <li>
+                                                    Experience as a medical director for both a Southern California
+                                                    Physician
+                                                    Assistant Program and a Respiratory Therapy Program.
+                                                </li>
+                                            </ul>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                            </tab> -->
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer [isNewsletter]="false" />
+
+<app-back-to-top />

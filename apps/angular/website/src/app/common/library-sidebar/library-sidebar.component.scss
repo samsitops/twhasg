@@ -1,0 +1,85 @@
+/* 
+|--------------------------------------------------------------------------
+| Library Sidebar Component Styles
+|--------------------------------------------------------------------------
+|
+| Styles for video library navigation sidebar
+|
+| CORE STRUCTURE
+| • Full viewport height (100vh)
+| • Full container width (100%)
+| • Unordered list for video items
+|
+| TYPOGRAPHY & COLORS
+| • Default link color: --grayColor
+| • Active/hover color: --blueColor
+| • Underline indicator for active state
+|
+| INTERACTIVE STATES
+| • Active links:
+|   - Blue text color
+|   - Bottom border accent
+| • Hover state:
+|   - Matches active state styling
+|   - Smooth transition (recommended)
+|
+| LAYOUT
+| • List items: width fits content
+| • 10px vertical spacing between items
+| • Horizontal underline aligns with text
+|
+| VARIABLES
+| • --blueColor: Active/hover state
+| • --grayColor: Default text
+|
+| ACCESSIBILITY
+| • Sufficient color contrast required
+| • Focus states should match hover
+| • Consider larger tap targets for mobile
+|
+| MAINTENANCE NOTES
+| • To modify spacing:
+|   - Adjust margin-bottom on li
+| • To change active indicator:
+|   - Modify border properties
+| • Commented background available
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+// Recommended additions:
+// @mixin transition($property: all) {
+//   transition: $property var(--transition-duration) ease;
+// }
+//
+// a {
+//   @include transition(color, border-color);
+//   padding-bottom: 3px; // Better underline spacing
+// }
+
+.sidebar {
+    // background-color: #09c;
+    width: 100%;
+    height: 100vh;
+    ul {
+        li {
+            width: fit-content;
+            margin-bottom: 10px;
+            a {
+                color: var(--grayColor);
+                &.active {
+                    color: var(--blueColor);
+                    border-bottom: 1px solid var(--blueColor);
+                }
+            }
+            &:hover {
+                a {
+                    color: var(--blueColor);
+                    border-bottom: 1px solid var(--blueColor);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+<!--
+  Departments Section:
+  Displays a responsive grid of medical departments/services offered by the facility.
+  Each department includes:
+  - An icon representing the department (using icofont classes).
+  - A department title.
+  - A brief description.
+
+  Layout:
+  - Uses Bootstrap grid classes for responsiveness (col-sm-6, col-lg-4).
+  - Wrapped inside a container with padding for spacing.
+
+  Components used outside this section:
+  - app-navbar: Main navigation bar.
+  - app-inner-page-banner: Banner with page title and background image.
+  - app-footer: Page footer.
+  - app-back-to-top: Scroll-to-top button.
+
+  Note:
+  - The top header component <app-top-header /> is commented out, so it is not currently displayed.
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Departments'" [backgroundImage]="'img/page-title.jpg'" />
+
+<!-- Departments -->
+<div class="departments-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-tooth"></i>
+                    <h3>Dental Care</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-baby"></i>
+                    <h3>Baby Care</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-laboratory"></i>
+                    <h3>Laboratory</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-icu"></i>
+                    <h3>ICU</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-dna-alt-2"></i>
+                    <h3>DNA Test</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-surgeon"></i>
+                    <h3>Surgeon</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-xray"></i>
+                    <h3>X-ray</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-blood-test"></i>
+                    <h3>Blood Test</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="department-item">
+                    <i class="icofont-ambulance-crescent"></i>
+                    <h3>Ambulance Service</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium eaque omnis corporis, animi
+                        aspernatur tempora.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Departments -->
+
+<app-footer />
+
+<app-back-to-top />

@@ -1,0 +1,61 @@
+<!--
+|--------------------------------------------------------------------------
+| progress-bar Component Template
+|--------------------------------------------------------------------------
+|
+| Progress bar UI with dynamic positioning and profile image overlay
+|
+| STRUCTURE
+| 1. .progress-container
+|    • Parent wrapper for progress visualization
+|
+| 2. .progress-bar
+|    • Fills horizontally according to `progress` percentage
+|    • Bound via `[style.width.%]` for fluid updates
+|
+| 3. .img-container
+|    • Absolutely positioned based on `progress` percentage
+|    • Contains profile or status image (e.g., user icon)
+|
+| BINDINGS
+| • [style.width.%]="progress"
+|     - Dynamically updates the visual fill of progress bar
+|
+| • [style.left.%]="progress"
+|     - Positions image container along the bar based on progress
+|
+| ACCESSIBILITY NOTES
+| • <img> has meaningful alt attribute ("progress-bar")
+| • Consider adding ARIA progress roles and labels (e.g., role="progressbar")
+|
+| POTENTIAL ENHANCEMENTS
+| 1. Add numeric indicator of progress (e.g., {{ progress }}%)
+| 2. Include accessible ARIA labels:
+|     • role="progressbar"
+|     • aria-valuenow, aria-valuemin, aria-valuemax
+| 3. Animate transitions using CSS or Angular animations
+| 4. Add responsive behavior for smaller screens
+|
+| SECURITY & PERFORMANCE
+| • Ensure `progress` is sanitized and clamped (0–100)
+| • Optimize image loading with lazy loading or compressed assets
+|
+| USAGE CONTEXT
+| • Progress through clinic locations, steps, or content
+| • Can be generalized for user profile onboarding or task completion
+|
+| MAINTENANCE
+| - Template tied to OurLocationsComponent
+| - Depends on `progress` property in component class
+| - Style adjustments handled in our-locations.component.scss
+|
+|--------------------------------------------------------------------------
+-->
+
+
+<div class="progress-container">
+    <div class="progress-bar" [style.width.%]="progress"></div>
+    <div class="img-container" [style.left.%]="progress">
+        <img src="img/profile.png" alt="progress-bar" />
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "name": "stater",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/stater/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project stater --web",
+  "targets": {}
+}

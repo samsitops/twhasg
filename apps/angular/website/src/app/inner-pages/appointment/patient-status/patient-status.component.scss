@@ -1,0 +1,83 @@
+/* 
+  .choices
+  - Circular shape with width and height of 120px
+  - Light background color (#f3fbff)
+  - Uses flexbox to center content both horizontally and vertically
+*/
+
+.choices {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background-color: #f3fbff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+  .choice-description
+  - Font size set to 20px
+  - Text color is black
+*/
+
+.choice-description {
+    font-size: 20px;
+    color: #000;
+}
+
+/* 
+  .form-control
+  - Adds 15px padding inside form controls
+*/
+
+.form-control {
+    padding: 15px;
+}
+
+/* 
+  input[type="radio"]
+  - Hides the default radio button input (important to override other styles)
+
+  When radio input is checked, apply styles to the adjacent label:
+  - Adds a subtle box shadow
+  - Adds a border with a blue color variable
+*/
+
+input[type="radio"] {
+    display: none !important;
+
+    &:checked~label {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: 1px solid var(--blueColor);
+    }
+}
+
+/* 
+  input[type="radio"] ~ label
+  - The label next to the radio input:
+    - Uses flexbox to center content
+    - Circular shape with border-radius 50%
+    - Initially has a transparent border
+
+  On hover over the label:
+  - Cursor changes to pointer to indicate it's clickable
+  - Adds a blue border and subtle box shadow for hover effect
+*/
+
+input[type="radio"]~label {
+    /* height: 140px;
+     width: 140px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid var(--blueColor);
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+}

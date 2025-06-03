@@ -1,0 +1,71 @@
+<!-- 
+|--------------------------------------------------------------------------
+| Root Component Template Documentation
+|--------------------------------------------------------------------------
+|
+| Angular root template with global loading and routing
+|
+| CORE STRUCTURE
+| 1. Global Loading Indicator:
+|    - <app-loading> component
+|    - Presumed overlay/spinner implementation
+|    - Global visibility control
+|
+| 2. Routing System:
+|    - Angular <router-outlet> directive
+|    - Dynamic content insertion point
+|    - Handles all route transitions
+|
+| SECURITY CONSIDERATIONS
+| 1. Loading Component:
+|    - Safe if only UI element
+|    - Risk if handles sensitive data
+| 2. Routing:
+|    - Angular built-in protection
+|    - Lazy-loaded route validation needed
+|
+| PERFORMANCE ANALYSIS
+| 1. Initial Load:
+|    - Loading component render time
+|    - Router outlet initialization
+| 2. Route Transitions:
+|    - Loading component visibility impact
+|    - Bundle prefetching recommendations
+|
+| BEST PRACTICE IMPROVEMENTS
+| 1. Loading Component:
+|    - Add ARIA roles/alerts
+|    - Implement progress indicators
+|    - Add minimum display time
+|
+| 2. Routing:
+|    - Add route transition animations
+|    - Implement scroll restoration
+|    - Add route change detection
+|
+| MAINTENANCE GUIDELINES
+| 1. Loading Updates:
+|    - Modify app-loading component
+|    - Adjust positioning/z-index
+|
+| 2. Routing Changes:
+|    - Update route configuration
+|    - Monitor bundle sizes
+|
+| 3. Performance:
+|    - Audit loading spinner complexity
+|    - Verify lazy loading
+|
+| VERSION COMPATIBILITY
+| Angular: ≥15.0.0 (standalone components)
+| TypeScript: ≥4.8.4
+| Last Updated: 2023-11-07
+|
+| COPYRIGHT & LICENSE
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<app-loading></app-loading>
+<router-outlet />

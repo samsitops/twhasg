@@ -1,0 +1,59 @@
+<!--
+|--------------------------------------------------------------------------
+| Modal Component
+|--------------------------------------------------------------------------
+|
+| Reusable modal dialog with dynamic content and close functionality
+|
+| STRUCTURE:
+| 1. Header Section
+|   - Close button with X icon
+|   - Click handler for modal dismissal
+|
+| 2. Body Section
+|   - Dynamic content injection
+|   - HTML sanitization required
+|
+| FUNCTIONALITY:
+| • Close Behavior: Hides modal on X click via BsModalRef
+| • Content Injection: Safely renders HTML from 'message' input
+|
+| ACCESSIBILITY:
+| • aria-hidden="true" on decorative X icon
+| • Needs aria-label on close button
+| • Requires focus management
+|
+| SECURITY:
+| • [innerHTML] requires sanitization
+| • Use Angular's DomSanitizer
+| • Never inject untrusted content
+|
+| USAGE EXAMPLE:
+| <app-modal [message]="sanitizedContent"></app-modal>
+|
+| IMPROVEMENTS NEEDED:
+| 1. Add aria-labelledby for modal title
+| 2. Implement focus trapping
+| 3. Add escape key dismissal
+| 4. Include backdrop click handling
+|
+| STYLING RECOMMENDATIONS:
+| • Add transition animations
+| • Ensure proper z-index stacking
+| • Mobile-responsive sizing
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+
+<div class="modal-header">
+    <button type="button" class="close" (click)="BsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div [innerHTML]="message"></div>
+</div>

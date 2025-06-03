@@ -1,0 +1,42 @@
+<div>
+    <h2 class="mb-4">
+        Which service would you like to book an appointment for?
+    </h2>
+    <form [formGroup]="form">
+        <div class="my-5 d-flex">
+            <div class="text-center d-inline-block me-3">
+                <input type="radio" role="button" id="PulmonaryCare" formControlName="service" name="service"
+                    value="Pulmonary Medicine">
+                <label for="PulmonaryCare" tooltip="Pulmonary Medicine">
+                    <div class="me-img-container">
+                        <img src="/img/Pulmonary.png" alt="">
+                    </div>
+                </label>
+            </div>
+            <div class="text-center d-inline-block me-3">
+                <input type="radio" role="button" id="sleepMedicine" formControlName="service" name="service"
+                    value="Sleep Medicine">
+                <label for="sleepMedicine" tooltip="Sleep Medicine">
+                    <div class="me-img-container">
+                        <img src="/img/Sleep disorder.png" alt="">
+                    </div>
+                </label>
+            </div>
+            <div class="text-center d-inline-block me-3">
+                <input type="radio" role="button" id="behavioralHealth" formControlName="service" name="service"
+                    value="Psychiatry">
+                <label for="behavioralHealth" tooltip="Psychiatry">
+                    <div class="me-img-container">
+                        <img src="/img/Behaviroal health.png" alt="">
+                    </div>
+                </label>
+            </div>
+        </div>
+    </form>
+    <a class="btn btn-outline-primary me-3 text-primary" routerLink="/request-appointment/info">
+        Go Back
+    </a>
+    <button (click)="setService()" class="btn btn-primary">
+        Next
+    </button>
+</div>

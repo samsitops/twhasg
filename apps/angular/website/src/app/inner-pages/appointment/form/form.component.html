@@ -1,0 +1,139 @@
+<!-- * FormComponent collects detailed user information required to complete
+* the appointment booking process.
+*
+* Features include:
+* - Inputs for full name, phone number, email, date of birth, insurance company name,
+* age, address, symptoms description, and insurance card number.
+* - Form validation with appropriate error messages for required fields and patterns.
+* - Datepicker integration for date of birth input.
+* - Submit button with loading spinner indicating sending state.
+* - Navigation button to go back to the previous step. -->
+
+<h2 class="mb-4">
+    Almost Done! Please Enter Your Details.
+</h2>
+<form [formGroup]="form" class="mb-3">
+    <div class="row">
+        <!-- <div class="col-lg-6">
+            <div class="form-group mb-3">
+                <label class="form-lable" for="name">Full Name</label>
+                <input type="text" class="form-control" id="fullName">
+            </div>
+        </div> -->
+        <div class="col-lg-6">
+            <div class="form-group mb-3">
+                <label class="form-lable" for="name">Full Name</label>
+                <input formControlName="fullName" type="text" class="form-control" id="fullName">
+                <div *ngIf="form.get('fullName')?.errors && form.get('fullName')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('fullName')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="name">Phone number</label>
+                <input formControlName="phone" type="phone" class="form-control" id="Phone">
+                <div *ngIf="form.get('phone')?.errors && form.get('phone')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('phone')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+                <div *ngIf="form.get('phone')?.errors && form.get('phone')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('phone')?.getError('pattern')" class="m-0 ">
+                        Phone Number invalid</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="name">Email</label>
+                <input formControlName="email" type="email" class="form-control" id="Email">
+                <div *ngIf="form.get('email')?.errors && form.get('email')?.touched" class="text-danger m-0">
+                    <small *ngIf="form.get('email')?.getError('email')" class='m-0'>Email
+                        inValid
+                    </small>
+                    <small *ngIf="form.get('email')?.getError('required')" class="m-0 ">Email
+                        is
+                        Required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input formControlName="dateOfBirth" type="text" bsDatepicker class="form-control" id="dateOfBirth">
+                <div *ngIf="form.get('dateOfBirth')?.errors && form.get('dateOfBirth')?.touched"
+                    class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('dateOfBirth')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="fourDigits">Insurance Company Name</label>
+                <input formControlName="insuranceComNam" type="text" class="form-control" id="fourDigits">
+                <div *ngIf="form.get('insuranceComNam')?.errors && form.get('insuranceComNam')?.touched"
+                    class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('insuranceComNam')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group mb-3">
+                <label for="age">Age</label>
+                <input formControlName="age" type="number" class="form-control" id="age">
+                <div *ngIf="form.get('age')?.errors && form.get('age')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('age')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="address">Address</label>
+                <input formControlName="address" type="text" class="form-control" id="address">
+                <div *ngIf="form.get('address')?.errors && form.get('address')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('address')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="symptoms">How Are You Feeling Today?</label>
+                <textarea formControlName="symptoms" class="form-control" id="symptoms" name="symptoms" rows="4"
+                    cols="50"
+                    placeholder="Tell us about your symptoms, concerns, or reasons for booking this appointment."></textarea>
+                <div *ngIf="form.get('symptoms')?.errors && form.get('symptoms')?.touched" class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('symptoms')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="fourDigits">Insurance card Number</label>
+                <input formControlName="insuranceComNum" type="text" class="form-control" id="fourDigits">
+                <div *ngIf="form.get('insuranceComNum')?.errors && form.get('insuranceComNum')?.touched"
+                    class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('insuranceComNum')?.getError('required')" class="m-0 ">
+                        This field is required</small>
+                </div>
+                <div *ngIf="form.get('insuranceComNum')?.errors && form.get('insuranceComNum')?.touched"
+                    class="text-danger m-0 fs-">
+                    <small *ngIf="form.get('insuranceComNum')?.getError('pattern')" class="m-0 ">
+                        This field Must be a number</small>
+                </div>
+            </div>
+            <!-- <div class="form-group mb-3">
+                <label for="document-upload">Upload Documents:</label>
+                <input class="form-control" type="file" id="document-upload" name="document-upload"
+                    accept=".pdf,.jpg,.png,.doc,.docx" max-size="5242880">
+                <small>You can attach any relevant medical records, test results, or referral documents.<br>Supported
+                    formats: PDF, JPG, PNG, DOC (Max size: 5MB)</small>
+            </div> -->
+        </div>
+
+        <div class="d-flex">
+            <a role="button" class="btn btn-outline-primary me-3 text-primary"
+                routerLink="/request-appointment/care-provider" [queryParams]="params">
+                Back
+            </a>
+            <button (click)="sendEmail()" [disabled]="form.invalid || isSending" type="button"
+                class="btn btn-primary me-3">
+                <span *ngIf="isSending" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                Submit
+            </button>
+
+        </div>
+    </div>
+</form>

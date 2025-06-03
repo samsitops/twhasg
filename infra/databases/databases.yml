@@ -1,0 +1,141 @@
+x-deploy: &default-deploy
+  endpoint_mode: dnsrr
+  replicas: 1
+
+services:
+  postgres-supabase:
+    image: supabase/postgres:15.8.1.020
+    networks:
+      - supabase-net
+    deploy:
+      <<: *default-deploy
+      placement:
+        constraints:
+          - node.role == manager
+
+    volumes:
+      - ./db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
+      - ./db/webhooks.sql:/docker-entrypoint-initdb.d/init-scripts/98-webhooks.sql:Z
+      - ./db/roles.sql:/docker-entrypoint-initdb.d/init-scripts/99-roles.sql:Z
+      - ./db/jwt.sql:/docker-entrypoint-initdb.d/init-scripts/99-jwt.sql:Z
+      - db-data:/var/lib/postgresql/data:Z
+      - ./db/_supabase.sql:/docker-entrypoint-initdb.d/migrations/97-_supabase.sql:Z
+      - ./db/logs.sql:/docker-entrypoint-initdb.d/migrations/99-logs.sql:Z
+      - ./db/pooler.sql:/docker-entrypoint-initdb.d/migrations/99-pooler.sql:Z
+      - db-config:/etc/postgresql-custom
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-h', 'localhost']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    environment:
+      POSTGRES_HOST: /var/run/postgresql
+      PGPORT: ${POSTGRES_PORT}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB}
+      POSTGRES_DB: ${POSTGRES_DB}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXP: ${JWT_EXPIRY}
+    command: [
+        'postgres',
+        '-c',
+        'config_file=/etc/postgresql/postgresql.conf',
+        '-c',
+        'log_min_messages=fatal', # prevents Realtime polling queries from appearing in logs
+      ]
+
+  postgres:
+    image: postgres:17
+    networks:
+      - supabase-net
+      - traefik-public
+    deploy:
+      <<: *default-deploy
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-h', 'localhost']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    command: [
+        'postgres',
+        '-c',
+        'log_min_messages=fatal', # prevents Realtime polling queries from appearing in logs
+      ]
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-meshp4ssw0rd}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_DB: ${DB_DATABASE:-postgres}
+    volumes:
+      - kc_db:/var/lib/postgresql/data
+      - kc_db_adata:/var/lib/pgsql/data
+
+  pgbackweb:
+    image: eduardolat/pgbackweb:latest
+    networks:
+      - supabase-net
+      - traefik-public
+    deploy:
+      <<: *default-deploy
+      replicas: 1
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.constraint-label=traefik-public'
+        - 'traefik.docker.network=traefik-public'
+        - 'traefik.http.routers.pgbackweb.rule=Host(`pgbackweb.${DOMAIN?Variable not set}`)'
+        - 'traefik.http.routers.pgbackweb.entrypoints=http'
+        - 'traefik.http.routers.pgbackweb.middlewares=https-redirect'
+        - 'traefik.http.routers.pgbackweb-https.rule=Host(`pgbackweb.${DOMAIN?Variable not set}`)'
+        - 'traefik.http.routers.pgbackweb-https.entrypoints=https'
+        - 'traefik.http.routers.pgbackweb-https.tls=true'
+        - 'traefik.http.routers.pgbackweb-https.tls.certresolver=le'
+        - 'traefik.http.services.pgbackweb-https.loadbalancer.server.port=8085'
+
+    environment:
+      PBW_ENCRYPTION_KEY: '4Dw-gKtg0W-_' # Change this to a strong key
+      PBW_POSTGRES_CONN_STRING: postgres://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/pgbackweb?sslmode=disable
+      TZ: 'America/Guatemala' # Set your timezone, optional
+
+  adminer:
+    image: adminer
+    networks:
+      - supabase-net
+      - traefik-public
+    deploy:
+      <<: *default-deploy
+      replicas: 1
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.constraint-label=traefik-public'
+        - 'traefik.docker.network=traefik-public'
+        - 'traefik.http.routers.pgadmin.rule=Host(`pgadmin.${DOMAIN?Variable not set}`)'
+        - 'traefik.http.routers.pgadmin.entrypoints=http'
+        - 'traefik.http.routers.pgadmin.middlewares=https-redirect'
+        - 'traefik.http.routers.pgadmin-https.rule=Host(`pgadmin.${DOMAIN?Variable not set}`)'
+        - 'traefik.http.routers.pgadmin-https.entrypoints=https'
+        - 'traefik.http.routers.pgadmin-https.tls=true'
+        - 'traefik.http.routers.pgadmin-https.tls.certresolver=le'
+        - 'traefik.http.services.pgadmin-https.loadbalancer.server.port=8080'
+
+networks:
+  supabase-net:
+    external: true
+  traefik-public:
+    external: true
+
+volumes:
+  db-config:
+  mongodb:
+  mongodbconf:
+  db-data:
+  pgdata2:
+  pgdata2d:
+  kc_db:
+  kc_db_adata:
+  gitlab_db:
+  gitlab_db2:
+  redis_data:
+  langgraph_redis_data:
+  langgraph_db1:
+  langgraph_db_data1:

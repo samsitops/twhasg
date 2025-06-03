@@ -1,0 +1,53 @@
+<!--
+|--------------------------------------------------------------------------
+| Loading Overlay Component
+|--------------------------------------------------------------------------
+|
+| Displays a full-screen loading indicator during async operations
+|
+| STRUCTURE:
+| • Full-screen overlay container
+| • Centered spinner animation
+| • Conditionally rendered based on observable state
+|
+| DATA BINDING:
+| • isLoading$: Observable<boolean>
+|   - When true: Overlay visible
+|   - When false: Overlay hidden
+|
+| FEATURES:
+| • Non-blocking UI indicator
+| • Automatically disappears when loading completes
+| • Centered spinner for visual focus
+|
+| ACCESSIBILITY:
+| • Should include ARIA attributes:
+|   - role="status"
+|   - aria-live="polite"
+|   - aria-busy="true" when active
+|
+| STYLING NOTES:
+| • Position: fixed (covers entire viewport)
+| • Z-index: Should be above other content
+| • Background: Semi-transparent overlay
+| • Spinner: Centered with CSS animation
+|
+| USAGE EXAMPLE:
+| <app-loading-overlay [isLoading$]="loadingService.isLoading$"></app-loading-overlay>
+|
+| MAINTENANCE:
+| • To modify animation: Update spinner CSS
+| • To change overlay: Adjust opacity/color
+| • Ensure proper z-index hierarchy
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<!-- Recommended enhanced version with accessibility -->
+
+
+<div class="loading-overlay" *ngIf="isLoading$ | async">
+    <div class="spinner"></div>
+</div>

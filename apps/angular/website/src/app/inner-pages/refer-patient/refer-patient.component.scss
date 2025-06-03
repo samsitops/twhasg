@@ -1,0 +1,253 @@
+/*
+  Styles for the Service Details page components.
+
+  .service-details-area.ptb-100
+  --------------------------------
+  Adds vertical padding of 1.5rem to the top and bottom of the main container.
+
+  .services-details-img
+  --------------------------------
+  Container for service images and heading.
+  - Adds margin below the container.
+  - The image inside takes full width and has bottom margin.
+  - The main heading (h2) is styled with bold weight and margin.
+  - Paragraphs have bottom margin for spacing.
+  - Blockquotes have a light blue translucent background, padding, and position styling for the icon inside.
+
+  .service-details-inner-left
+  --------------------------------
+  Styles a left-side inner section with a background image set to cover and center.
+  The nested img is hidden for background usage.
+
+  .service-details-inner
+  --------------------------------
+  Container with max width and centered horizontally.
+  Headings and paragraphs are styled for typography and spacing.
+
+  .refer-patient-card
+  --------------------------------
+  Styles the card containing the referral form.
+  - Large padding for spacing inside the card.
+  - Rounded corners and subtle box-shadow for depth.
+  - Uses a background image with centered positioning.
+  - Removes border.
+  - Form controls inside have padding and transparent background with a blur effect.
+
+  Responsive Styles
+  --------------------------------
+  For screens up to 767px wide:
+  - Remove padding from refer-patient-card for better fit on small devices.
+  - Adjust margins and font sizes inside .services-details-img and .service-details-inner.
+  - Adjust padding and icon size in blockquotes.
+  - Make background of .service-details-inner-left unset and show the nested image instead of background.
+
+  For screens between 768px and 991px:
+  - Similar adjustments for medium devices with slightly larger font sizes and margins.
+  - Ensure max-width for .service-details-inner is 100% for fluid layout.
+
+  Additional media queries are prepared for larger screens but currently empty.
+
+  .related__badge
+  --------------------------------
+  Styles related service badges with blue background, white text, padding, rounded corners,
+  and margin spacing for layout.
+*/
+.service-details-area.ptb-100 {
+    padding-top: 1.5rem !important;
+}
+
+.services-details-img {
+    margin-bottom: 50px;
+
+    img {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        // font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 32px;
+    }
+
+    P {
+        margin-bottom: 20px;
+    }
+
+    blockquote {
+        background-color: #0046c014;
+        font-size: var(--fontSize);
+        color: var(--grayColor);
+        margin-bottom: 20px;
+        padding: 30px 75px;
+        position: relative;
+        line-height: 26px;
+
+        i {
+            top: 20px;
+            left: 38px;
+            font-size: 32px;
+            position: absolute;
+            display: inline-block;
+        }
+    }
+}
+
+.service-details-inner-left {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    img {
+        display: none;
+    }
+}
+
+.service-details-inner {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h2 {
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.refer-patient-card {
+    padding: 80px 100px;
+    border-radius: 10px !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    background-image: url("../../../../public/img/home-two/bg5.jpg");
+    background-position: center;
+    border: none;
+
+    .form-control {
+        padding: 15px;
+        background: transparent;
+        backdrop-filter: blur(100px);
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .refer-patient-card {
+        padding: 0;
+    }
+
+    .services-details-img {
+        margin-bottom: 30px;
+
+        img {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        blockquote {
+            font-size: var(--fontSize);
+            padding: 25px 15px 25px 45px;
+
+            i {
+                top: 20px;
+                left: 14px;
+                font-size: 26px;
+            }
+        }
+    }
+
+    .service-details-inner-left {
+        height: auto;
+        margin-bottom: 30px;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+    }
+
+    .service-details-inner {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.related__badge {
+    background-color: #4b84e8;
+    color: var(--whiteColor);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: var(--fontSize);
+    font-weight: 500;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .services-details-img {
+        margin-bottom: 40px;
+
+        img {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        P {
+            margin-bottom: 20px;
+        }
+
+        blockquote {
+            font-size: var(--fontSize);
+            padding: 25px 15px 25px 55px;
+
+            i {
+                top: 16px;
+                left: 20px;
+                font-size: 28px;
+            }
+        }
+    }
+
+    .service-details-inner-left {
+        height: auto;
+        margin-bottom: 30px;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+    }
+
+    .service-details-inner {
+        max-width: 100%;
+
+        h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

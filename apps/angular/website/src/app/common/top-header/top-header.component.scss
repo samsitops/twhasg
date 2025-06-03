@@ -1,0 +1,168 @@
+/*
+HeaderTop Component SCSS
+--------------------------------------------------------------------------
+@selector .header-top
+### Description
+Styles for the top header bar including contact info and social media links.
+### Structure
+- .header-top: Container with padding, background, border, and z-index.
+- .header-top-item: Wrapper for left and right sections.
+- .header-top-left: Styles for contact info list.
+- .header-top-right: Styles for social media icons list.
+### Features
+- Responsive design with breakpoints for mobile and tablets.
+- Inline list items for desktop, stacked for smaller screens.
+- Hover effects on links and icons for interactivity.
+- Use of CSS variables for colors and font styling.
+### Responsive Breakpoints
+- max-width 767px: Center aligned text, block list items.
+- 768px to 991px: Adjusted margins and font sizes.
+- Other breakpoints reserved for future adjustments.
+### Recommendations
+- Use consistent spacing with variables.
+- Add transitions for smoother hover effects.
+- Consider high contrast mode support.
+© 2025 Dream Care DreamCare@gmail.com
+GitHub: @DreamCare ▸ MIT Licensed
+--------------------------------------------------------------------------
+*/
+
+.header-top {
+    z-index: 1;
+    border-bottom: 1px solid #f2f2f2;
+    background-color: var(--whiteColor);
+    padding: {
+        top: 15px;
+        bottom: 15px;
+    }
+}
+.header-top-item {
+    .header-top-left {
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin-right: 25px;
+                display: inline-block;
+                list-style-type: none;
+                color: var(--grayColor);
+                font: {
+                    weight: 500;
+                    size: 14px;
+                }
+                a {
+                    display: inline-block;
+                    color: #4a6f8a;
+
+                    &:hover {
+                        color: var(--blueColor);
+                    }
+                    i {
+                        color: var(--blueColor);
+                        position: relative;
+                        margin-right: 2px;
+                        font-size: 18px;
+                        top: 2px;
+                    }
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    .header-top-right {
+        text-align: end;
+
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                list-style-type: none;
+                display: inline-block;
+                margin-right: 5px;
+
+                a {
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    font-size: 16px;
+                    line-height: 25px;
+                    text-align: center;
+                    color: var(--whiteColor);
+                    border: 1px solid transparent;
+                    background-color: var(--blueColor);
+
+                    &:hover {
+                        color: var(--blueColor);
+                        background-color: transparent;
+                        border: 1px solid var(--blueColor);
+                    }
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .header-top {
+        padding-top: 15px;
+        text-align: center;
+        border-bottom: 1px solid #f2f2f2;
+    }
+    .header-top-item {
+        .header-top-left {
+            ul {
+                li {
+                    display: block;
+                    font-size: 13px;
+                    margin: {
+                        right: 0;
+                        bottom: 8px;
+                    }
+                    i {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .header-top-right {
+            text-align: center;
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header-top-item {
+        .header-top-left {
+            ul {
+                li {
+                    font-size: 14px;
+                    margin: {
+                        right: 18px;
+                        bottom: 5px;
+                    }
+                    i {
+                        font-size: 16px;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+}

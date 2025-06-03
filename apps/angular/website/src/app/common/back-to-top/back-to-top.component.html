@@ -1,0 +1,29 @@
+<!--
+ * -----------------------------------------------------------------------------
+ * back-to-top.component.html — Template for Back-To-Top Button Component
+ * -----------------------------------------------------------------------------
+ *
+ * 🚀 Description
+ * This template renders a scroll-to-top button that appears conditionally
+ * based on the `isShow` flag. The button is fixed positioned at the bottom-right
+ * of the viewport, styled as a rounded circle with centered icon.
+ *
+ * 🧩 Features:
+ * • Visible only when `isShow` is true, leveraging Angular’s `*ngIf` directive.
+ * • Click event bound to `scrollToTop()` method, triggering smooth scroll to top.
+ * • Uses icon class `icofont-hand-drawn-up` for the up-arrow visual indicator.
+ * • Styling classes:
+ *   - `back-to-top`: custom styles for button size, color, and positioning.
+ *   - `d-block`: display block for layout consistency.
+ *   - `rounded-circle`: circular shape.
+ *   - `text-center`: center-align the icon.
+ *   - `position-fixed`: fixed positioning relative to viewport.
+ *
+ * -----------------------------------------------------------------------------
+ * © 2025 Dream Care <DreamCare@gmail.com>
+ * GitHub: @DreamCare ▸ Licensed under the MIT License
+ * -----------------------------------------------------------------------------
+-->
+<div (click)="scrollToTop()" class="back-to-top d-block rounded-circle text-center position-fixed" *ngIf="isShow">
+    <i class="icofont-hand-drawn-up"></i>
+</div>

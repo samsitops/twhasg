@@ -1,0 +1,331 @@
+/* 
+|--------------------------------------------------------------------------
+| inner-page-banner.component.scss
+|--------------------------------------------------------------------------
+|
+| Styles for dynamic page headers with multiple layout variations
+|
+| CORE STYLES
+| • Fixed height containers (400-460px)
+| • Semi-transparent blue overlay (50% opacity)
+| • Centered text alignment (default)
+| • Vertical centering with d-table
+|
+| LAYOUT VARIANTS
+| 1. page-title-one (Doctors page):
+|   - Standard 400px height
+|   - Breadcrumb navigation
+|
+| 2. page-title-two (Appointment page):
+|   - Taller 440px height
+|   - Adjusted margin-top
+|
+| 3. page-title-three:
+|   - 460px height
+|   - Bottom-aligned content
+|
+| 4. page-title-four:
+|   - No negative margin
+|   - Optional centered layout
+|
+| 5. page-title-five:
+|   - Custom margin-top
+|
+| TYPOGRAPHY
+| • Main title: 48px/700 (desktop)
+| • Breadcrumbs: 18px/600
+| • Subtitles: 32px/600 (variant two)
+| • All text in light colors (#f8f8f8)
+|
+| INTERACTIVE ELEMENTS
+| • Breadcrumb links:
+|   - Hover turns black
+|   - Right arrow indicators
+|
+| RESPONSIVE BREAKPOINTS
+| 1. Mobile (<768px):
+|   - Reduced heights (280px)
+|   - Smaller typography (26px titles)
+|   - Stacked breadcrumbs
+|
+| 2. Tablet (768-991px):
+|   - Intermediate sizing
+|   - 35px titles
+|   - Adjusted margins
+|
+| 3. Desktop (≥992px):
+|   - Full design implementation
+|
+| TECHNICAL NOTES
+| • Variables Used:
+|   --blueColor: Semi-transparent overlay
+|   --whiteColor/--blackColor: Text/links
+| • Background Properties:
+|   - Cover positioning
+|   - Center aligned
+|   - No repeat
+|
+| ACCESSIBILITY
+| • Sufficient color contrast
+| • Responsive text sizing
+| • Needs focus states for links
+|
+| MAINTENANCE
+| © 2025 Dream Care
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+.page-title-area {
+    position: relative;
+    text-align: center;
+    height: 400px;
+    z-index: 1;
+    background: {
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+    &:before {
+        top: 0;
+        left: 0;
+        content: '';
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: .50;
+        position: absolute;
+        background-color: var(--blueColor);
+    }
+}
+.page-title-item {
+    position: relative;
+    margin-top: -80px;
+
+    h2 {
+        color: #f8f8f8;
+        margin-bottom: 20px;
+        font: {
+            weight: 700;
+            size: 48px;
+        };
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            display: inline-block;
+            color: #f8f8f8;
+            font: {
+                weight: 600;
+                size: 18px;
+            };
+            margin: {
+                right: 3px;
+                left: 3px;
+            };
+            a {
+                display: inline-block;
+                color: #f8f8f8;
+
+                &:hover {
+                    color: var(--blackColor);
+                }
+            }
+            i {
+                display: inline-block;
+                position: relative;
+                font-size: 20px;
+                top: 1px;
+            }
+        }
+    }
+}
+.page-title-two {
+    height: 440px;
+
+    .page-title-item {
+        margin-top: -135px;
+    }
+}
+.page-title-three {
+    height: 460px;
+
+    .d-table-cell {
+        vertical-align: bottom;
+    }
+}
+.page-title-item-two {
+    position: relative;
+    text-align: start;
+    margin-left: auto;
+    max-width: 500px;
+
+    h2 {
+        color: var(--whiteColor);
+        margin-bottom: 14px;
+        font: {
+            weight: 700;
+            size: 48px;
+        };
+    }
+    h3 {
+        color: #fefefe;
+        margin-bottom: 15px;
+        font: {
+            weight: 600;
+            size: 32px;
+        };
+    }
+    p {
+        font-size: 20px;
+        margin-bottom: 0;
+        color: #fefefe;
+        padding-bottom: 55px;
+    }
+}
+.page-title-four {
+    .page-title-item {
+        margin-top: 0;
+    }
+}
+.page-title-five {
+    .page-title-item {
+        margin-top: -100px;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .page-title-area {
+        height: 280px;
+    }
+    .page-title-four {
+        .page-title-item {
+            margin-top: 55px;
+        }
+    }
+    .page-title-item {
+        margin-top: -20px;
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
+        ul {
+            li {
+                font-size: 15px;
+                margin: {
+                    right: 0;
+                    left: 0;
+                };
+                i {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+    .page-title-two {
+        .page-title-item {
+            margin-top: 40px;
+        }
+    }
+    .page-title-three {
+        text-align: center;
+    }
+    .page-title-item-two {
+        text-align: center;
+        max-width: 100%;
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        p {
+            font-size: 16px;
+        }
+    }
+    .page-title-four {
+        .page-title-item {
+            margin-top: 40px;
+        }
+    }
+    .page-title-five {
+        .page-title-item {
+            margin-top: 35px;
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .page-title-area {
+        height: 280px;
+    }
+    .page-title-item {
+        margin-top: -35px;
+
+        h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+        ul {
+            li {
+                font-size: 16px;
+                margin: {
+                    right: 0;
+                    left: 0;
+                };
+            }
+        }
+    }
+    .page-title-two {
+        height: 400px;
+
+        .page-title-item {
+            margin-top: -95px;
+        }
+    }
+    .page-title-item-two {
+        text-align: center;
+        max-width: 100%;
+
+        h2 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+        h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+        }
+    }
+    .page-title-four {
+        .page-title-item {
+            margin-top: 55px;
+        }
+    }
+    .page-title-five {
+        .page-title-item {
+            margin-top: 40px;
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

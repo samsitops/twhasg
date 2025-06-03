@@ -1,0 +1,213 @@
+<!--
+  Service Details Page - Refer a Patient to TeamWork Health
+
+  Description:
+  This page provides a referral form allowing healthcare providers to refer patients
+  to TeamWork Health for coordinated, seamless care.
+
+  Features:
+  - Displays a header and banner sections (some commented out for future use)
+  - Shows an introductory message about patient referral
+  - Presents a reactive form with validation for provider details:
+      • Provider Full Name
+      • Practice Name
+      • NPI Number
+      • Phone Number
+      • Email Address
+      • Fax Number
+  - Validates inputs and shows inline error messages for invalid or missing fields
+  - Submit button triggers `sendEmail()` method, disabled if the form is invalid
+  - Includes footer component without newsletter subscription
+  - Back-to-top button for easier navigation
+
+  Notes:
+  - Some sections (top header, inner page banner, related services) are currently commented out for potential future use
+  - Form controls are bound using Angular reactive forms (referenced in the component TypeScript)
+  - Email sending logic should be implemented in the corresponding component method
+
+  Usage:
+  Place this template within the relevant Angular component (e.g. service-details.component.html)
+
+  © 2025 Dream Care <DreamCare@gmail.com>
+  GitHub: @DreamCare ▸ MIT Licensed
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<!-- <app-inner-page-banner [pageTitle]="'Service Details'" [backgroundImage]="'img/page-title.jpg'" /> -->
+<!-- Service Details -->
+<div class="service-details-area ptb-100">
+    <div class="container">
+        <div class="services-details-img">
+            <div class="text-center mb-3">
+                <h2 class="mb-2">Refer a Patient to TeamWork Health</h2>
+                <span class="text-secondary ">
+                    Ensure seamless, coordinated care for your patients by referring them to our expert
+                    team.
+                </span>
+            </div>
+            <img src="img/refer-patient-banner.jpg" alt="Service Details">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card refer-patient-card">
+                        <div class="card-body">
+                            <div class="heading mb-3">
+                                <h3 class="text-primary mb-2">Refer a Patient to TeamWork Health</h3>
+                                <span class=" text-secondary ">
+                                    Ensure seamless, coordinated care for your patients by referring them to our expert
+                                    team.
+                                </span>
+                            </div>
+                            <form [formGroup]="referPatientForm">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="providerFullName">Provider Full Name</label>
+                                            <input type="text" formControlName="providerFullName" class="form-control"
+                                                id="providerFullName">
+                                            <div *ngIf="referPatientForm.get('providerFullName')?.errors && referPatientForm.get('providerFullName')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small
+                                                    *ngIf="referPatientForm.get('providerFullName')?.getError('required')"
+                                                    class="m-0 ">
+                                                    This field is required</small>
+                                                <small
+                                                    *ngIf="referPatientForm.get('providerFullName')?.getError('pattern')"
+                                                    class="m-0 ">
+                                                    Enter a valid name</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="practiceName">Practice Name</label>
+                                            <input type="text" formControlName="practiceName" class="form-control"
+                                                id="practiceName">
+                                            <div *ngIf="referPatientForm.get('practiceName')?.errors && referPatientForm.get('practiceName')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small
+                                                    *ngIf="referPatientForm.get('practiceName')?.getError('required')"
+                                                    class="m-0 ">
+                                                    This field is required</small>
+                                                <small *ngIf="referPatientForm.get('practiceName')?.getError('pattern')"
+                                                    class="m-0 ">
+                                                    Enter a valid name</small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="NPINumber">NPI Number</label>
+                                            <input type="password" formControlName="NPINumber" class="form-control"
+                                                id="NPINumber">
+                                            <div *ngIf="referPatientForm.get('NPINumber')?.errors && referPatientForm.get('NPINumber')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small *ngIf="referPatientForm.get('NPINumber')?.getError('required')"
+                                                    class="m-0 ">
+                                                    This field is required</small>
+                                                <small *ngIf="referPatientForm.get('NPINumber')?.getError('pattern')"
+                                                    class="m-0 ">
+                                                    Enter a valid NPI</small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class=" col-lg-6">
+                                        <div class="form-group">
+                                            <label for="phoneNumber">Phone Number</label>
+                                            <input type="phone" formControlName="phoneNumber" class="form-control"
+                                                id="phoneNumber">
+                                            <div *ngIf="referPatientForm.get('phoneNumber')?.errors && referPatientForm.get('phoneNumber')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small *ngIf="referPatientForm.get('phoneNumber')?.getError('required')"
+                                                    class="m-0 ">
+                                                    This field is required
+                                                </small>
+                                                <small *ngIf="referPatientForm.get('phoneNumber')?.errors?.['pattern']">
+                                                    Phone Number invalid .
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="emailAddress">Email Address</label>
+                                            <input type="email" formControlName="emailAddress" class="form-control"
+                                                id="emailAddress">
+                                            <div *ngIf="referPatientForm.get('emailAddress')?.errors && referPatientForm.get('emailAddress')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small *ngIf="referPatientForm.get('emailAddress')?.getError('email')"
+                                                    class="m-0 ">
+                                                    Email is In Valid</small>
+                                                <small
+                                                    *ngIf="referPatientForm.get('emailAddress')?.getError('required')"
+                                                    class="m-0">Email is
+                                                    Required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="faxNumber">Fax Number</label>
+                                            <input type="text" formControlName="faxNumber" class="form-control"
+                                                id="faxNumber">
+
+                                            <div *ngIf="referPatientForm.get('faxNumber')?.errors && referPatientForm.get('faxNumber')?.touched"
+                                                class="text-danger m-0 fs-">
+                                                <small *ngIf="referPatientForm.get('faxNumber')?.getError('required')"
+                                                    class="m-0 ">
+                                                    This field is required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button (click)="sendEmail()" [disabled]="referPatientForm.invalid"
+                                        class="btn btn-primary">
+                                        Refer Patient
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-lg-5">
+                <div class="service-details-inner-left" style="background-image: url(img/signup-bg.jpg);">
+                    <img src="img/signup-bg.jpg" alt="Service">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="service-details-inner">
+                    <h2>We always take care our patient</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto blanditiis obcaecati
+                        veritatis magnam pariatur molestiae in maxime. Animi quae vitae in inventore. Totam mollitia
+                        aspernatur provident veniam aperiam placeat impedit! Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit. Saepe rem natus nobis, dolorum nam excepturi iure autem nemo ducimus
+                        temporibus facere, est eum voluptatem, culpa optio fugit assumenda quod? Praesentium.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, laudantium ullam, iure distinctio
+                        officia libero voluptatem obcaecati vero deleniti minima nemo itaque alias nisi eveniet soluta
+                        architecto quae laboriosam unde.</p>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="relarted__services mt-5">
+            <span class="related__badge" *ngFor="let item of relatedServices">
+                <a [routerLink]="'/service-details/' + category + '/' + item.slug" class="text-white">
+                    {{ item.title }}
+                </a>
+            </span>
+        </div> -->
+    </div>
+</div>
+<!-- End Service Details -->
+
+<app-footer [isNewsletter]="false" />
+
+<app-back-to-top />

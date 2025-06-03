@@ -1,0 +1,33 @@
+<!-- 
+  Error Page Template
+  -------------------
+  This template displays a 404 Error message indicating that the requested page was not found.
+  It contains:
+  - A main error message ("404!")
+  - A brief apology and explanation
+  - A link to navigate back to the home page using Angular RouterLink
+  - The common footer and back-to-top components for consistent site layout
+  Note: The top header component is commented out and not currently displayed.
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<!-- Error -->
+<div class="error-area ptb-100">
+    <div class="container">
+        <div class="error-text">
+            <h1>404!</h1>
+            <p>Sorry! The Page Not Found</p>
+            <span>Oops! The page you are looking for does not exit. it might been moved or deleted.</span>
+            <a routerLink="/">Return to Home</a>
+        </div>
+    </div>
+</div>
+<!-- End Error -->
+
+<app-footer />
+
+<app-back-to-top />

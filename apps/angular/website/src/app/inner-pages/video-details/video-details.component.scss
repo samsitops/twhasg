@@ -1,0 +1,14 @@
+/*
+  Styles for the video details section
+
+  - Ensures the <video> element inside `.video-details` container
+    takes full width of its parent.
+  - Sets a fixed height of 580px for consistent video player sizing.
+*/
+
+.video-details{
+    video{
+        width: 100%;
+        height: 580px;
+    }
+}

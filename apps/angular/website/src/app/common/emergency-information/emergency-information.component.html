@@ -1,0 +1,116 @@
+<!--
+|--------------------------------------------------------------------------
+| Emergency Contact Component
+|--------------------------------------------------------------------------
+|
+| Displays critical contact information in a visually prominent section with:
+| - Location addresses
+| - Phone contacts
+| - Fax numbers
+| - Responsive layout
+|
+| Structure:
+| • Three-column layout (locations, call, fax)
+| • Background image overlay
+| • Icon-based contact points
+|
+| Features:
+| • Direct click-to-call functionality
+| • Clean, scannable information display
+| • Responsive column organization
+|
+| Accessibility:
+| • Semantic HTML structure
+| • Descriptive link text
+| • Icon labels via class names
+|
+| Notes:
+| • Email section is commented out but available
+| • Contact form link is commented out but available
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<div class="emergency-area">
+    <div class="container">
+        <!-- Main row with background image -->
+        <div class="row justify-content-center emergency-bg" style="background-image: url(img/home-one/home-bg3.png);">
+
+            <!-- Locations Column -->
+            <div class="col-sm-7 col-lg-5">
+                <div class="emergency-item">
+                    <i class="icofont-location-pin" aria-hidden="true"></i>
+                    <div class="emergency-inner">
+                        <h3>Locations</h3>
+                        <p>1991 Fordham Dr #302, Fayetteville, NC 28304</p>
+                        <p>115 Kildaire Park Dr #309, Cary, NC 27518</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone Column -->
+            <div class="col-sm-5 col-lg-4">
+                <div class="emergency-item">
+                    <i class="icofont-ui-call" aria-hidden="true"></i>
+                    <div class="emergency-inner">
+                        <h3>Call</h3>
+                        <a href="tel:(910) 491-6793" class="text-dark">
+                            (910) 491-6793
+                        </a>
+                        <a href="tel:(919) 238-1110" class="text-dark d-block">
+                            (919) 238-1110
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Column (Commented Out) -->
+            <!--
+            <div class="col-sm-7 col-lg-3">
+                <div class="emergency-item">
+                    <i class="icofont-ui-message"></i>
+                    <div class="emergency-inner">
+                        <h3>Email</h3>
+                        <a href="mailto:appointments@twhasg.com" class="text-dark">
+                            appointments@twhasg.com
+                        </a>
+                        <a href="mailto:partnerships@twhasg.com" class="text-dark">
+                            partnerships@twhasg.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <!-- Fax Column -->
+            <div class="col-sm-5 col-lg-3">
+                <!-- Contact Form Link (Commented Out)
+                <div class="emergency-item">
+                    <i class="icofont-contacts"></i>
+                    <div class="emergency-inner">
+                        <h3>Contact</h3>
+                        <a routerLink="/contact" class="text-dark">
+                            Contact Us Form
+                        </a>
+                    </div>
+                </div>
+                -->
+
+                <div class="emergency-item">
+                    <i class="icofont-fax" aria-hidden="true"></i>
+                    <div class="emergency-inner">
+                        <h3>Fax</h3>
+                        <a href="tel:(910) 428-3630" class="text-dark">
+                            (833) 428-3630
+                        </a>
+                        <a href="tel:(833) 428-3628" class="text-dark d-block">
+                            (833) 428-3628
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

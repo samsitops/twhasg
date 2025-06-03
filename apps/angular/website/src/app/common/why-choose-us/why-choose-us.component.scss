@@ -1,0 +1,22 @@
+/**
+
+@import statement to include styles or variables
+
+from the about-us.component SCSS file located one level up
+
+in the about-us folder.
+
+Usage: Allows reusing styles, mixins, or variables defined
+
+in about-us.component.scss within the current SCSS file.
+
+Note: Make sure the file extension .scss is added if needed:
+
+@import "../about-us/about-us.component.scss";
+
+© 2025 Dream Care DreamCare@gmail.com
+
+GitHub: @DreamCare ▸ MIT Licensed
+*/
+
+@import "../about-us/about-us.component";

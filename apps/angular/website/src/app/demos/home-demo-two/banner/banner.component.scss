@@ -1,0 +1,184 @@
+/* 
+  HERO SLIDER STYLES (VARIATION TWO)
+  ==================================
+
+  Features:
+  - Full-height image slider
+  - Custom button styles
+  - Animated decorative elements
+  - Owl Carousel integration
+  - Responsive overlay system
+  - Theme-aware color variables
+
+  Structure:
+  1. Main slider container
+  2. Slide item styling
+  3. Content overlay and positioning
+  4. Navigation controls
+  5. Responsive breakpoints
+*/
+
+@import "../../home-demo-one/banner/banner.component";
+
+.home-slider-two {
+    .slider-item {
+        height: 830px;
+
+        .slider-shape {
+            img {
+                right: 0;
+                top: -20%;
+                width: 82px;
+                position: absolute;
+                animation: a-three 5s infinite linear;
+            }
+        }
+
+        &:before {
+            display: none;
+        }
+
+        .slider-text {
+            h1 {
+                color: #232323;
+            }
+
+            p {
+                color: #333333;
+            }
+
+            .common-btn {
+                a {
+                    border: 2px solid var(--blueColor);
+                    background-color: var(--blueColor);
+                    color: var(--whiteColor);
+                    position: relative;
+
+                    &:hover {
+                        color: var(--blueColor);
+                        background-color: transparent;
+                    }
+                }
+
+                .cmn-btn-right {
+                    background-color: var(--whiteColor);
+                    border-color: var(--whiteColor);
+                    color: var(--blueColor);
+
+                    &:hover {
+                        color: var(--blueColor);
+                        background-color: transparent;
+                        border-color: var(--blueColor);
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .home-slider-two {
+        .owl-prev {
+            background-color: #bdcce2 !important;
+        }
+
+        .owl-next {
+            background-color: #bdcce2 !important;
+        }
+
+        .owl-theme {
+            .owl-dots {
+                .owl-dot {
+                    &.active,
+                    &:hover {
+                        span {
+                            background: #9dbdfc;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    width: 45%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-left: 5%;
+}
+
+.common-btn {
+    // max-width: 43%;
+    text-align: center;
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .overlay {
+        width: 100%;
+    }
+
+    .home-slider-two {
+        .slider-item {
+            height: 70vh;
+
+            padding: {
+                top: 160px;
+                bottom: 150px;
+            }
+
+            .slider-text {
+                h1 {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+    ::ng-deep {
+        .home-slider-two {
+            .owl-theme {
+                .owl-dots {
+                    bottom: 80px;
+                }
+            }
+        }
+    }
+
+    .common-btn {
+        max-width: 100%;
+    }
+    .overlay {
+        padding: 0;
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .home-slider-two {
+        .slider-item {
+            height: 100vh;
+        }
+    }
+    .overlay {
+        padding: 0;
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+    .overlay {
+        width: 47%;
+    }
+
+    .common-btn {
+        // max-width: 47%;
+    }
+}

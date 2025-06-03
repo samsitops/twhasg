@@ -1,0 +1,198 @@
+<!--
+Contact Us Page Template
+
+This template represents the "Contact Us" page layout which includes:
+
+- Navigation bar (app-navbar)
+- Inner page banner with the title "Contact Us" and a background image
+- Contact information section with locations and phone numbers
+- Contact form area (currently commented out) for user inquiries, including:
+  - Name, Email, Phone, Subject, and Message fields with validation
+  - Submit button triggering sendEmail() method (disabled if form is invalid)
+- Support line section highlighting emergency contact phone number
+- Our Locations section component (app-our-locations)
+- Footer and Back to Top components
+
+Additional features:
+- Background images on certain sections for enhanced UI
+- Google Maps iframe commented out, can be enabled for location map display
+
+Note: The contact form is currently commented out, so users cannot submit messages until it's enabled and hooked up with backend functionality.
+-->
+
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Contact Us'" [backgroundImage]="'img/contact/1.jpg'" />
+
+<!-- Contact Info -->
+<div class="location-area">
+    <div class="container">
+        <div class="row location-wrap justify-content-center" style="background-image: url(img/home-one/home-bg3.png);">
+            <div class="col-sm-6 col-lg-4">
+                <div class="location-item">
+                    <i class="icofont-location-pin"></i>
+                    <h3>Location</h3>
+                    <p>1991 Fordham Dr #302, Fayetteville, NC 28304</p>
+                    <p>115 Kildaire Park Dr #309, Cary, NC 27518</p>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 col-lg-4">
+                <div class="location-item">
+                    <i class="icofont-ui-message"></i>
+                    <h3>Email</h3>
+                    <ul>
+                        <li>
+                            <a href="mailto:appointments&#64;twhasg.com">
+                                appointments&#64;twhasg.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:partnerships&#64;twhasg.com">
+                                partnerships&#64;twhasg.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="location-item">
+                    <i class="icofont-ui-call"></i>
+                    <h3>Phone</h3>
+                    <ul>
+                        <li>
+                            <a href="tel:(910) 491-6793">
+                                (910) 491-6793
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:(919) 238-1110">
+                                (919) 238-1110
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact Info -->
+
+<!-- Contact -->
+<div class="drop-area pt-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 p-0">
+                <div class="drop-item drop-img" style="background-image: url(img/contact/2.png);">
+                    <div class="drop-left">
+                        <h2>We're Redefining Healthcare, contact us</h2>
+                        <!-- <form [formGroup]="contractForm" id="contactForm">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" formControlName="name" name="name" class="form-control"
+                                            placeholder="Name">
+                                        <div *ngIf="contractForm.get('name')?.errors && contractForm.get('name')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="contractForm.get('name')?.getError('required')" class="m-0 ">
+                                                This field is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="email" formControlName="email" name="email" class="form-control"
+                                            placeholder="Email">
+                                        <div *ngIf="contractForm.get('email')?.errors && contractForm.get('email')?.touched"
+                                            class="text-danger m-0">
+                                            <small *ngIf="contractForm.get('email')?.getError('email')"
+                                                class='m-0'>Email
+                                                inValid
+                                            </small>
+                                            <small *ngIf="contractForm.get('email')?.getError('required')"
+                                                class="m-0 ">Email
+                                                is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" formControlName="phoneNumber" name="phone_number"
+                                            class="form-control" placeholder="Phone">
+                                        <div *ngIf="contractForm.get('phoneNumber')?.errors && contractForm.get('phoneNumber')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="contractForm.get('phoneNumber')?.getError('required')"
+                                                class="m-0 ">
+                                                This field is required
+                                            </small>
+                                            <small *ngIf="contractForm.get('phoneNumber')?.errors?.['pattern']">
+                                                Phone Number invalid .
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input formControlName="subject" type="text" name="msg_subject"
+                                            class="form-control" placeholder="Subject">
+                                        <div *ngIf="contractForm.get('subject')?.errors && contractForm.get('subject')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="contractForm.get('subject')?.getError('required')"
+                                                class="m-0 ">
+                                                This field is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <textarea formControlName="message" name="message" class="form-control"
+                                            cols="30" rows="5" placeholder="Your Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <button (click)="sendEmail()" [disabled]="contractForm.invalid" type="submit"
+                                        class="drop-btn">Send</button>
+                                </div>
+                            </div>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0">
+                <div class="speciality-item speciality-right speciality-right-two speciality-right-three"
+                    style="background-image: url(img/home-two/bg4.jpg);">
+                    <img src="img/home-two/bg4.jpg" alt="Contact">
+                    <div class="speciality-emergency">
+                        <div class="speciality-icon">
+                            <i class="icofont-ui-call"></i>
+                        </div>
+                        <h3>Support line</h3>
+                        <p>(919) 238-1110</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<app-our-locations />
+
+<!-- Maps -->
+<!-- <div class="contact-map-area ptb-100">
+    <div class="container">
+        <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.72810813924!2d-78.7777481!3d35.7425619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75:0x52963a5addd52a99!2sLondon,%20UK!5e0!3m2!1sen!2sbd!4v1589770854202!5m2!1sen!2sbd
+                "></iframe>
+        </div>
+    </div>
+</div> -->
+<!-- End Maps -->
+
+<app-footer />
+
+<app-back-to-top />

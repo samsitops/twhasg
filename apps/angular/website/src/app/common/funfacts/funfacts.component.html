@@ -1,0 +1,97 @@
+<!--
+|--------------------------------------------------------------------------
+| funfacts.component.html
+|--------------------------------------------------------------------------
+|
+| Displays key statistics in a visually engaging format with:
+| - Animated number counting
+| - Route-specific styling variants
+| - Responsive image-based counters
+|
+| LAYOUT VARIANTS:
+| • counter-area-two: Alternate styling for /index-2
+| • counter-area-three: Alternate styling for /index-3
+| • mt-0: Removes top margin on /about route
+|
+| STATISTICS DISPLAYED:
+| 1. Doctors & Nurses
+|   - Animated count to 30
+|   - Doctor/Nurse illustration
+|
+| 2. Happy Patients
+|   - Animated count to 10,000+
+|   - Patient satisfaction illustration
+|
+| 3. Years Experience
+|   - Animated count to 30+
+|   - Experience badge illustration
+|
+| DESIGN FEATURES:
+| • Background image: img/home-one/home-bg3.png
+| • Image-based icons (replaces font icons)
+| • Counter animation on scroll
+| • Responsive 3-column grid
+|
+| TECHNICAL NOTES:
+| • Requires counter animation library
+| • Images stored in img/about-us/
+| • Column structure:
+|   - col-sm-6 (mobile)
+|   - col-md-4 (tablet)
+|   - col-lg-4 (desktop)
+|
+| ACCESSIBILITY:
+| • Descriptive alt text for images
+| • Semantic HTML structure
+| • Ensure color contrast meets WCAG
+|
+| MAINTENANCE:
+| • Update statistics in template
+| • Replace images in img/about-us/
+| • Commented fourth counter available
+|
+| © 2025 Dream Care
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<div class="counter-area"
+    [ngClass]="{'counter-area-two': router.url === '/index-2', 'counter-area-three': router.url === '/index-3'}">
+    <div class="container">
+        <div class="row counter-bg" style="background-image: url(img/home-one/home-bg3.png);"
+            [ngClass]="{'mt-0': router.url === '/about'}">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="counter-item">
+                    <!-- <i class="icofont-patient-bed"></i> -->
+                    <img src="img/about-us/doctors-and-nurses.png" alt="doctor">
+                    <h3 class="counter">30</h3>
+                    <p>Doctors & Nurses</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="counter-item">
+                    <!-- <i class="icofont-people"></i> -->
+                    <img src="img/about-us/happy-patients.png" alt="happy-patients">
+                    <h3><span class="counter">10000</span>+</h3>
+                    <p>Happy Patients</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="counter-item">
+                    <!-- <i class="icofont-doctor-alt"></i> -->
+                    <img src="img/about-us/experience.png" alt="years-experience">
+                    <h3><span class="counter">30</span>+</h3>
+                    <p>Years providers experience </p>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="counter-item">
+                    <i class="icofont-badge"></i>
+                    <h3 class="counter">18</h3>
+                    <p>Year Experience</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

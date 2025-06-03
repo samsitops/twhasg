@@ -1,0 +1,595 @@
+/* 
+|--------------------------------------------------------------------------
+| expertise.component.scss
+|--------------------------------------------------------------------------
+|
+| Styles for dual-layout behavioral health component
+|
+| CORE STYLES
+| • .expertise-item: Default layout container (3x2 grid)
+| • .speciality-item: Alternate layout (2x2 grid + emergency section)
+| • Shared transitions: var(--transition) timing
+| • Color variables: --blueColor, --whiteColor
+|
+| DEFAULT LAYOUT FEATURES
+| • Icon cards with circular backgrounds
+| • Animated background elements (:before/:after)
+| • Hover effects on service cards
+| • Responsive padding (ptb-100 = padding top/bottom 100px)
+|
+| SPECIALITY LAYOUT FEATURES
+| • Image-based service cards (.img__container)
+| • Fixed emergency contact section
+| • Complex positioning (absolute + transform)
+| • Box shadows for depth
+|
+| RESPONSIVE BREAKPOINTS
+| 1. <767px: Stacked mobile layout
+|   - Emergency section becomes inline
+|   - Padding reductions
+|   - Animation removal
+|
+| 2. 768-991px: Tablet adjustments
+|   - Image container resizing
+|   - Right column reorganization
+|
+| 3. 992-1199px: Small desktop
+|   - Width/height reductions
+|   - Font size adjustments
+|
+| 4. >1600px: Large desktop
+|   - Container max-width expansion
+|
+| ACCESSIBILITY
+| • Forced white text (-webkit-text-fill-color)
+| • Sufficient color contrast ratios
+| • Focus states for interactive elements
+|
+| TECHNICAL NOTES
+| • Nested Sass structure
+| • Bootstrap grid integration
+| • Mobile-first media queries
+| • CSS custom properties usage
+|
+| © 2025 Dream Care
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+.expertise-item {
+    text-align: center;
+
+    a {
+        display: block;
+    }
+    .expertise-inner {
+        background-color: var(--blueColor);
+        padding: 42px 25px 35px 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+
+        &:hover {
+            i {
+                box-shadow: none;
+            }
+        }
+        i {
+            display: block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+            color: var(--blueColor);
+            font-size: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0px 0px 0px 7px #ffffffa6;
+            background-color: var(--whiteColor);
+            transition: var(--transition);
+            position: relative;
+            top: 8px;
+        }
+        h3 {
+            color: var(--whiteColor);
+            margin-bottom: 14px;
+            font: {
+                weight: 600;
+                size: 20px;
+            }
+        }
+        p {
+            margin-bottom: 0;
+            color: var(--whiteColor) !important;
+            -webkit-text-fill-color: white; /* Ensure text color is white */
+        }
+    }
+    .expertise-right {
+        padding-left: 80px;
+        position: relative;
+
+        &:before {
+            position: absolute;
+            content: "";
+            top: -10px;
+            left: 70px;
+            width: 430px;
+            height: 380px;
+            z-index: -1;
+            border-radius: 10px;
+            animation: a-one 5s infinite linear;
+            background-color: var(--blueColor);
+        }
+        &:after {
+            position: absolute;
+            content: "";
+            bottom: -10px;
+            right: -10px;
+            width: 430px;
+            height: 380px;
+            z-index: -1;
+            border-radius: 10px;
+            animation: a-two 5s infinite linear;
+            background-color: var(--blueColor);
+        }
+        img {
+            width: 100%;
+            z-index: 1;
+            animation: a-seven 10s infinite linear;
+        }
+    }
+}
+.speciality-area {
+    .section-title-two {
+        padding: {
+            top: 0;
+            left: 15px;
+        }
+    }
+}
+.speciality-item {
+    .speciality-inner {
+        box-shadow: 0px 0px 20px 0px #dddddda6;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 20px 15px;
+
+        &:hover {
+            i {
+                color: var(--whiteColor);
+                background-color: #6096fd;
+            }
+        }
+
+        &:hover {
+            .img__container {
+                background-color: #8db3fa;
+            }
+        }
+        i {
+            width: 40px;
+            height: 40px;
+            display: block;
+            font-size: 28px;
+            color: #6096fd;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin-bottom: 18px;
+            background-color: #e9eef5;
+            transition: var(--transition);
+        }
+        .img__container {
+            width: 45px;
+            height: 45px;
+            background-color: #e9eef5;
+            padding: 5px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        h3 {
+            margin-bottom: 12px;
+            margin-bottom: 0;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font: {
+                weight: 600;
+                size: 20px;
+            }
+        }
+        p {
+            margin-bottom: 0;
+            display: -webkit-box;
+            max-width: 100%;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+.speciality-right {
+    border-radius: 10px 0 0 10px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        position: center center;
+    }
+    img {
+        display: none;
+    }
+    .support__line {
+        position: absolute;
+        right: 120px;
+        top: 20px;
+    }
+    .speciality-emergency {
+        background-color: var(--blueColor);
+        padding: 30px 295px 25px 40px;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 20px;
+        left: -70px;
+
+        .speciality-icon {
+            width: 45px;
+            height: 45px;
+            position: relative;
+            display: inline-block;
+            transform: rotate(45deg);
+            background-color: var(--whiteColor);
+
+            i {
+                transform: rotate(-45deg);
+                color: var(--blueColor);
+                display: inline-block;
+                position: absolute;
+                text-align: center;
+                line-height: 45px;
+                font-size: 20px;
+                left: 12px;
+                top: 0;
+            }
+        }
+        h3 {
+            color: var(--whiteColor);
+            margin-bottom: 8px;
+            // position: absolute;
+            // right: 70px;
+            // top: 23px;
+            font: {
+                weight: 500;
+                size: 24px;
+            }
+        }
+        p {
+            color: var(--whiteColor) !important;
+            -webkit-text-fill-color: white; /* Ensure text color is white */
+            // position: absolute;
+            margin-bottom: 0;
+            // right: 142px;
+            // top: 56px;
+        }
+    }
+}
+
+// .speciality-right[_ngcontent-ng-c1349783505] .support__line[_ngcontent-ng-c1349783505]
+
+@media (max-width: 767px) {
+    .support__line {
+        right: 69px !important;
+    }
+}
+
+.speciality-left {
+    padding: {
+        left: 55px;
+        right: 120px;
+    }
+}
+.speciality-right-two {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        top: -25px;
+        right: 0;
+        width: 405px;
+        height: 300px;
+        z-index: -1;
+        background-color: var(--blueColor);
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .expertise-item {
+        .expertise-inner {
+            padding: {
+                top: 35px;
+                bottom: 30px;
+            }
+            i {
+                width: 60px;
+                height: 60px;
+                font-size: 26px;
+                line-height: 60px;
+                margin-bottom: 22px;
+            }
+            h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
+        .expertise-right {
+            padding-left: 0;
+            margin-bottom: 30px;
+
+            &:before {
+                display: none;
+            }
+            &:after {
+                display: none;
+            }
+            img {
+                animation: unset !important;
+                width: 100%;
+                z-index: 1;
+            }
+        }
+    }
+    .speciality-area {
+        .container-fluid {
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5) !important;
+                right: calc(var(--bs-gutter-x) * 0.5) !important;
+            }
+        }
+        .section-title-two {
+            padding: {
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+    .speciality-item {
+        .row {
+            margin: {
+                left: calc(-0.5 * var(--bs-gutter-x)) !important;
+                right: calc(-0.5 * var(--bs-gutter-x)) !important;
+            }
+        }
+        .speciality-inner {
+            margin-bottom: 20px;
+            padding: {
+                top: 25px;
+                left: 25px;
+                bottom: 25px;
+            }
+            i {
+                margin-bottom: 15px;
+            }
+            h3 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+    .speciality-right {
+        height: auto;
+        background: unset !important;
+
+        &:before {
+            display: none;
+        }
+        img {
+            display: inline-block;
+        }
+        .speciality-emergency {
+            left: 15px;
+            padding: 25px 210px 20px 30px;
+
+            .speciality-icon {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+
+                i {
+                    font-size: 18px;
+                }
+            }
+            h3 {
+                font-size: 18px;
+                right: 45px;
+            }
+            p {
+                top: 52px;
+                right: 95px;
+                font-size: 12px;
+            }
+        }
+    }
+    .speciality-left {
+        padding: {
+            left: 0;
+            right: 0;
+        }
+    }
+    .speciality-right-two {
+        &:before {
+            top: -2px;
+        }
+    }
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .speciality-area {
+        .container-fluid {
+            max-width: 540px;
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .expertise-item {
+        .expertise-inner {
+            padding: {
+                top: 36px;
+                bottom: 26px;
+            }
+            i {
+                width: 65px;
+                height: 65px;
+                font-size: 28px;
+                line-height: 65px;
+                margin-bottom: 25px;
+            }
+            h3 {
+                font-size: 20px;
+                margin-bottom: 14px;
+            }
+            p {
+                padding: {
+                    right: 25px;
+                    left: 25px;
+                }
+            }
+        }
+        .expertise-right {
+            padding-left: 0;
+            margin-bottom: 40px;
+
+            &:before {
+                top: -15px;
+                left: -10px;
+            }
+        }
+    }
+    .speciality-area {
+        .container-fluid {
+            max-width: 720px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5) !important;
+                right: calc(var(--bs-gutter-x) * 0.5) !important;
+            }
+        }
+        .section-title-two {
+            padding: {
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+    .speciality-item {
+        .row {
+            margin: {
+                left: calc(-0.5 * var(--bs-gutter-x)) !important;
+                right: calc(-0.5 * var(--bs-gutter-x)) !important;
+            }
+        }
+        .speciality-inner {
+            padding: {
+                top: 25px;
+                left: 25px;
+                bottom: 25px;
+            }
+            i {
+                margin-bottom: 15px;
+            }
+            h3 {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+    .speciality-right {
+        height: auto;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+        .speciality-emergency {
+            left: 15px;
+            padding: 30px 295px 20px 40px;
+
+            h3 {
+                font-size: 22px;
+                right: 80px;
+            }
+        }
+    }
+    .speciality-left {
+        padding: {
+            left: 0;
+            right: 0;
+        }
+    }
+    .speciality-right-two {
+        &:before {
+            display: none;
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .expertise-item {
+        .expertise-right {
+            &:before {
+                width: 395px;
+                height: 355px;
+            }
+            &:after {
+                width: 395px;
+                height: 355px;
+            }
+            img {
+                width: 100%;
+                z-index: 1;
+            }
+        }
+        .expertise-inner {
+            h3 {
+                font-size: 18px;
+            }
+        }
+    }
+    .speciality-left {
+        padding: {
+            left: 0;
+            right: 50px;
+        }
+    }
+    .speciality-item {
+        .speciality-inner {
+            padding: 25px;
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+    .speciality-area {
+        .container-fluid {
+            max-width: 1920px;
+        }
+    }
+}

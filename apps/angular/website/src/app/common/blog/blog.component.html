@@ -1,0 +1,71 @@
+<!--
+|--------------------------------------------------------------------------
+| Blog Component Template
+|--------------------------------------------------------------------------
+|
+| This template renders the blog listing section with responsive grid layout.
+| It displays blog cards with images, titles, dates, and links to details.
+|
+| Features:
+| • Conditional rendering of section titles based on the current route.
+| • Iterates over the first 3 blogs to display a preview.
+| • Each blog card includes an image, clickable title, and metadata.
+| • Accessible roles and routerLinks for navigation.
+|
+| Usage Notes:
+| • The `router.url` is used to toggle between two section title styles.
+| • The blog description snippet is commented out but can be enabled if needed.
+| • Styles like `blog-area`, `blog-item` are linked to the associated SCSS.
+|
+| Accessibility:
+| • Titles use `role="button"` to indicate interactivity.
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ Licensed under the MIT License
+|--------------------------------------------------------------------------
+-->
+
+<div class="blog-area pt-100 pb-70">
+    <div class="container">
+        <!-- Conditionally show main section title except for routes '/index-2' and '/index-3' -->
+        <div class="section-title" [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3'}">
+            <h2>Our Latest Blogs</h2>
+        </div>
+
+        <!-- Alternative section title for '/index-2' and '/index-3' routes -->
+        <div class="section-title-two" *ngIf="router.url === '/index-2' || router.url === '/index-3'">
+            <span>Blogs</span>
+            <h2>Our latest blogs</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Loop over first 3 blogs and render blog cards -->
+            <div class="col-sm-6 col-lg-4" *ngFor="let blog of blogs.slice(0, 3)">
+                <div class="blog-item">
+                    <div class="blog-top">
+                        <img [src]="blog.imageUrl" alt="Blog">
+                    </div>
+                    <div class="blog-bottom">
+                        <!-- Blog title clickable with routerLink -->
+                        <h5 class="fw-semibold" role="button" [routerLink]="'/blog-details/' + blog.slug">
+                            {{blog.title}}
+                        </h5>
+
+                        <!-- Optional snippet preview (currently commented out) -->
+                        <!-- <p [innerHTML]="blog.content.split(' ').slice(0,10).join(' ')"></p> -->
+
+                        <!-- Blog metadata list -->
+                        <ul>
+                            <li>
+                                <a [routerLink]="'/blog-details/' + blog.slug">
+                                    Read More <i class="icofont-long-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li><i class="icofont-calendar"></i> {{blog.date}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

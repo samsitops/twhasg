@@ -1,0 +1,156 @@
+<!--
+  Services Page
+  Includes:
+  - Navbar component
+  - Inner page banner with the title "Services" and a background image
+  - List of services with icons, titles, short descriptions, and a "Read More" link for each service leading to the service details page
+  - Expertise section (app-expertise)
+  - Footer component
+  - Back to top button
+  
+  Note:
+  The <app-top-header /> component is commented out for an unspecified reason
+-->
+
+
+<!-- <app-top-header /> -->
+
+<app-navbar />
+
+<app-inner-page-banner [pageTitle]="'Services'" [backgroundImage]="'img/page-title.jpg'" />
+
+<!-- Services -->
+<div class="services-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-doctor"></i>
+                        <h3>Expert Doctor</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-doctor"></i>
+                        <h3>Expert Doctor</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-prescription"></i>
+                        <h3>Diagnosis</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-prescription"></i>
+                        <h3>Diagnosis</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-patient-file"></i>
+                        <h3>Pathology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-patient-file"></i>
+                        <h3>Pathology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-tooth"></i>
+                        <h3>Dental Care</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+
+                    <div class="service-end">
+                        <i class="icofont-tooth"></i>
+                        <h3>Dental Care</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-heart-beat-alt"></i>
+                        <h3>Cardiology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-heart-beat-alt"></i>
+                        <h3>Cardiology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-drug"></i>
+                        <h3>Medicine</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-drug"></i>
+                        <h3>Medicine</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-dna-alt-1"></i>
+                        <h3>Neurology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-dna-alt-1"></i>
+                        <h3>Neurology</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="service-item">
+                    <div class="service-front">
+                        <i class="icofont-ambulance-cross"></i>
+                        <h3>Ambulance</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                    <div class="service-end">
+                        <i class="icofont-ambulance-cross"></i>
+                        <h3>Ambulance</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                        <a routerLink="/service-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Services -->
+
+<app-expertise />
+
+<app-footer />
+
+<app-back-to-top />

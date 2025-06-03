@@ -1,0 +1,81 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LoggerCreateDto, LoggerCreateRawDto } from "../dtos/logger.create.dto";
+
+export interface ILoggerService {
+  info({
+    action,
+    description,
+    apiKey,
+    user,
+    method,
+    requestId,
+    role,
+    type,
+    params,
+    bodies,
+    path,
+    statusCode,
+    tags,
+  }: LoggerCreateDto): any;
+  debug({
+    action,
+    description,
+    apiKey,
+    user,
+    method,
+    requestId,
+    role,
+    type,
+    params,
+    bodies,
+    path,
+    statusCode,
+    tags,
+  }: LoggerCreateDto): any;
+  warn({
+    action,
+    description,
+    apiKey,
+    user,
+    method,
+    requestId,
+    role,
+    type,
+    params,
+    bodies,
+    path,
+    statusCode,
+    tags,
+  }: LoggerCreateDto): any;
+  fatal({
+    action,
+    description,
+    apiKey,
+    user,
+    method,
+    requestId,
+    role,
+    type,
+    params,
+    bodies,
+    path,
+    statusCode,
+    tags,
+  }: LoggerCreateDto): any;
+  raw({
+    level,
+    action,
+    description,
+    apiKey,
+    user,
+    method,
+    requestId,
+    role,
+    type,
+    params,
+    bodies,
+    path,
+    statusCode,
+    tags,
+  }: LoggerCreateRawDto): any;
+}

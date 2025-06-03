@@ -1,0 +1,132 @@
+/*
+  Styles for Department Items (.department-item):
+
+  - Each item has a blue border and padding for spacing.
+  - Text and icons are centered.
+  - Uses pseudo-elements (:before and :after) positioned absolutely on left and right edges,
+    initially with zero width, creating a background highlight effect on hover.
+  - On hover:
+    * Left (:before) and right (:after) pseudo-elements expand to cover about half the item width,
+      creating a split background color effect.
+    * Icon (i), heading (h3), and paragraph (p) text colors change to white for better contrast.
+  - Smooth transitions are applied for hover effects on border, background, and text colors.
+  - Responsive adjustments:
+    * On small screens (max-width: 767px), padding is reduced, icons and headings shrink in size.
+    * On medium screens (768px - 991px), padding and icon/font sizes are slightly adjusted for readability.
+  - Larger breakpoints (992px - 1199px and 1600px+) are reserved for future use or overrides.
+*/
+
+.department-item {
+    border: 1px solid var(--blueColor);
+    transition: var(--transition);
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;
+    padding: 30px;
+    z-index: 1;
+    
+    &:before {
+        top: 0;
+        left: 0;
+        width: 0;
+        content: '';
+        z-index: -1;
+        height: 100%;
+        position: absolute;
+        background-color: var(--blueColor);
+        transition: var(--transition);
+    }
+    &:after {
+        top: 0;
+        width: 0;
+        right: 0;
+        z-index: -1;
+        content: '';
+        height: 100%;
+        position: absolute;
+        background-color: var(--blueColor);
+        transition: var(--transition);
+    }
+    &:hover {
+        &:before {
+            width: 51%;
+        }
+        &:after {
+            width: 50%;
+        }
+        i {
+            color: var(--whiteColor);
+        }
+        h3 {
+            color: var(--whiteColor);
+        }
+        p {
+            color: var(--whiteColor);
+        }
+    }
+    i {
+        display: block;
+        font-size: 45px;
+        margin-bottom: 25px;
+        color: var(--blueColor);
+        transition: var(--transition);
+    }
+    h3 {
+        margin-bottom: 15px;
+        transition: var(--transition);
+        font: {
+            size: 26px;
+            weight: 600;
+        };
+    }
+    p {
+        margin-bottom: 0;
+        transition: var(--transition);
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .department-item {
+        padding: {
+            top: 25px;
+            bottom: 25px;
+        };
+        i {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+        h3 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .department-item {
+        padding: {
+            top: 25px;
+            bottom: 25px;
+        };
+        i {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

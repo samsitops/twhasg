@@ -1,0 +1,229 @@
+/*!
+|--------------------------------------------------------------------------
+| Doctors Team Carousel Styles
+|--------------------------------------------------------------------------
+|
+| Styles for the medical team display component featuring:
+| - Responsive doctor profile cards
+| - Hover animations and effects
+| - Multiple breakpoint adaptations
+|
+| Structure:
+| • Doctor item container
+| • Top section (image + hover effects)
+| • Bottom section (name + title)
+| • "See All" button styles
+|
+| Variables Used:
+| --whiteColor: #ffffff
+| --blueColor: #386ae6
+| --blackColor: #232323
+| --grayColor: #777777
+| --fontSize: 15px (default)
+|
+| Effects:
+| • Box shadow on cards
+| • Hover overlay animation
+| • Bio link fade-in effect
+|
+| Breakpoints:
+| • Mobile (<768px)
+| • Tablet (768px-991px)
+| • Desktop (992px-1199px)
+| • Large Desktop (>=1600px)
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+/* Doctor Profile Card */
+.doctor-item {
+    margin-bottom: 30px;
+    background-color: var(--whiteColor);
+    text-align: center;
+    box-shadow: 0px 0px 20px 0px #dddddd;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+
+    /* Hover Effects */
+    &:hover {
+        .doctor-top {
+            &:before {
+                opacity: 0.6;
+                /* Darkens image on hover */
+                transform: scale(1);
+            }
+
+            a {
+                opacity: 1;
+                /* Shows bio link */
+                bottom: 20px;
+            }
+        }
+    }
+
+    /* Image Container */
+    .doctor-top {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+
+        /* Bio Link */
+        a {
+            display: inline-block;
+            color: var(--blueColor);
+            font-size: var(--fontSize);
+            font-weight: 600;
+            padding: 15px 0;
+            position: absolute;
+            border-radius: 5px;
+            left: 0;
+            right: 0;
+            bottom: 10px;
+            opacity: 0;
+            /* Hidden by default */
+            transition: all 0.4s ease;
+            max-width: 160px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--whiteColor);
+
+            &:hover {
+                color: var(--whiteColor);
+                background-color: var(--blackColor);
+            }
+        }
+
+        /* Doctor Image */
+        img {
+            width: 100%;
+            border-radius: 10px;
+            height: 306px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    /* Info Section */
+    .doctor-bottom {
+        padding: 25px;
+
+        /* Doctor Name */
+        h3 {
+            a {
+                display: block;
+                font-weight: 600;
+                font-size: 22px;
+                margin-bottom: 10px;
+                color: #232323;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: var(--blueColor);
+                }
+            }
+        }
+
+        /* Doctor Title */
+        span {
+            display: block;
+            color: var(--grayColor);
+            font-size: var(--fontSize);
+        }
+    }
+}
+
+/* "See All" Button (currently disabled) */
+.doctor-btn {
+    text-align: center;
+
+    a {
+        margin-top: 30px;
+        display: inline-block;
+        font-weight: 600;
+        color: #232323;
+        font-size: 18px;
+        border: 2px solid #386ae6;
+        padding: 18px 55px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: var(--whiteColor);
+            background-color: #386ae6;
+        }
+    }
+}
+
+/* ======================
+   Responsive Breakpoints
+   ====================== */
+
+/* Mobile (<= 767px) */
+@media only screen and (max-width: 767px) {
+    .doctor-item {
+        .doctor-top {
+            a {
+                font-size: var(--fontSize);
+                padding: 12px 0;
+            }
+        }
+
+        .doctor-bottom {
+            padding: 18px;
+
+            h3 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .doctor-btn {
+        a {
+            margin-top: 5px;
+            font-size: 16px;
+            padding: 12px 35px;
+        }
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .doctor-item {
+        .doctor-top {
+            a {
+                font-size: var(--fontSize);
+                padding: 14px 0;
+            }
+        }
+
+        .doctor-bottom {
+            padding: 20px;
+
+            h3 {
+                font-size: 20px;
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+    .doctor-btn {
+        a {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 15px 50px;
+        }
+    }
+}
+
+/* Small Desktop (992px - 1199px) - Currently no changes */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Reserved for future adjustments */
+}
+
+/* Large Desktop (>= 1600px) - Currently no changes */
+@media only screen and (min-width: 1600px) {
+    /* Reserved for future adjustments */
+}

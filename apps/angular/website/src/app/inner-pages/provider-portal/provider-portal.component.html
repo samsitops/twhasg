@@ -1,0 +1,367 @@
+<!-- 
+  PROVIDER PORTAL PAGE TEMPLATE
+  ============================
+
+  Structure:
+  1. Navigation Bar
+  2. Hero Section with Video Background
+  3. About TeamWork Health Section
+  4. Contact Information Section
+  5. Footer
+
+  Features:
+  - Responsive video background hero section
+  - Expandable content cards
+  - Contact information with visual elements
+  - Clean, professional layout
+-->
+
+<app-navbar />
+
+<section class="provider-portal d-flex">
+    <div class="overlay"></div>
+    <video autoplay muted loop playsinline webkit-playsinline class="background-video">
+        <source src="video/provider-portal.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content d-flex flex-column flex-fill justify-content-end">
+        <!-- <figure>
+            <img src="img/download.png" alt="">
+        </figure> -->
+        <div class="text-center mb-4">
+            <h1 class="text-white">Physicians in the Lead, Patients at the Center!</h1>
+            <!-- <div class="partnership-request-btn  d-flex justify-content-center">
+                <button type="button" class=" btn btn-primary me-3 mb-2 buttonTop"
+                    onclick="document.getElementById('provider-portal-form').scrollIntoView({ behavior: 'smooth' });">Partnership
+                    request
+                    form</button>
+                <a [routerLink]="'/refer-patient'" type="button" class="buttonTop btn btn-outline-primary mb-2">
+                    refer patient request
+                </a>
+            </div> -->
+        </div>
+    </div>
+
+</section>
+
+
+<section class="about-teamwork mt-5" id="about">
+    <div class="container">
+        <div>
+            <p class="about-header text-black fw-semibold text-center">About TeamWork Health</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6" *ngFor="let item of aboutUsServices; let i = index">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <img [src]="item.img" alt="">
+                        <h5 class="card-text mt-3">{{item.title}}</h5>
+                        <p class="card-text">
+                            {{ isExpanded[i] ? item.full : item.truncated }}
+                        </p>
+                        <a role="button" class="text-primary" (click)="toggleContent(i)">
+                            {{ isExpanded[i] ? 'See Less' : 'See More' }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<div class="drop-area pt-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 p-0">
+                <div class="drop-item drop-img" style="background-image: url(img/contact/2.png);">
+                    <div class="drop-left">
+                        <h2>Call us for more info</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0">
+                <div class="speciality-item speciality-right speciality-right-two speciality-right-three"
+                    style="background-image: url(img/home-two/bg4.jpg);">
+                    <img src="img/home-two/bg4.jpg" alt="Contact">
+                    <div class="speciality-emergency">
+                        <div class="speciality-icon">
+                            <i class="icofont-ui-call"></i>
+                        </div>
+                        <h3>Support line</h3>
+                        <p>(919) 238-1110</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact -->
+
+<!-- <section class="provider-portal-form mt-5 mb-5" id="provider-portal-form">
+    <form [formGroup]="providerPortal">
+        <div class="container">
+            <div class="card p-3 border-0">
+                <div class="card-body p-3 text-start">
+                    <div class=" p-3 ">
+                        <h2>Practice Information</h2>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="">Practice Name</label>
+                                    <input formControlName="name" class="form-control p-3"
+                                        placeholder="Enter Your Practice Name" type="text" />
+                                    <div *ngIf="providerPortal.get('name')?.errors && providerPortal.get('name')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="providerPortal.get('name')?.getError('required')" class="m-0 ">
+                                            This field is required</small>
+                                        <small *ngIf="providerPortal.get('name')?.getError('pattern')" class="m-0 ">
+                                            Enter a valid name</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="">Specialty</label>
+                                    <input formControlName="specialty" class="form-control p-3"
+                                        placeholder="Enter Your Specialty" type="text" />
+                                    <div *ngIf="providerPortal.get('specialty')?.errors && providerPortal.get('specialty')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="providerPortal.get('specialty')?.getError('required')"
+                                            class="m-0 ">
+                                            This field is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="">Practice Address</label>
+                                    <input formControlName="address" class="form-control p-3"
+                                        placeholder="Enter Your Practice Address" type="text" />
+                                    <div *ngIf="providerPortal.get('address')?.errors && providerPortal.get('address')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="providerPortal.get('address')?.getError('required')" class="m-0 ">
+                                            This field is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="phone">Phone Number</label>
+                                    <input formControlName="phoneNumber" class="form-control p-3"
+                                        placeholder="Enter Your Phone Number" type="text" maxlength="15" />
+
+                                    <div *ngIf="providerPortal.get('phoneNumber')?.errors && providerPortal.get('phoneNumber')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="providerPortal.get('phoneNumber')?.getError('required')"
+                                            class="m-0 ">
+                                            This field is required
+                                        </small>
+                                        <small *ngIf="providerPortal.get('phoneNumber')?.errors?.['pattern']">
+                                            Phone Number invalid .
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="">Email Address</label>
+                                    <input formControlName="email" class="form-control p-3"
+                                        placeholder="Choose your Email Address" type="email" />
+
+                                    <div *ngIf="providerPortal.get('email')?.errors && providerPortal.get('email')?.touched"
+                                        class="text-danger m-0">
+                                        <small *ngIf="providerPortal.get('email')?.getError('email')" class='m-0'>Email
+                                            inValid
+                                        </small>
+                                        <small *ngIf="providerPortal.get('email')?.getError('required')"
+                                            class="m-0 ">Email
+                                            is
+                                            Required</small>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="fw-semibold mb-2" for="">Website (Optional)</label>
+                                    <input formControlName="website" class="form-control p-3"
+                                        placeholder="Your Website " type="text" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class=" p-3 border-top ">
+                        <div class=" p-3 text-start">
+                            <h2>Provider Information</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-2" for="">Provider Full Name</label>
+                                        <input formControlName="fullName" class="form-control p-3"
+                                            placeholder="Enter Your Provider Full Name" type="text" />
+                                        <div *ngIf="providerPortal.get('fullName')?.errors && providerPortal.get('fullName')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="providerPortal.get('fullName')?.getError('required')"
+                                                class="m-0 ">
+                                                This field is required</small>
+                                            <small *ngIf="providerPortal.get('fullName')?.getError('pattern')"
+                                                class="m-0 ">
+                                                Enter a valid name</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-2" for="">NPI Number</label>
+                                        <input formControlName="npiNumber" class="form-control p-3"
+                                            placeholder="Enter Your NPI Number" type="password" />
+                                        <div *ngIf="providerPortal.get('npiNumber')?.errors && providerPortal.get('npiNumber')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="providerPortal.get('npiNumber')?.getError('required')"
+                                                class="m-0 ">
+                                                This field is required</small>
+                                            <small *ngIf="providerPortal.get('npiNumber')?.getError('pattern')"
+                                                class="m-0 ">
+                                                Enter a valid NPI</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-2" for="">Role/Position</label>
+                                        <input formControlName="role" class="form-control p-3"
+                                            placeholder="Enter Your Role/Position" type="text" />
+                                        <div *ngIf="providerPortal.get('role')?.errors && providerPortal.get('role')?.touched"
+                                            class="text-danger m-0 fs-">
+                                            <small *ngIf="providerPortal.get('role')?.getError('required')">This field
+                                                is
+                                                required.</small>
+                                            <small *ngIf="providerPortal.get('role')?.getError('minlength')">Minimum 3
+                                                characters required.</small>
+                                            <small *ngIf="providerPortal.get('role')?.getError('maxlength')">Maximum 50
+                                                characters allowed.</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" p-3 border-top">
+                        <div class=" p-3 text-start">
+                            <h2>Partnership Interest</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label class="fw-semibold">Select all that apply:</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Join as part of a Value-Based
+                                        Enterprise" id="Join"
+                                                    (change)="onCheckboxChange($event,'joinValueBased','Join as part of a Value-Based Enterprise')">
+                                                <label class="form-check-label" for="Join">
+                                                    Join as part of a Value-Based
+                                                    Enterprise
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="Collaborate for Shared Care Coordination" id="collaborate"
+                                                    (change)="onCheckboxChange($event,'collaborateSharedCare','Collaborate for Shared Care Coordination')">
+                                                <label class="form-check-label" for="collaborate">
+                                                    Collaborate for Shared Care
+                                                    Coordination
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="Join the TeamWork Health Divisional Model" id="TeamWork"
+                                                    (change)="onCheckboxChange($event,'joinTeamWork','Join the TeamWork Health Divisional Model')">
+                                                <label class="form-check-label" for="TeamWork">
+                                                    Join the TeamWork Health Divisional Model
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    [value]="'Clinical Research Collaboration'" id="research"
+                                                    (change)="onCheckboxChange($event,'clinicalResearch','Clinical Research Collaboration')">
+                                                <label class="form-check-label" for="research">
+                                                    Clinical Research Collaboration
+                                                </label>
+                                            </div>
+
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Other"
+                                                    id="otherCheck" (change)="onCheckboxChange($event,'other','Other')">
+                                                <label class="form-check-label" for="otherCheck">
+                                                    Other
+                                                </label>
+                                            </div>
+
+                                            <textarea formControlName="otherText" *ngIf="isOtherSelected"
+                                                class="form-control mt-2" placeholder="Please specify"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class=" p-3 border-top">
+                        <div class=" p-3 text-start">
+                            <div class="form-group">
+                                <div class="mb-3">
+                                    <label class="fw-semibold" for="description">Briefly describe your practice and what
+                                        you're
+                                        looking for in a
+                                        partnership:</label>
+                                    <textarea id="description" formControlName="description" rows="4"
+                                        class="form-control mt-3" placeholder="Enter your description here"></textarea>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <input formControlName="agreement" class="form-check-input me-2" type="checkbox"
+                                        value=" I confirm that the information provided is accurate and agree to be contacted by
+                            TeamWork Health
+                            regarding partnership opportunities" id="confirm">
+                                    <label class="form-check-label" for="confirm">
+                                        I confirm that the information provided is accurate and agree to be contacted by
+                                        TeamWork Health
+                                        regarding partnership opportunities
+                                    </label>
+                                    <div *ngIf="providerPortal.get('agreement')?.errors && providerPortal.get('agreement')?.touched"
+                                        class="text-danger m-0 fs-">
+                                        <small *ngIf="providerPortal.get('agreement')?.getError('required')"
+                                            class="m-0 ">
+                                            You must agree to the terms.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3">
+                <button (click)="sendEmail()" [disabled]="providerPortal.invalid || isLoading" type="button"
+                    class="btn btn-primary me-3">
+                    <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                        aria-hidden="true"></span>
+                    Submit
+                </button>
+
+            </div>
+        </div>
+
+    </form>
+</section> -->
+
+<app-footer [isNewsletter]="false" />

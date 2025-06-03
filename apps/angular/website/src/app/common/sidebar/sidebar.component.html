@@ -1,0 +1,285 @@
+<!--
+|--------------------------------------------------------------------------
+| Sidebar Component
+|--------------------------------------------------------------------------
+|
+| Vertical sidebar navigation with nested accordion menus for medical services
+|
+| STRUCTURE:
+| 1. Accordion Groups
+|   - Main categories: Pulmonary Medicine, Sleep Medicine, Psychiatry
+|   - Nested accordions for subcategories (e.g., Pulmonary Testing inside Pulmonary Medicine)
+|   - Dynamic service lists populated via *ngFor from input services object
+|
+| 2. Navigation Links
+|   - Internal router links with slug-based routing
+|   - External Patient Portal link opening in new tab
+|   - Blog and FAQ internal links
+|
+| FUNCTIONALITY:
+| • Animated accordion expand/collapse
+| • Icon rotation indicating expanded state
+| • Sidebar close method invoked on navigation item click
+| • Angular RouterLinkActive for active link highlighting
+|
+| ACCESSIBILITY:
+| • Accordion headings use role="button"
+| • Icon rotation visually indicates open/close
+| • Recommended: add aria-expanded and aria-controls for better accessibility
+|
+| SECURITY:
+| • External link (Patient Portal) opens with target="_blank" (rel attribute recommended)
+| • Service slug validation recommended for route safety
+|
+| USAGE EXAMPLE:
+| <app-sidebar [services]="serviceData" (closeSidebar)="onClose()"></app-sidebar>
+|
+| IMPROVEMENTS NEEDED:
+| 1. Add ARIA attributes for accordion buttons
+| 2. Add keyboard navigation support
+| 3. Add rel="noopener noreferrer" to external links
+| 4. Handle deep nested accordions for better UX
+|
+| STYLING RECOMMENDATIONS:
+| • Add smooth accordion transition animations
+| • Style icon rotation with CSS transforms
+| • Use padding/margin utilities consistently
+|
+| DATA STRUCTURE:
+| interface NavService {
+|   title: string;
+|   slug: string;
+|   children?: NavService[];
+| }
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+
+<div class="sidebar">
+    <accordion [isAnimated]="true">
+        <accordion-group #acc2>
+            <a role="button" accordion-heading class="nav-link d-flex align-items-center justify-content-between"
+                routerLinkActive="active">
+                <span>Pulmonary Medicine</span>
+                <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc2.isOpen}">
+                    <i class="icofont-angle-up"></i>
+                </span>
+
+            </a>
+            <div>
+                <ul class="ps-3">
+                    <li (click)="closeSidebar()" class="nav-item" *ngFor="let item of services.pulmonaryCareServices">
+                        <a [routerLink]="'/service-details/' + 'pulmonaryCareServices/' + item.slug" class="nav-link"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            - {{ item.title }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <accordion [isAnimated]="true">
+                    <accordion-group #acc5>
+                        <a role="button" accordion-heading
+                            class="nav-link d-flex align-items-center justify-content-between"
+                            routerLinkActive="active">
+                            <span>Pulmonary Testing</span>
+                            <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc5.isOpen}">
+                                <i class="icofont-angle-up"></i>
+                            </span>
+
+                        </a>
+                        <div>
+                            <ul class="ps-3">
+                                <li (click)="closeSidebar()" class="nav-item" *ngFor="let item of services.testing">
+                                    <a [routerLink]="'/service-details/' + 'testing/' + item.slug" class="nav-link"
+                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        - {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </accordion-group>
+        <accordion-group #acc3>
+            <a role="button" accordion-heading class="nav-link d-flex align-items-center justify-content-between"
+                routerLinkActive="active">
+                <span>Sleep Medicine</span>
+                <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc3.isOpen}">
+                    <i class="icofont-angle-up"></i>
+                </span>
+
+            </a>
+            <div>
+                <ul class="ps-3">
+                    <li (click)="closeSidebar()" class="nav-item" *ngFor="let item of services.sleepDisorder">
+                        <a [routerLink]="'/service-details/' + 'sleepDisorder/' + item.slug" class="nav-link"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            - {{ item.title }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </accordion-group>
+        <accordion-group #acc4>
+            <a role="button" accordion-heading class="nav-link d-flex align-items-center justify-content-between"
+                routerLinkActive="active">
+                <span>Psychiatry</span>
+                <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc4.isOpen}">
+                    <i class="icofont-angle-up"></i>
+                </span>
+            </a>
+            <div>
+                <ul class="ps-3">
+                    <li (click)="closeSidebar()" class="nav-item" *ngFor="let item of services.behavioralHealth">
+                        <a [routerLink]="'/service-details/' + 'behavioralHealth/' + item.slug" class="nav-link"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            - {{ item.title }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </accordion-group>
+        <!-- <accordion-group #acc1>
+            <a role="button" accordion-heading type="button"
+                class="nav-link d-flex align-items-center justify-content-between">
+                <span>Medical Services</span>
+                <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc1.isOpen}">
+                    <i class="icofont-angle-up"></i>
+                </span>
+            </a>
+            <div>
+                <accordion [isAnimated]="true">
+                    <accordion-group #acc2>
+                        <a role="button" accordion-heading
+                            class="nav-link d-flex align-items-center justify-content-between"
+                            routerLinkActive="active">
+                            <span>Pulmonary Medicine</span>
+                            <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc2.isOpen}">
+                                <i class="icofont-angle-up"></i>
+                            </span>
+
+                        </a>
+                        <div>
+                            <ul class="ps-3">
+                                <li (click)="closeSidebar()" class="nav-item"
+                                    *ngFor="let item of services.pulmonaryCareServices">
+                                    <a [routerLink]="'/service-details/' + 'pulmonaryCareServices/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        - {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+            <div>
+                <accordion [isAnimated]="true">
+                    <accordion-group #acc3>
+                        <a role="button" accordion-heading
+                            class="nav-link d-flex align-items-center justify-content-between"
+                            routerLinkActive="active">
+                            <span>Sleep Medicine</span>
+                            <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc3.isOpen}">
+                                <i class="icofont-angle-up"></i>
+                            </span>
+
+                        </a>
+                        <div>
+                            <ul class="ps-3">
+                                <li (click)="closeSidebar()" class="nav-item"
+                                    *ngFor="let item of services.sleepDisorder">
+                                    <a [routerLink]="'/service-details/' + 'sleepDisorder/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        - {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+            <div>
+                <accordion [isAnimated]="true">
+                    <accordion-group #acc4>
+                        <a role="button" accordion-heading
+                            class="nav-link d-flex align-items-center justify-content-between"
+                            routerLinkActive="active">
+                            <span>Psychiatry</span>
+                            <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc4.isOpen}">
+                                <i class="icofont-angle-up"></i>
+                            </span>
+                        </a>
+                        <div>
+                            <ul class="ps-3">
+                                <li (click)="closeSidebar()" class="nav-item"
+                                    *ngFor="let item of services.behavioralHealth">
+                                    <a [routerLink]="'/service-details/' + 'behavioralHealth/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        - {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+            <div>
+                <accordion [isAnimated]="true">
+                    <accordion-group #acc5>
+                        <a role="button" accordion-heading
+                            class="nav-link d-flex align-items-center justify-content-between"
+                            routerLinkActive="active">
+                            <span>Pulmonary Testing</span>
+                            <span class="d-inline-block icon__sec" [ngClass]="{'rotateMe': acc5.isOpen}">
+                                <i class="icofont-angle-up"></i>
+                            </span>
+
+                        </a>
+                        <div>
+                            <ul class="ps-3">
+                                <li (click)="closeSidebar()" class="nav-item"
+                                    *ngFor="let item of services.testing">
+                                    <a [routerLink]="'/service-details/' + 'testing/' + item.slug" class="nav-link"
+                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                        - {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </accordion-group> -->
+    </accordion>
+    <!-- <a class="nav-link" role="button" accordion-heading type="button" [routerLink]="'/partnerships'"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Partnerships
+    </a> -->
+    <a role="button" accordion-heading type="button" class="nav-link" href="https://32082-1.portal.athenahealth.com/"
+        target="_blank">
+        Patient Portal
+    </a>
+    <!-- <a role="button" accordion-heading type="button" class="nav-link" [routerLink]="'/research-details'"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <div>
+            Clinical Trials
+        </div>
+    </a> -->
+    <a role="button" accordion-heading type="button" routerLink="/blog" class="nav-link" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        Blogs
+    </a>
+    <a role="button" accordion-heading type="button" routerLink="/faq" class="nav-link" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        FAQ
+    </a>
+</div>

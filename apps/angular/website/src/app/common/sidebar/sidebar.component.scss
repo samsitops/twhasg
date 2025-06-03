@@ -1,0 +1,32 @@
+/*
+ * |--------------------------------------------------------------------------
+ * | Sidebar Styles
+ * |--------------------------------------------------------------------------
+ * 
+ * @selector .sidebar
+ * 
+ * ### Description
+ * Styles for sidebar navigation links within the sidebar container.
+ * 
+ * ### Nested Element: a.nav-link
+ * - Vertical padding for clickable area (17px top and bottom)
+ * - Light bottom border as a separator (0.1px solid #bebbbb)
+ * 
+ * ### Usage
+ * Applies consistent spacing and separation for navigation links inside sidebar.
+ * 
+ * ### Recommendations
+ * - Consider adding hover and active states styling for better UX.
+ * - Use variables for colors and spacing to maintain theme consistency.
+ * 
+ * © 2025 Dream Care <DreamCare@gmail.com>
+ * GitHub: @DreamCare ▸ MIT Licensed
+ * |--------------------------------------------------------------------------
+ */
+
+.sidebar{
+    a.nav-link{
+        padding: 17px 0;
+        border-bottom: 0.1px solid #bebbbb;
+    }
+}

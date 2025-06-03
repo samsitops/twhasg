@@ -1,0 +1,106 @@
+/*
+  Styles for the 404 Error Page (.error-area)
+
+  This style block defines the appearance of the error message area shown when a page is not found.
+
+  Features:
+  - Large bold heading (h1) with a font size of 130px (scales down responsively).
+  - Subtitle paragraph (p) with medium large text.
+  - Description span shown as block for better line control.
+  - Return to home link (a) styled as a blue button with padding, rounded corners, and hover effect.
+  
+  Responsive Design:
+  - Adjusts font sizes, spacing, and button sizes for smaller devices (max-width 767px).
+  - Intermediate sizes adjustments for tablets (768px - 991px).
+  - Placeholder media queries for larger screens (992px+).
+
+  Variables used:
+  - --blueColor for primary button background
+  - --whiteColor for button text color
+  - --blackColor for button hover background
+  - Uses border and margin for layout and separation
+*/
+.error-area {
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+    
+    h1 {
+        margin-bottom: 8px;
+        line-height: 1;
+        font: {
+            size: 130px;
+            weight: 700;
+        };
+    }
+    p {
+        margin-bottom: 10px;
+        font: {
+            weight: 600;
+            size: 35px;
+        };
+    }
+    span {
+        display: block;
+    }
+    a {
+        background-color: var(--blueColor);
+        color: var(--whiteColor);
+        display: inline-block;
+        border-radius: 10px;
+        padding: 20px 45px;
+        margin-top: 40px;
+        font-size: 18px;
+
+        &:hover {
+            background-color: var(--blackColor);
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .error-area {
+        h1 {
+            font-size: 70px;
+            margin-bottom: 2px;
+        }
+        p {
+            margin-bottom: 6px;
+            font-size: 20px;
+        }
+        a {
+            padding: 14px 30px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .error-item {
+        h1 {
+            font-size: 90px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 5px;
+            font-size: 25px;
+        }
+        a {
+            padding: 16px 35px;
+            margin-top: 45px;
+            font-size: 15px;
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

@@ -1,0 +1,233 @@
+/*
+ * Service Details Page Styles
+ *
+ * Description:
+ * These styles define the layout and presentation of the Service Details page,
+ * including the main content section, inner blocks, buttons, and responsive layout.
+ *
+ * Sections:
+ * - .service-details-area: Main wrapper with padding control
+ * - .services-details-img: Image and content block for each section (image, headline, description, blockquote)
+ * - .service-details-inner-left: Optional background/video block with overlay controls
+ * - .service-details-inner: Content container with centered text
+ * - .appointment-btn: Call-to-action button styling
+ * - .related__badge: Styling for related service tags/badges
+ * - video: Full-width video styling
+ *
+ * Responsive Media Queries:
+ * - max-width: 767px — Mobile styles (smaller typography, margins, and layout tweaks)
+ * - 768px to 991px — Tablet styles (medium-sized typography and layout adjustments)
+ * - 992px to 1199px — Reserved for medium-large screens (currently empty)
+ * - min-width: 1600px — Reserved for ultra-wide screens (currently empty)
+ *
+ * Notes:
+ * - Uses CSS variables: --fontSize, --grayColor, --blueColor, --whiteColor
+ * - The `blockquote` element is styled with an icon and padding to visually separate it from normal text.
+ * - Images are hidden by default in `.service-details-inner-left` and revealed on smaller devices.
+ */
+
+.service-details-area.ptb-100 {
+    padding-top: 1.5rem !important;
+}
+
+.services-details-img {
+    margin-bottom: 50px;
+
+    img {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        // font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 32px;
+    }
+
+    P {
+        margin-bottom: 20px;
+    }
+
+    blockquote {
+        background-color: #0046c014;
+        font-size: var(--fontSize);
+        color: var(--grayColor);
+        margin-bottom: 20px;
+        padding: 30px 75px;
+        position: relative;
+        line-height: 26px;
+
+        i {
+            top: 20px;
+            left: 38px;
+            font-size: 32px;
+            position: absolute;
+            display: inline-block;
+        }
+    }
+}
+
+.service-details-inner-left {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .video-actions {
+        right: 10px;
+        bottom: 10px;
+        position: absolute;
+        a {
+            display: inline-block;
+        }
+    }
+    img {
+        display: none;
+    }
+}
+
+.service-details-inner {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h2 {
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.appointment-btn {
+    background-color: var(--blueColor);
+    color: var(--whiteColor);
+    display: inline-block;
+    padding: 16px 14px;
+    border-radius: 5px;
+    font-size: var(--fontSize);
+    font-weight: 500;
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .services-details-img {
+        margin-bottom: 30px;
+
+        img {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        blockquote {
+            font-size: var(--fontSize);
+            padding: 25px 15px 25px 45px;
+
+            i {
+                top: 20px;
+                left: 14px;
+                font-size: 26px;
+            }
+        }
+    }
+
+    .service-details-inner-left {
+        height: auto;
+        margin-bottom: 30px;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+    }
+
+    .service-details-inner {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.related__badge {
+    background-color: #4b84e8;
+    color: var(--whiteColor);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: var(--fontSize);
+    font-weight: 500;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .services-details-img {
+        margin-bottom: 40px;
+
+        img {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        P {
+            margin-bottom: 20px;
+        }
+
+        blockquote {
+            font-size: var(--fontSize);
+            padding: 25px 15px 25px 55px;
+
+            i {
+                top: 16px;
+                left: 20px;
+                font-size: 28px;
+            }
+        }
+    }
+
+    .service-details-inner-left {
+        height: auto;
+        margin-bottom: 30px;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+    }
+
+    .service-details-inner {
+        max-width: 100%;
+
+        h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+}

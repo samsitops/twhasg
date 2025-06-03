@@ -1,0 +1,52 @@
+<!-- * Appointment Request Intro Section
+*
+* Displays an introductory message and instructions for users
+* who want to request an appointment. Lists requirements needed to
+* complete the form, such as age, insurance information, and referring provider details.
+*
+* Provides an estimated completion time and processing time for the appointment request.
+*
+* Includes a call-to-action button that navigates users to the next step of the appointment request process.
+*
+* The section is visually divided into two columns:
+* - Left column: informational text and action button
+* - Right column: illustrative image related to requesting appointments -->
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2>
+            Request an appointment
+        </h2>
+        <p class="mb-0">
+            To fill out this form, you'll need:
+        </p>
+        <ul class="appointments-requirements">
+            <li>
+                To be 18 or older.
+            </li>
+            <li>
+                Insurance information, if insured.
+            </li>
+            <li>
+                Contact information of the referring provider, if applicable.
+            </li>
+        </ul>
+        <p>
+            This should take about 10 minutes to complete. Your appointment will be processed in 1 to 2 business days.
+        </p>
+        <div class="d-flex">
+            <!-- <a class="btn btn-outline-primary me-3" routerLink="/">
+                Go Back
+            </a> -->
+            <!-- <a class="btn btn-primary" routerLink="/request-appointment/forWho"> -->
+            <a class="btn btn-primary" routerLink="/request-appointment/select-options">
+                Get Started
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="img-container">
+            <img src="img/request.jpg" alt="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+export * from './lib/shared.module';
+export * from './lib/filters/index';
+export * from './lib/kafka/index';
+export * from './lib/internal-coms';
+export * from './lib/dtos';
+export * from './lib/keycloak';
+export * from './lib/decorators/user.decorator';
+export * from './lib/oidc';
+export * from './lib/kafka';
+export * from './lib/services';
+export * from './lib/logger';
+// export * as notifications from './lib/notification';
+export * from './lib/enums';
+export * from './lib/entities';
+export * from './lib/dms';
+export * from './lib/validation';
+export * from './lib/types';

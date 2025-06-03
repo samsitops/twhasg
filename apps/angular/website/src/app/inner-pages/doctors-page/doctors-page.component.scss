@@ -1,0 +1,152 @@
+/*
+  Doctor Search Area Styles
+
+  - .doctor-search-wrap: Container for the search form
+    - Centered with max width 970px
+    - Rounded corners, white background, subtle shadow
+    - Positioned slightly above the normal flow with negative top margin
+    - Vertical padding for spacing inside
+
+  - .doctor-search-item: Each individual search input or select
+    - Max width 340px, centered horizontally with margin bottom
+    - Contains .form-group with padding to the left for icon space
+
+  - .form-group:
+    - Positions icon absolutely on the left
+    - Label styled with gray color and font size variable
+    - Input and select fields styled with no border except bottom border
+    - Focus state changes bottom border color and removes box shadow
+    - Placeholder text colored gray
+
+  - .doctor-search-btn:
+    - Positioned absolutely in the bottom-right corner of the search item
+    - Styled with gray color and font size 18px
+
+  Responsive adjustments:
+  - On small screens (max-width 767px), reduce icon size and label font size, and adjust button position
+  - Media queries for other breakpoints are currently empty but available for future customizations
+*/
+
+
+@import "../../common/doctors/doctors.component";
+
+.doctor-search-wrap {
+    z-index: 1;
+    max-width: 970px;
+    position: relative;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: {
+        right: auto;
+        left: auto;
+        top: -80px;
+    };
+    padding: {
+        top: 45px;
+        bottom: 15px;
+    };
+}
+.doctor-search-item {
+    position: relative;
+    max-width: 340px;
+    margin: {
+        left: auto;
+        right: auto;
+        bottom: 30px;
+    };
+    .form-group {
+        position: relative;
+        padding-left: 60px;
+        margin-bottom: 0;
+
+        i {
+            display: inline-block;
+            color: var(--blueColor);
+            font-size: 45px;
+            position: absolute;
+            top: 8px;
+            left: 0;
+        }
+        label {
+            color: var(--grayColor);
+            font-size: var(--fontSize);
+            margin-bottom: 5px;
+        }
+        .form-control {
+            font-weight: 600;
+            font-size: var(--fontSize);
+            border-radius: 0;
+            border: 0;
+            padding-left: 0;
+            padding-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccd9f2;
+
+            &::placeholder {
+                color: var(--grayColor);
+            }
+            &:focus {
+                border-bottom: 1px solid var(--blackColor);
+                box-shadow: none;
+            }
+        }
+        .form-select {
+            border: 0;
+            cursor: pointer;
+            border-radius: 0;
+            padding-bottom: 10px;
+            color: var(--blackColor);
+            border-bottom: 1px solid #ccd9f2;
+            padding: {
+                left: 0;
+                top: 0;
+            };
+            font: {
+                weight: 600;
+                size: var(--fontSize);
+            };
+            &:focus {
+                border-bottom: 1px solid var(--blackColor);
+                box-shadow: none;
+            }
+        }
+    }
+    .doctor-search-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: var(--grayColor);
+        font-size: 18px;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .doctor-search-item {
+        .form-group {
+            padding-left: 50px;
+
+            i {
+                font-size: 40px;
+            }
+            label {
+                font-size: var(--fontSize);
+            }
+        }
+        .doctor-search-btn {
+            bottom: 5px;
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

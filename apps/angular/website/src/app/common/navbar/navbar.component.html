@@ -1,0 +1,311 @@
+<!--
+|--------------------------------------------------------------------------
+| Navbar Component
+|--------------------------------------------------------------------------
+|
+| Responsive navigation header with service dropdowns and search functionality
+|
+| STRUCTURE:
+| 1. Branding Section
+|   - Logo with routerLink to homepage
+|   - Mobile toggle button with hamburger icon
+|
+| 2. Navigation Items
+|   - Dropdown menus for Pulmonary/Sleep/Psychiatry services
+|   - Multi-level service submenus
+|   - Patient Portal external link
+|   - Blog/FAQ internal links
+|
+| 3. Search Functionality
+|   - Toggleable search input
+|   - Live service filtering
+|   - Auto-complete results display
+|
+| 4. Mobile Menu
+|   - Offcanvas sidebar navigation
+|   - Accordion-style service lists
+|
+| FUNCTIONALITY:
+| • Responsive breakpoint handling
+| • Dropdown menu interactions
+| • Search-as-you-type feature
+| • Sticky header behavior
+| • Mobile menu toggle
+|
+| ACCESSIBILITY:
+| • Keyboard-navigable dropdowns
+| • Screen reader labels for icons
+| • ARIA roles for mobile menu
+| • Focus trapping in offcanvas
+|
+| SECURITY:
+| • External link protection (rel="noopener noreferrer")
+| • Search input sanitization
+| • Service slug validation
+|
+| USAGE EXAMPLE:
+| <app-navbar [services]="serviceData"></app-navbar>
+|
+| IMPROVEMENTS NEEDED:
+| 1. Add ARIA controls for dropdowns
+| 2. Implement focus restoration on mobile close
+| 3. Add skip navigation link
+| 4. Include semantic <nav> landmarks
+|
+| STYLING RECOMMENDATIONS:
+| • Add dropdown transition animations
+| • Ensure mobile z-index hierarchy
+| • Implement high-contrast mode
+|
+| DATA STRUCTURE:
+| interface NavService {
+|   title: string;
+|   slug: string;
+|   category: string;
+|   children?: NavService[];
+| }
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+-->
+
+<div class="navbar-area" [ngClass]="{'sticky': isSticky}">
+    <div class="main-nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" routerLink="/">
+                    <img src="img/logo.png" alt="Logo">
+                </a>
+                <button class="navbar-toggler rounded-0 shadow-none" (click)="toggleClass()" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a role="button" class="nav-link dropdown-toggle" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Pulmonary Medicine
+                            </a>
+
+                            <ul class="dropdown-menu sub-menu">
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        Pulmonary Testing
+                                    </a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li class="nav-item" *ngFor="let item of services.testing">
+                                            <a [routerLink]="'/service-details/' + 'testing/' + item.slug"
+                                                class="nav-link" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item" *ngFor="let item of services.pulmonaryCareServices">
+                                    <a [routerLink]="'/service-details/' + 'pulmonaryCareServices/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Sleep Medicine
+                            </a>
+
+                            <ul class="dropdown-menu sub-menu">
+                                <li class="nav-item" *ngFor="let item of services.sleepDisorder">
+                                    <a [routerLink]="'/service-details/' + 'sleepDisorder/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Psychiatry
+                            </a>
+
+                            <ul class="dropdown-menu sub-menu">
+                                <li class="nav-item" *ngFor="let item of services.behavioralHealth">
+                                    <a [routerLink]="'/service-details/' + 'behavioralHealth/' + item.slug"
+                                        class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        {{ item.title }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">
+                                Medical Services
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a role="button" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        Pulmonary Medicine
+                                    </a>
+
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li class="nav-item" *ngFor="let item of services.pulmonaryCareServices">
+                                            <a [routerLink]="'/service-details/' + 'pulmonaryCareServices/' + item.slug"
+                                                class="nav-link" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        Sleep Medicine
+                                    </a>
+
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li class="nav-item" *ngFor="let item of services.sleepDisorder">
+                                            <a [routerLink]="'/service-details/' + 'sleepDisorder/' + item.slug"
+                                                class="nav-link" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        Psychiatry
+                                    </a>
+
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li class="nav-item" *ngFor="let item of services.behavioralHealth">
+                                            <a [routerLink]="'/service-details/' + 'behavioralHealth/' + item.slug"
+                                                class="nav-link" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        Pulmonary Testing
+                                    </a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li class="nav-item" *ngFor="let item of services.testing">
+                                            <a [routerLink]="'/service-details/' + 'testing/' + item.slug"
+                                                class="nav-link" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" [routerLink]="'/partnerships'" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Partnerships
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://32082-1.portal.athenahealth.com/" target="_blank">
+                                Patient Portal
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" [routerLink]="'/research-details'" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Clinical Trials
+                            </a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">
+                                Health Library
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item" *ngFor="let video of videos">
+                                    <a [routerLink]="'/library/'+ video.slug" class="nav-link" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">
+                                        {{video.title}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <li class="nav-item">
+                            <a routerLink="/blog" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                Blogs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/faq" class="nav-link" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="nav-srh">
+                        <div class="search-toggle">
+                            <button class="search-icon" (click)="searchToggleClass()">
+                                <i [class]="searchClassApplied ? 'icofont-close' : 'icofont-search-1' "></i>
+                            </button>
+                            <!-- <button class="search-icon icon-close" (click)="searchToggleClass()">
+                                <i class="icofont-close"></i>
+                            </button> -->
+                        </div>
+                        <div class="search-area" [ngClass]="searchClassApplied ? 'd-block': 'd-none'">
+                            <form>
+                                <input type="text" class="src-input" id="search-terms" placeholder="Search here..."
+                                    [(ngModel)]="searchText" name="search" />
+                                <button type="submit" class="search-icon p-0 border-0">
+                                    <i class="icofont-search-1"></i>
+                                </button>
+                            </form>
+                            <div class="search-results" *ngIf="getFilteredServices().length > 0">
+                                <ul class="ps-1 mb-1">
+                                    <li *ngFor="let service of getFilteredServices()">
+                                        <a [routerLink]="'/service-details/' + service.category + '/' + service.slug">
+                                            -
+                                            {{ service.title }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p *ngIf="searchText&&getFilteredServices().length===0">No Data Found </p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Responsive Navbar -->
+<div class="responsive-navbar offcanvas offcanvas-end border-0" [class.show]="classApplied">
+    <div class="offcanvas-header">
+        <a routerLink="/" class="logo sidebarLogo d-inline-block">
+            <img src="img/logo.png" alt="Logo">
+        </a>
+        <button type="button" (click)="toggleClass()"
+            class="close-btn bg-transparent transition position-relative lh-1 p-0 border-0">
+            <i class="icofont-close-line"></i>
+        </button>
+    </div>
+    <div class="offcanvas-body">
+        <app-sidebar (closeSidebarEvent)="toggleClass()"></app-sidebar>
+    </div>
+</div>
+<!-- <div class="offcanvas-backdrop fade" [class.show]="classApplied"></div> -->

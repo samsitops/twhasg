@@ -1,0 +1,38 @@
+<!--
+  @template ClinicalTrialsLayout
+  @description
+  This template represents the layout for the Clinical Trials multi-step flow.
+  It includes global UI components like the navigation bar, footer, and a back-to-top button,
+  while dynamically rendering step-specific content via the <router-outlet>.
+
+  @structure
+  - <app-navbar>: Top navigation bar shared across the site
+  - <app-progress-bar>: A progress indicator to show the current step in the trials flow
+  - <router-outlet>: Injects the current step component based on the route
+  - <app-footer>: Footer with optional newsletter disabled
+  - <app-back-to-top>: Scroll to top button
+
+  @notes
+  - The router outlet allows this layout to handle multiple steps (e.g., eligibility, personal info, confirmation)
+  - The layout ensures consistent styling and user experience across steps
+-->
+
+
+<app-navbar />
+
+<div class="steps my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="my-5">
+                    <app-progress-bar></app-progress-bar>
+                </div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer [isNewsletter]="false" />
+
+
+<app-back-to-top />

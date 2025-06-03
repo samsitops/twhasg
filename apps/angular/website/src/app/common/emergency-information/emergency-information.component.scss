@@ -1,0 +1,181 @@
+/*!
+|--------------------------------------------------------------------------
+| Emergency Contact Styles
+|--------------------------------------------------------------------------
+|
+| Styles for the critical contact information section featuring:
+| - Floating container with shadow effect
+| - Icon-based contact points with circular badges
+| - Responsive layout adjustments
+|
+| Structure:
+| • Main container positioning
+| • Background card styling
+| • Contact item layout
+| • Icon and text styling
+|
+| Variables Used:
+| --whiteColor: #ffffff
+| --blueColor: #386ae6
+| --blackColor: #000000
+| --primaryColor: Primary brand color
+|
+| Effects:
+| • Floating container with negative margin
+| • Circular icon badges with glow effect
+| • Responsive padding adjustments
+|
+| Breakpoints:
+| • Mobile (<768px)
+| • Tablet (768px-991px)
+| • Desktop (992px-1199px)
+| • Large Desktop (>=1600px)
+|
+| © 2025 Dream Care <DreamCare@gmail.com>
+| GitHub: @DreamCare ▸ MIT Licensed
+|--------------------------------------------------------------------------
+*/
+
+/* Main Container */
+.emergency-area {
+    margin-top: -50px;
+    /* Pulls section up to overlap previous content */
+    position: relative;
+    z-index: 1;
+    /* Ensures content appears above other elements */
+}
+
+/* Background Card */
+.emergency-bg {
+    padding: 15px 0 15px 10px;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+    box-shadow: 0px 0px 10px 0px #ddd;
+
+    /* Subtle shadow effect */
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        position: center center;
+    }
+}
+
+/* Individual Contact Item */
+.emergency-item {
+    margin-bottom: 10px;
+    height: 100%;
+    position: relative;
+
+    /* Contact Icon Styling */
+    i {
+        top: 50%;
+        left: 0;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        line-height: 45px;
+        position: absolute;
+        text-align: center;
+        border-radius: 50%;
+        /* Circular shape */
+        display: inline-block;
+        color: var(--whiteColor);
+        background-color: var(--blueColor);
+        box-shadow: 0px 0px 0px 4px rgb(178 198 254 / 61%);
+        /* Glow effect */
+        transform: translateY(-50%);
+        /* Perfect vertical centering */
+    }
+
+    /* Contact Text Content */
+    .emergency-inner {
+        padding-left: 60px;
+        /* Space for icon */
+
+        a {
+            line-height: 1.7;
+            /* Proper spacing for clickable elements */
+        }
+
+        h3 {
+            color: var(--blackColor);
+            margin-bottom: 8px;
+
+            font: {
+                size: 22px;
+                weight: 600;
+            }
+        }
+
+        p {
+            color: var(--blackColor);
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* ======================
+   Responsive Breakpoints
+   ====================== */
+
+/* Mobile (<= 767px) */
+@media only screen and (max-width: 767px) {
+    .emergency-area {
+        margin-top: 50px;
+        /* Reset overlap on mobile */
+    }
+
+    .emergency-bg {
+        padding: 40px 0 10px 0;
+        /* Adjusted spacing */
+    }
+
+    .emergency-item {
+        .emergency-inner {
+            padding-left: 70px;
+            /* More space for touch targets */
+
+            h3 {
+                margin-bottom: 15px;
+                /* Increased spacing */
+                font-size: 18px;
+                /* Smaller heading */
+            }
+        }
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .emergency-area {
+        margin-top: 70px;
+        /* Adjusted overlap */
+    }
+
+    .emergency-bg {
+        padding: 40px 0 10px 50px;
+        /* Asymmetrical padding */
+    }
+
+    .emergency-item {
+        .emergency-inner {
+            padding-left: 75px;
+
+            h3 {
+                margin-bottom: 15px;
+                font-size: 20px;
+                /* Intermediate heading size */
+            }
+        }
+    }
+}
+
+/* Small Desktop (992px - 1199px) - Currently no changes */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Reserved for future adjustments */
+}
+
+/* Large Desktop (>= 1600px) - Currently no changes */
+@media only screen and (min-width: 1600px) {
+    /* Reserved for future adjustments */
+}

@@ -1,0 +1,57 @@
+<!--
+  Component: Primary Care Provider Form
+
+  Description:
+  - This form asks the user to specify their primary care provider.
+  - It uses Angular Reactive Forms to handle user input and validation.
+  - The user can enter the name of their primary care provider in a text input.
+  - If the input is left empty and touched, a validation error message will appear.
+  - There is a checkbox option for users who do not have a primary care provider.
+    Toggling this checkbox can enable or disable validation for the input field.
+  
+  Features:
+  - Reactive form binding via [formGroup] and formControlName.
+  - Conditional display of validation messages based on form control state.
+  - Navigation buttons: 
+      - "Go Back" button uses routerLink to navigate to the previous step, passing query parameters.
+      - "Next" button triggers form submission logic.
+
+  Usage:
+  - Ensure the component class defines a reactive form group 'form' with 'primaryCareProvider' control.
+  - Implement 'changeValidity($event)' to toggle validation when checkbox state changes.
+  - Implement 'Submit()' method to handle form submission and navigation.
+
+-->
+
+<div>
+    <h2 class="mb-4">
+        Who is your primary care provider?
+    </h2>
+    <div>
+
+        <form [formGroup]="form" class="mb-3">
+            <div class="form-group flex-fill me-3">
+                <label for="primaryCareProvider">Enter Provider Name</label>
+                <input type="text" class="form-control" id="primaryCareProvider" name="primaryCareProvider"
+                    formControlName="primaryCareProvider">
+                <div class="form-control-feedback"
+                    *ngIf="((form.get('primaryCareProvider')?.touched) && (form.get('primaryCareProvider')?.invalid))">
+                    <small *ngIf="form.get('primaryCareProvider')?.errors?.['required']" class="text-danger">
+                        This field is required
+                    </small>
+                </div>
+            </div>
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" (change)="changeValidity($event)" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    I don't have a primary care provider
+                </label>
+            </div>
+        </form>
+    </div>
+    <a class="btn btn-outline-primary text-primary me-3" routerLink="/request-appointment/patient-status"
+        [queryParams]="params">
+        Go Back
+    </a>
+    <button type="button" class="btn btn-primary" (click)="Submit()"> Next </button>
+</div>

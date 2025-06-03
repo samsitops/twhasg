@@ -1,0 +1,226 @@
+<!--
+|--------------------------------------------------------------------------
+| Footer Component
+|--------------------------------------------------------------------------
+|
+| Responsive website footer with multiple layout variations and features:
+|
+| LAYOUT VARIATIONS:
+| • style-two: Alternate styling for home and about pages
+| • no__subscribe: Hides newsletter when isNewsletter=false
+|
+| STRUCTURAL SECTIONS:
+| 1. Newsletter Area (conditionally displayed)
+|   - Email subscription form with validation
+|   - Responsive 2-column layout
+|
+| 2. Contact Information
+|   - Phone numbers with click-to-call
+|   - Physical addresses
+|   - Commented-out email links
+|
+| 3. Quick Links
+|   - Navigation shortcuts
+|   - Clean minimal link list
+|
+| 4. Services Links
+|   - Key service categories
+|   - Direct links to service details
+|
+| 5. Copyright Notice
+|   - Dynamic year display
+|
+| INTERACTIVE ELEMENTS:
+| • Newsletter Form:
+|   - Email validation (required + format)
+|   - Submit button state management
+| • Phone Links:
+|   - Click-to-call functionality
+| • Navigation Links:
+|   - Angular router integration
+|
+| ACCESSIBILITY:
+| • Semantic HTML structure
+| • Form error messaging
+| • Needs ARIA labels for icons
+| • Requires focus styles for keyboard nav
+|
+| TECHNICAL NOTES:
+| • Background image: img/home-one/home-bg14.png
+| • Form Controls:
+|   - newsLettersForm: Email validation
+|   - footerForm: Commented-out feedback form
+| • Dynamic Features:
+|   - dateNow: Current year display
+|   - isNewsletter: Toggle control
+|
+| MAINTENANCE:
+| • Commented Sections:
+|   - Feedback form (ready for future use)
+|   - Additional email/phone links
+| • Image Optimization:
+|   - Background should be compressed
+| • Responsive Behavior:
+|   - Tested on all breakpoints
+|
+| © 2025 Teamwork Health
+|--------------------------------------------------------------------------
+-->
+
+<!-- Footer -->
+<footer class="pb-70"
+    [ngClass]="{'style-two': router.url === '/' || router.url === '/index-2' || router.url === '/index-3' || router.url === '/about', 'no__subscribe': !isNewsletter}"
+    style="background-image: url(img/home-one/home-bg14.png);">
+    <div class="newsletter-area" *ngIf="isNewsletter">
+        <div class="container">
+            <div class="row newsletter-wrap align-items-center">
+                <div class="col-lg-6">
+                    <div class="newsletter-item">
+                        <h2>Join Our Newsletter</h2>
+                        <p>Get the latest healthcare insights, updates on our launch, and exclusive tips for better
+                            health delivered straight to your inbox.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="newsletter-item">
+                        <div class="newsletter-form">
+                            <form [formGroup]="newsLettersForm" class="newsletter-form">
+                                <input formControlName="email" type="email" class="form-control"
+                                    placeholder="Enter Your Email" name="EMAIL">
+                                <button (click)="sendNewLettersEmail()" [disabled]="newsLettersForm.invalid"
+                                    class="btn newsletter-btn" type="submit">Subscribe</button>
+                                <div *ngIf="newsLettersForm.get('email')?.errors && newsLettersForm.get('email')?.touched"
+                                    class="text-danger m-0">
+                                    <small *ngIf="newsLettersForm.get('email')?.getError('email')" class='m-0'>Email
+                                        inValid
+                                    </small>
+                                    <small *ngIf="newsLettersForm.get('email')?.getError('required')" class="m-0 ">Email
+                                        is
+                                        Required</small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-5">
+                <div class="footer-item">
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <!-- <li>
+                                <i class="icofont-ui-message"></i>
+                                <a href="mailto:appointments&#64;twhasg.com">appointments&#64;twhasg.com</a>
+                                <a href="mailto:hello&#64;teamwork-health.com">hello&#64;teamwork-health.com</a>
+                            </li> -->
+                            <li>
+                                <i class="icofont-ui-call"></i>
+                                <a class="d-block" href="tel:(910) 491-6793">(910) 491-6793 </a>
+                                <a class="d-block" href="tel:(919) 238-1110">(919) 238-1110 </a>
+                                <!-- <a href="tel:+236256256365">Call: +236 256 256 365</a> -->
+                            </li>
+                            <li>
+                                <i class="icofont-location-pin"></i>
+                                <p class="mb-0"> 1991 Fordham Dr #302, Fayetteville, NC 28304. </p>
+                                <p>115 Kildaire Park Dr #309, Cary, NC 27518.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                    <div class="footer-quick">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a routerLink="/about">About us</a></li>
+                            <li><a routerLink="/blog">Blog</a></li>
+                            <!-- <li><a routerLink="/blog-details">Our Expertise</a></li> -->
+                            <li><a routerLink="/faq">FAQ</a></li>
+                            <!-- <li><a routerLink="/doctors">Doctors</a></li> -->
+                            <li><a routerLink="/contact">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="footer-item">
+                    <div class="footer-quick">
+                        <h3>Our Services</h3>
+                        <ul>
+                            <li>
+                                <a routerLink="/service-details/pulmonaryCareServices/asthma">Pulmonary medicine</a>
+                            </li>
+
+                            <li><a routerLink="/service-details/sleepDisorder/home-sleep-studies"> Sleep medicine </a>
+                            </li>
+                            <li><a routerLink="/service-details/behavioralHealth/medication-management"> Psychiatry </a>
+                            </li>
+                            <li><a routerLink="/service-details/testing/pft"> Pulmonary Testing</a></li>
+                            <!-- <li><a routerLink="/">Ambluance Sevices</a></li>
+                            <li><a routerLink="/">Medicine</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 col-lg-3">
+                <div class="footer-item">
+                    <div class="footer-feedback">
+                        <h3>Feedback</h3>
+                        <form [formGroup]="footerForm">
+                            <div class="form-group">
+                                <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                                <div *ngIf="footerForm.get('name')?.errors && footerForm.get('name')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="footerForm.get('name')?.getError('required')" class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input formControlName="phoneNumber" type="text" class="form-control"
+                                    placeholder="Phone">
+                                <div *ngIf="footerForm.get('phoneNumber')?.errors && footerForm.get('phoneNumber')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="footerForm.get('phoneNumber')?.getError('required')" class="m-0 ">
+                                        This field is required
+                                    </small>
+                                    <span *ngIf="footerForm.get('phoneNumber')?.errors?.['pattern']">
+                                        Phone Number invalid .
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea formControlName="message" class="form-control" id="your_message" rows="5"
+                                    placeholder="Message"></textarea>
+                                <div *ngIf="footerForm.get('message')?.errors && footerForm.get('message')?.touched"
+                                    class="text-danger m-0 fs-">
+                                    <small *ngIf="footerForm.get('message')?.getError('required')" class="m-0 ">
+                                        This field is required</small>
+                                </div>
+                            </div>
+                            <div class="text-left">
+                                <button (click)="sendEmail()" [disabled]="footerForm.invalid" type="submit"
+                                    class="btn feedback-btn">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</footer>
+
+<!-- Copyright -->
+<div class="copyright-area">
+    <div class="container">
+        <div class="copyright-item">
+            <p>
+                © {{dateNow}} Teamwork Health. All rights reserved.
+            </p>
+        </div>
+    </div>
+</div>

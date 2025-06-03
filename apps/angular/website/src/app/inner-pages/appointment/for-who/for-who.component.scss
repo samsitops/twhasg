@@ -1,0 +1,38 @@
+// Container width for image elements (currently commented out)
+// .me-img-container {
+//     width: 100px;
+// }
+
+// Adds padding inside form controls for better spacing
+.form-control {
+    padding: 15px;
+}
+
+// Hide the native radio input and style the associated label instead
+input[type="radio"] {
+    display: none !important;
+
+    // When the radio button is checked, style the adjacent label with shadow and blue border
+    &:checked~label {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: 1px solid var(--blueColor);
+    }
+}
+
+// Style the label next to the radio input as a circular button with hover effects
+input[type="radio"]~label {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+    // On hover, change border color and add shadow to indicate interactivity
+    &:hover {
+        cursor: pointer;
+        border: 1px solid var(--blueColor);
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+}

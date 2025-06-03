@@ -1,0 +1,30 @@
+
+/*
+  .card styles
+
+  - Removes default border.
+  - Adds a subtle box-shadow for a soft elevated effect.
+  - Applies a smooth transition on all properties over 0.3 seconds with ease-in-out timing.
+  - Centers the text inside the card.
+  - On hover, the card moves upward by 10px, creating a lifting effect.
+  
+  Nested styles:
+  - h4 inside the card has a font size of 1em (relative to parent).
+  - img inside the card has rounded top corners with a 5px radius, creating smooth edges.
+*/
+
+.card {
+    border: 0;
+    box-shadow: 0px 0px 25px 0px rgba(221, 221, 221, 0.7490196078);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    &:hover {
+        transform: translateY(-10px);
+    }
+    h4 {
+        font-size: 1em;
+    }
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+}

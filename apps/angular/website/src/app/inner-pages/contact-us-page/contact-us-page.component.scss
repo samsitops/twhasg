@@ -1,0 +1,332 @@
+/*
+Styles for Contact Us Page Components
+
+1. Contact Info Section (.location-wrap)
+   - Background image with cover and centered positioning
+   - Box shadow and padding for spacing
+   - Positioning to overlap with adjacent sections using negative margin and z-index
+   - Each location-item contains icon, heading, paragraphs, and links with custom styles
+   - Icon styled as circle with background color and size
+   - Responsive adjustments for smaller screen widths (mobile/tablet)
+
+2. Contact Form Section (.drop-area and .drop-item)
+   - Background image styling for left side image container (.drop-img)
+   - Form container (.drop-left) with max-width and vertical padding
+   - Headings styled for prominence
+   - Form controls styled with shadows, padding, and height
+   - Buttons with hover effects changing background color
+   - Validation messages styled with colors (danger and success)
+   - Responsive styles to adjust padding, font sizes, and control sizes for smaller screens
+
+3. Map Section (#map)
+   - iframe styled to take full width and fixed height with no border
+
+4. Media Queries
+   - Below 767px: Adjust padding, font sizes, icon sizes, and button styles for mobile devices
+   - Between 768px and 991px: Tablet screen adjustments, padding and font size tweaks
+   - Above 1600px: Container max-width increased for very large screens
+
+General:
+- Uses CSS variables for colors and fonts for easy theme management (e.g., var(--blueColor), var(--whiteColor))
+- Clean separation of concerns for different page sections via class names
+
+This SCSS supports a responsive and visually consistent "Contact Us" page design.
+*/
+
+
+@import "../../common/expertise/expertise.component";
+
+// Contact Info
+.location-wrap {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 10px 0px #ddd;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    padding-left: 170px;
+    margin-top: -125px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--whiteColor);
+
+    .location-item {
+        margin-bottom: 30px;
+
+        i {
+            display: inline-block;
+            width: 75px;
+            height: 75px;
+            line-height: 75px;
+            border-radius: 50%;
+            color: var(--whiteColor);
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+            background-color: var(--blueColor);
+        }
+        h3 {
+            font-weight: 600;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 0;
+            // max-width: 290px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 0;
+
+            li {
+                list-style-type: none;
+                display: block;
+            }
+        }
+        a {
+            display: block;
+            color: var(--grayColor);
+
+            &:hover {
+                color: var(--grayColor);
+            }
+        }
+    }
+}
+
+// Contact
+.drop-img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    img {
+        display: none;
+    }
+}
+.drop-area {
+    .speciality-right-three {
+        border-radius: 0;
+    }
+}
+.drop-item {
+    .drop-left {
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        h2 {
+            font-weight: 600;
+            font-size: 32px;
+            margin-bottom: 25px;
+            padding-right: 50px;
+        }
+        .form-group {
+            margin-bottom: 30px;
+
+            .form-control {
+                height: 50px;
+                background-color: var(--whiteColor);
+                padding-left: 20px;
+                border: none;
+                box-shadow: 0px 0px 15px 0px #dddddda3;
+            }
+            textarea {
+                padding-top: 20px;
+                height: auto !important;
+            }
+        }
+        .drop-btn {
+            font-weight: 600;
+            font-size: var(--fontSize);
+            color: var(--whiteColor);
+            padding: 14px 35px;
+            transition: var(--transition);
+            background-color: var(--blueColor);
+            box-shadow: none;
+            border: 0;
+            &:hover {
+                color: var(--whiteColor);
+                background-color: var(--grayColor);
+            }
+        }
+        .list-unstyled {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .text-danger {
+            color: #dc3545;
+            margin-top: 25px;
+            margin-bottom: 0;
+            // font-size: 24px;
+        }
+        .text-success {
+            color: #28a745;
+            margin-top: 25px;
+            font-size: 24px;
+        }
+    }
+}
+
+// Maps
+#map {
+    iframe {
+        margin-bottom: -8px;
+        height: 600px;
+        border: none;
+        width: 100%;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    // Contact Info
+    .location-wrap {
+        padding-top: 40px;
+        padding-bottom: 10px;
+        padding-left: 0;
+        margin-top: 50px;
+
+        .location-item {
+            i {
+                width: 65px;
+                height: 65px;
+                line-height: 65px;
+                font-size: 28px;
+                margin-bottom: 18px;
+            }
+            h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            p {
+                margin-bottom: 12px;
+            }
+        }
+    }
+
+    // Contact
+    .drop-item {
+        .drop-left {
+            padding-top: 0;
+            padding-bottom: 30px;
+            max-width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+                padding-right: 0;
+            }
+            .form-group {
+                .form-control {
+                    height: 45px;
+                    font-size: 14px;
+                }
+            }
+            .drop-btn {
+                font-size: var(--fontSize);
+                padding: 12px 30px;
+            }
+            .text-danger {
+                margin-top: 15px;
+                font-size: 18px;
+            }
+            .text-success {
+                margin-top: 15px;
+                font-size: 18px;
+            }
+        }
+    }
+    .drop-img {
+        height: auto;
+        background: unset !important;
+
+        img {
+            display: inline-block;
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    // Contact Info
+    .location-wrap {
+        padding-top: 40px;
+        padding-bottom: 10px;
+        padding-left: 80px;
+        margin-top: 70px;
+
+        .location-item {
+            i {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 28px;
+                margin-bottom: 18px;
+            }
+            h3 {
+                font-size: 22px;
+                margin-bottom: 14px;
+            }
+            p {
+                margin-bottom: 14px;
+            }
+        }
+    }
+
+    // Contact
+    .drop-img {
+        height: auto;
+        background: unset;
+
+        img {
+            display: inline-block;
+        }
+    }
+    .drop-item {
+        .drop-left {
+            max-width: 100%;
+            padding-top: 0;
+            padding-bottom: 30px;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            .drop-btn {
+                font-size: var(--fontSize);
+            }
+            .text-danger {
+                margin-top: 20px;
+                font-size: 20px;
+            }
+            .text-success {
+                margin-top: 15px;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+    // Contact
+    .drop-area {
+        .container-fluid {
+            max-width: 1920px;
+        }
+    }
+}

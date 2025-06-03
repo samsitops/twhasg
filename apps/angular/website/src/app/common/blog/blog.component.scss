@@ -1,0 +1,272 @@
+/**
+ * -----------------------------------------------------------------------------
+ *  blog.component.scss — Styling for Blog Listing Component
+ * -----------------------------------------------------------------------------
+ *
+ *  🚀 Overview
+ *  This stylesheet defines the visual presentation of the blog listing page,
+ *  including the blog container (`.blog-area`) and individual blog cards (`.blog-item`).
+ *  It provides a clean, modern card design with smooth hover effects,
+ *  responsive layout adjustments, and accessible typography.
+ *
+ *  🎨 Core Styles
+ *  • `.blog-area`: Sets the relative positioning context and a light background color.
+ *  • `.blog-item`: White cards with rounded corners, subtle shadow, and margin spacing.
+ *    - Hover effect scales the blog image inside `.blog-top` smoothly for an engaging UI.
+ *  • `.blog-top`: Contains the blog image with overflow hidden to clip scaling.
+ *  • `.blog-bottom`: Content area with paddings, styled headings (`h3`), paragraphs (`p`), and metadata list (`ul`).
+ *    - Headings and links have transition effects on hover with consistent color scheme.
+ *    - Metadata list uses inline styling for icons and text with hover color transitions.
+ *
+ *  📱 Responsive Design
+ *  • Mobile (max-width: 767px): Adjusts paddings, font sizes, and spacing to ensure readability and usability on smaller screens.
+ *  • Tablet (768px to 991px): Moderate padding and font size adjustments for mid-sized screens.
+ *  • Small desktops (992px to 1199px): Slightly larger paddings and font adjustments for comfortable reading.
+ *  • Large desktops (1600px+): Reserved for future styles or overrides.
+ *
+ * -----------------------------------------------------------------------------
+ *  © 2025 Dream Care <DreamCare@gmail.com>
+ *  GitHub: @DreamCare ▸ Licensed under the MIT License
+ * -----------------------------------------------------------------------------
+ */
+
+.blog-area {
+    position: relative;
+    background-color: #f8fbff;
+}
+
+.blog-item {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+    box-shadow: 0px 0px 20px 0px #dddddd6b;
+
+    &:hover {
+        .blog-top {
+            overflow: hidden;
+
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .blog-top {
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            transition: var(--transition);
+        }
+
+        a {
+            display: block;
+        }
+    }
+
+    .blog-bottom {
+        padding: {
+            top: 35px;
+            left: 20px;
+            right: 20px;
+            bottom: 35px;
+        }
+
+        h3 {
+            margin-bottom: 0;
+
+            a {
+                display: block;
+                color: #232323;
+                line-height: 1.4;
+                margin-bottom: 12px;
+                transition: var(--transition);
+
+                font: {
+                    weight: 600;
+                    size: 21px;
+                }
+
+                &:hover {
+                    color: var(--blueColor);
+                }
+            }
+        }
+
+        p {
+            color: #232323;
+            margin-bottom: 0;
+            padding-bottom: 30px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            padding-top: 30px;
+            border-top: 1px solid #b1b8ed;
+
+            li {
+                color: #0046c0;
+                font-weight: 500;
+                display: inline-block;
+                list-style-type: none;
+                font-size: var(--fontSize);
+
+                i {
+                    color: #0046c0;
+                }
+
+                &:last-child {
+                    float: right;
+
+                    i {
+                        top: 1px;
+                        font-size: 19px;
+                        margin-right: 3px;
+                    }
+                }
+
+                a {
+                    display: block;
+                    color: #0046c0;
+                    font-weight: 500;
+                    font-size: var(--fontSize);
+
+                    &:hover {
+                        color: var(--blackColor);
+
+                        i {
+                            color: var(--blackColor);
+                        }
+                    }
+
+                    i {
+                        transition: 0.3s all ease;
+                        display: inline-block;
+                        position: relative;
+                        font-size: 22px;
+                        top: 4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+    .blog-area {
+        padding-bottom: 10px !important;
+        padding-top: 40px !important;
+    }
+
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 25px;
+                left: 15px;
+                right: 15px;
+                bottom: 30px;
+            }
+
+            h3 {
+                a {
+                    font-size: 17px;
+                    margin-bottom: 12px;
+                }
+            }
+
+            p {
+                padding-bottom: 22px;
+            }
+
+            ul {
+                padding-top: 20px;
+
+                li {
+                    font-size: var(--fontSize);
+
+                    &:last-child {
+                        i {
+                            font-size: 14px;
+                        }
+                    }
+
+                    a {
+                        font-size: var(--fontSize);
+
+                        i {
+                            font-size: 20px;
+                            top: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .blog-area {
+        padding-bottom: 150px;
+    }
+
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 30px;
+                left: 15px;
+                right: 15px;
+                bottom: 30px;
+            }
+
+            h3 {
+                a {
+                    font-size: 18px;
+                    margin-bottom: 14px;
+                }
+            }
+
+            p {
+                padding-bottom: 20px;
+            }
+
+            ul {
+                padding-top: 15px;
+
+                li {
+                    font-size: var(--fontSize);
+
+                    a {
+                        font-size: var(--fontSize);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .blog-item {
+        .blog-bottom {
+            padding: {
+                top: 30px;
+                left: 20px;
+            }
+
+            h3 {
+                a {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+    /* Reserved for future large screen styles */
+}
